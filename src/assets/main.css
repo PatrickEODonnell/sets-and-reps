@@ -1,0 +1,287 @@
+* {
+  font-family: Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+/*--Text Styles--*/
+
+.light-11 {
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.normal-16 {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.bold-14 {
+  font-weight: bold;
+  font-size: 14px;
+}
+.bold-16 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sr-only {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+
+.push {
+  margin-left: auto;
+}
+
+/*--Content Styles--*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  height: 100%;
+  border: 1px solid white;
+  background-color: white;
+}
+
+header {
+  background-color: grey;
+  color: #ffffff;
+  display: flex;
+  padding: 32px 20px 16px 20px;
+  align-items: baseline;
+  gap: 12px;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  border: 1px solid white;
+}
+
+main > div {
+  margin: 30px 20px;
+}
+
+/*--Exercise Description--*/
+#exercise {
+  display: flex;
+  padding: 9px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  flex-shrink: 0;
+  position: relative;
+
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#exercise > h1 {
+  position: absolute;
+  top: -16px;
+  padding: 2px;
+
+  background-color: #ffffff;
+  color: black;
+}
+
+.sets {
+  display: flex;
+  gap: 5px;
+}
+
+.sets > img {
+  padding-right: 5px;
+}
+
+#exercise > div > img {
+  margin: auto;
+}
+
+/*--Timer Widget--*/
+
+#timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0px;
+  gap: 20px;
+  position: relative;
+
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+#timer > div {
+  margin: 0 auto;
+}
+
+/*--Set Counter--*/
+#set-counter {
+  display: inline-flex;
+  padding: 0px 10px;
+  align-items: center;
+  gap: 0px;
+  position: absolute;
+  top: -20px;
+  align-self: center;
+  margin: 0;
+
+  background-color: #ffffff;
+}
+
+#set-counter > h1 {
+  font-size: 32px;
+  font-weight: normal;
+  margin: 0;
+}
+
+#set-counter > h1:first-of-type {
+  font-size: 24px;
+  color: black;
+}
+
+#sets-complete {
+  margin-right: -16px;
+
+  font-weight: bold !important;
+  color: black;
+}
+
+#sets-total {
+  margin: 0;
+  color: #c1c1c1;
+}
+
+/*--Timer--*/
+#time {
+  color: black;
+  font-size: 100px;
+  font-weight: 300;
+  margin: inherit;
+}
+
+/*--Controls--*/
+#controls {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+}
+
+#reset {
+  position: absolute;
+  left: -40px;
+  align-self: center;
+  border: none;
+}
+
+#play {
+  width: 100px;
+  height: 50px;
+  align-self: center;
+  overflow: hidden;
+
+  background-color: lightgray;
+  border-radius: 25px;
+  border: none;
+}
+
+#complete {
+  display: inline-flex;
+  padding: 10px 20px;
+  justify-content: center;
+  text-wrap: nowrap;
+  align-items: center;
+  width: 60%;
+  min-width: 240px;
+  gap: 12px;
+  margin: auto;
+  position: absolute;
+  align-self: center;
+  bottom: -20px;
+
+  color: black;
+  border-radius: 14px;
+  border: none;
+  background: lightgray;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/*--Buttons--*/
+
+#add-note {
+  display: flex;
+  padding: 7px 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: auto;
+  position: relative;
+
+  color: black;
+  border: 1px solid Black;
+  border-radius: 5px;
+}
+
+#add-note:active {
+  background-color: #f6f6f6;
+  transition: all 0.8ms;
+}
+
+/*--Footer--*/
+footer {
+  color: #ffffff;
+  background-color: grey;
+  padding: 16px 20px 32px 20px;
+  text-align: center;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.ripplebutton {
+  overflow: hidden;
+  transition: background 400ms;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(228, 228, 228, 0.629);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
