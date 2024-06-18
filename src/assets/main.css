@@ -84,6 +84,47 @@ main > div {
   margin: 30px 20px;
 }
 
+select {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   border: 1px solid lightgray;
+  background-color: transparent;
+  padding: 12px 20px;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+input[type=text]{
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   border: 1px solid lightgray;
+  padding: 12px 20px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  }
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
 /*--Exercise Description--*/
 #exercise {
   display: flex;
