@@ -4,11 +4,13 @@
     <div id="set-counter">
       <h1>Set:&nbsp;</h1>
       <h1 id="sets-complete">1</h1>
-      <h1 id="sets-total">/4</h1>
+      <h1 id="sets-total">/{{ store.getSets }}</h1>
     </div>
 
     <div>
-      <p id="time">{{ String(minClock) }}:{{ right('00' + String(secClock), 2) }}</p>
+      <p id="time">
+        {{ String(store.getMinutes) }}:{{ right('00' + String(store.getSeconds), 2) }}
+      </p>
     </div>
 
     <div id="controls">
@@ -31,11 +33,9 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useSetParamsStore } from '@/libs/siteParams'
+const store = useSetParamsStore()
 const props = defineProps(['timerDetails'])
-let numOfMin = ref(props.timerDetails.min_per_set)
-let numOfSec = ref(numOfMin.value * 60)
-let minClock = ref(~~(numOfSec.value / 60))
-let secClock = ref(numOfSec.value % 60)
 
 const right = (str, len) => {
   console.log(str, str.length)

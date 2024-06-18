@@ -4,7 +4,7 @@
   </header>
   <main>
     <TabHeading heading="Workout Timer" />
-    <SetTimerParms :timerDetails="timerDetails" />
+    <SetTimerParms :timerDetails="timerDetails" @on-change-params="onChangeParams" />
     <PlayTimer :timerDetails="timerDetails" />
   </main>
 </template>
@@ -18,8 +18,8 @@ import PlayTimer from '../components/PlayTimer.vue'
 let timerDetails = ref({
   name: '',
   set_type: 'Standard',
-  sets: 3,
-  min_per_set: 2.5,
+  sets: 4,
+  min_per_set: 3,
   interval: 1,
   interval_off: 10,
   exercise_count: 0
@@ -32,5 +32,6 @@ const onChangeParams = (params) => {
   timerDetails.value.set_type = params.set_type
   timerDetails.value.sets = params.sets
   timerDetails.value.exercise_count = params.exercise_count
+  console.log('TimerView', 'onChangeParams', timerDetails.value)
 }
 </script>
