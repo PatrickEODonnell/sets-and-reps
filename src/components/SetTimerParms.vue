@@ -25,6 +25,9 @@
         </div>
       </div>
     </div>
+    <!-- <div class="row">
+      <button @click="startTimer($event)">Start</button>
+    </div> -->
   </div>
 </template>
 
@@ -50,6 +53,8 @@ function changeMinPerSet(event) {
   store.updateMinPerSet(event.target.value)
 
   console.log('minPerSet', store.getMinPerSet)
+  console.log('Minutes', store.minutesRemaining)
+  console.log('Seconds', store.secondsRemaining)
   // emits('onChangeParams', timerDetails)
 }
 function changeSets(event) {
@@ -61,6 +66,9 @@ function changeSets(event) {
 }
 function changeSetType(event) {
   console.log(event.target.value)
+}
+function startTimer(event) {
+  store.startStandardTimer()
 }
 </script>
 

@@ -3,7 +3,7 @@
   <div id="timer">
     <div id="set-counter">
       <h1>Set:&nbsp;</h1>
-      <h1 id="sets-complete">1</h1>
+      <h1 id="sets-complete">{{ store.getSet }}</h1>
       <h1 id="sets-total">/{{ store.getSets }}</h1>
     </div>
 
@@ -18,7 +18,7 @@
         <img src="../assets/reset.svg" />
         <p class="sr-only">Reset timer</p>
       </button>
-      <button id="play">
+      <button id="play" @click="startTimer($event)">
         <img id="play-pause" src="../assets/play.svg" />
         <p class="sr-only">Play</p>
       </button>
@@ -36,9 +36,11 @@ import { ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
 const store = useSetParamsStore()
 const props = defineProps(['timerDetails'])
-
+console.log(store.getSet)
 const right = (str, len) => {
-  console.log(str, str.length)
   return str.substring(str.length - 2, str.length)
+}
+function startTimer(event) {
+  store.startStandardTimer()
 }
 </script>
