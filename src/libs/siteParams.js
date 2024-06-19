@@ -20,5 +20,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     function updateSets(numberOfSets){
         sets.value = numberOfSets
     }
-    return {sets, minPerSet, setType, updateMinPerSet, updateSets, getMinPerSet, getSets, getMinutes, getSeconds}
+    function updateSetType(setType){
+        setType.value = setType
+    }
+    return {sets, minPerSet, setType, updateMinPerSet, updateSets, updateSetType, getMinPerSet, getSets, getMinutes, getSeconds}
 })

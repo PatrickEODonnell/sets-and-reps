@@ -4,7 +4,7 @@
       <div class="column" style="text-align: center">
         <div>Choose type of Set:</div>
         <div>
-          <select v-model="timerDetails.set_type" @change="changeItem($event)">
+          <select v-model="timerDetails.set_type" @change="changeSetType($event)">
             <option v-for="type in setTypes" :key="type.key">
               {{ type.value }}
             </option>
@@ -58,6 +58,9 @@ function changeSets(event) {
 
   console.log('sets', store.getSets)
   // emits('onChangeParams', timerDetails)
+}
+function changeSetType(event) {
+  console.log(event.target.value)
 }
 </script>
 
