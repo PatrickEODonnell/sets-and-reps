@@ -11,7 +11,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     let secRemaining = ref(0)
     let remainingSets = ref(4)
     let timerIsRunning = ref(false)
-
+    let stopTimerNow = ref(false)
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
@@ -20,7 +20,6 @@ export const useSetParamsStore = defineStore('setParams',() => {
     const getSet = computed(() => set.value)
 
     // Functions
-
     function updateMinPerSet(min){
         minPerSet.value = min
         secPerSet.value = min * 60
@@ -35,14 +34,22 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
     function startStandardTimer(){
         timerIsRunning.value = true
+        set.value = 1
+        secPerSet.value = minPerSet.value * 60
         const x = setInterval(() => {
             secPerSet.value -= 1
             minRemaining.value = ~~(secPerSet.value/60)
             secRemaining.value = secPerSet.value % 60
-            console.log("secPerSet",secPerSet.value)
-            console.log("remainingSets",remainingSets.value)
-            console.log("minRemaining", minRemaining.value)
-            console.log("secRemaining", secRemaining.value)
+            // console.log("secPerSet",secPerSet.value)
+            // console.log("remainingSets",remainingSets.value)
+            //  console.log("minRemaining", minRemaining.value)
+            // console.log("secRemaining", secRemaining.value)
+            if (stopTimerNow.value){
+                secPerSet.value = 0
+                timerIsRunning.value = false
+                stopTimerNow.value = false
+                clearInterval(x);
+            }
             if (secPerSet.value <= 0){
                 remainingSets.value -= 1
                 secPerSet.value = minPerSet.value * 60
@@ -55,7 +62,10 @@ export const useSetParamsStore = defineStore('setParams',() => {
             }
         },1000)
     }
+    function stopTimer(){
+        stopTimerNow.value = true
+    }
 
     
-    return {sets, minPerSet, setType, updateMinPerSet, updateSets, updateSetType, startStandardTimer, getMinPerSet, getSets, getMinutes, getSeconds, getSet}
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, getMinPerSet, getSets, getMinutes, getSeconds, getSet}
 })

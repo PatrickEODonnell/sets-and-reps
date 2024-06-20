@@ -14,17 +14,17 @@
     </div>
 
     <div id="controls">
-      <button id="reset">
-        <img src="../assets/reset.svg" />
-        <p class="sr-only">Reset timer</p>
+      <button id="stop" @click="stopTimer($event)" v-if="store.timerIsRunning">
+        <img id="play-pause" src="../assets/stop.svg" />
+        <p>Stop</p>
       </button>
-      <button id="play" @click="startTimer($event)">
+      <button id="play" @click="startTimer($event)" v-if="!store.timerIsRunning">
         <img id="play-pause" src="../assets/play.svg" />
         <p class="sr-only">Play</p>
       </button>
     </div>
 
-    <button id="complete" class="normal-16 ripplebutton">
+    <button id="complete" class="normal-16 ripplebutton" v-if="!store.timerIsRunning">
       <img src="../assets/check.png" />
       Workout Completed
       <div></div>
@@ -32,15 +32,17 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
+
 const store = useSetParamsStore()
-const props = defineProps(['timerDetails'])
 console.log(store.getSet)
 const right = (str, len) => {
   return str.substring(str.length - 2, str.length)
 }
 function startTimer(event) {
   store.startStandardTimer()
+}
+function stopTimer(event) {
+  store.stopTimer()
 }
 </script>
