@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export const useSetParamsStore = defineStore('setParams',() => {
     let sets = ref(4)
     let set = ref(1)
-    let minPerSet = ref(1)
+    let minPerSet = ref(3)
     let secPerSet = ref(60)
     let setType = ref("Standard")
     let minRemaining = ref(3)
@@ -14,8 +14,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
-    const getMinutes = computed(() => ~~(secPerSet.value/60))
-    const getSeconds = computed(() => (secPerSet.value % 60))
+    const getMinutes = computed(() => { return minRemaining.value })
+    const getSeconds = computed(() => { return secRemaining.value })
     const getSet = computed(() => set.value)
 
     // Functions
