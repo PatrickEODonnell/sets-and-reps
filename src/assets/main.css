@@ -209,7 +209,7 @@ input[type=text]{
   align-items: center;
   gap: 0px;
   position: absolute;
-  top: -20px;
+  top: -22px;
   align-self: center;
   margin: 0;
 
@@ -217,7 +217,7 @@ input[type=text]{
 }
 
 #set-counter > h1 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: normal;
   margin: 0;
 }

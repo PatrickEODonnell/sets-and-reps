@@ -3,7 +3,7 @@
     <PageHeading />
   </header>
   <main>
-    <TabHeading heading="Workout Timer" />
+    <TabHeading heading="Timer" />
     <SetTimerParms v-if="store.showTimerParms" />
     <PlayTimer />
   </main>

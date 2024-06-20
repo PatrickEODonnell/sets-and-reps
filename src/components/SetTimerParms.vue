@@ -1,6 +1,6 @@
 <template>
   <div id="timer-input">
-    <div id="edit-heading"><h1>Edit Set</h1></div>
+    <div id="edit-heading"><h1>Edit Timer Details</h1></div>
     <div class="row">
       <div class="column">
         <div>Choose type of Set:</div>
