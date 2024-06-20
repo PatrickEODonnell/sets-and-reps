@@ -17,12 +17,12 @@
     <div class="row">
       <div class="column">
         <div>How many Sets?:</div>
-        <div><input type="text" v-model="store.sets" @change="changeSets($event)" /></div>
+        <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
       </div>
       <div class="column">
         <div>Minutes per Set?</div>
         <div>
-          <input type="text" v-model="minPerSet" @change="changeMinPerSet($event)" />
+          <input type="number" v-model="minPerSet" @change="changeMinPerSet($event)" />
         </div>
       </div>
     </div>
