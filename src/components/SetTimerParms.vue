@@ -1,7 +1,8 @@
 <template>
   <div id="timer-input">
+    <div id="edit-heading"><h1>Edit Set</h1></div>
     <div class="row">
-      <div class="column" style="text-align: center">
+      <div class="column">
         <div>Choose type of Set:</div>
         <div>
           <select v-model="store.setType" @change="changeSetType($event)">

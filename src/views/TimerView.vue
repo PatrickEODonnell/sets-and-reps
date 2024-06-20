@@ -4,7 +4,7 @@
   </header>
   <main>
     <TabHeading heading="Workout Timer" />
-    <SetTimerParms v-if="!store.timerIsRunning" />
+    <SetTimerParms v-if="store.showTimerParms" />
     <PlayTimer />
   </main>
 </template>

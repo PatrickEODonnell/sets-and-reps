@@ -6,7 +6,6 @@
       <h1 id="sets-complete">{{ store.getSet }}</h1>
       <h1 id="sets-total">/{{ store.getSets }}</h1>
     </div>
-
     <div>
       <p id="time">
         {{ String(store.getMinutes) }}:{{ right('00' + String(store.getSeconds), 2) }}
@@ -24,7 +23,7 @@
       </button>
     </div>
 
-    <button id="complete" class="normal-16 ripplebutton" v-if="!store.timerIsRunning">
+    <button id="complete" class="normal-16 ripplebutton" v-if="store.showWorkoutCompleted">
       <img src="../assets/check.png" />
       Workout Completed
       <div></div>

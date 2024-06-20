@@ -12,6 +12,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     let remainingSets = ref(4)
     let timerIsRunning = ref(false)
     let stopTimerNow = ref(false)
+    let showTimerParms = ref(true)
+    let showWorkoutCompleted = ref(false)
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
@@ -34,6 +36,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
     function startStandardTimer(){
         timerIsRunning.value = true
+        showTimerParms.value = false
+        showWorkoutCompleted.value = false
         set.value = 1
         secPerSet.value = minPerSet.value * 60
         const x = setInterval(() => {
@@ -50,6 +54,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
                 if (remainingSets.value <= 0) {
                     secPerSet.value = 0
                     timerIsRunning.value = false
+                    showWorkoutCompleted.value = true
+                    showTimerParms.value = true
                     clearInterval(x);
                 }
                 set.value += set.value < sets.value ? 1 : 0
@@ -59,6 +65,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
                 set.value = 1
                 timerIsRunning.value = false
                 stopTimerNow.value = false
+                showTimerParms.value = true
                 clearInterval(x);
             }
         },1000)
@@ -68,5 +75,5 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
 
     
-    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, getMinPerSet, getSets, getMinutes, getSeconds, getSet}
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, getMinPerSet, getSets, getMinutes, getSeconds, getSet}
 })
