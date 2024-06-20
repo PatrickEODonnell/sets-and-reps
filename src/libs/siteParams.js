@@ -44,12 +44,6 @@ export const useSetParamsStore = defineStore('setParams',() => {
             // console.log("remainingSets",remainingSets.value)
             //  console.log("minRemaining", minRemaining.value)
             // console.log("secRemaining", secRemaining.value)
-            if (stopTimerNow.value){
-                secPerSet.value = 0
-                timerIsRunning.value = false
-                stopTimerNow.value = false
-                clearInterval(x);
-            }
             if (secPerSet.value <= 0){
                 remainingSets.value -= 1
                 secPerSet.value = minPerSet.value * 60
@@ -59,6 +53,13 @@ export const useSetParamsStore = defineStore('setParams',() => {
                     clearInterval(x);
                 }
                 set.value += set.value < sets.value ? 1 : 0
+            }
+            if (stopTimerNow.value){
+                secPerSet.value = 0
+                set.value = 1
+                timerIsRunning.value = false
+                stopTimerNow.value = false
+                clearInterval(x);
             }
         },1000)
     }
