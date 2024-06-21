@@ -14,6 +14,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     let stopTimerNow = ref(false)
     let showTimerParms = ref(true)
     let showWorkoutCompleted = ref(false)
+    let exercises = ref([])
+    let showExercises = ref(false)
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
@@ -31,8 +33,15 @@ export const useSetParamsStore = defineStore('setParams',() => {
     function updateSets(numberOfSets){
         sets.value = numberOfSets
     }
-    function updateSetType(setType){
-        setType.value = setType
+    function updateSetType(type){
+        setType.value = type
+    }
+    function addExercise(exercise){
+        console.log("Exercise:", exercise)
+        exercises.value.push(exercise)
+        if (exercises.value.length > 0){
+            showExercises.value = true
+        }
     }
     function startStandardTimer(){
         timerIsRunning.value = true
@@ -75,5 +84,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
 
     
-    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, getMinPerSet, getSets, getMinutes, getSeconds, getSet}
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises,
+        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise,
+        getMinPerSet, getSets, getMinutes, getSeconds, getSet}
 })

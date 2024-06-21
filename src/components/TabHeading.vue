@@ -8,10 +8,10 @@ const props = defineProps(['heading'])
 </script>
 <style>
 #tab-heading {
-  background-color: darkgray;
+  background-color: whitesmoke;
   color: black;
   font-weight: 500;
-  padding: 1px 1px 1px 5px;
+  padding: 10px 0px;
   align-items: baseline;
   text-align: center;
   vertical-align: top;

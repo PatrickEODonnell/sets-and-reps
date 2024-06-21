@@ -90,7 +90,7 @@ select {
    border-radius: 10px;
    border: 1px solid lightgray;
   background-color: transparent;
-  padding: 12px 20px;
+  padding: 6px 20px;
   margin: 0;
   width: 100%;
   font-family: inherit;
@@ -98,13 +98,26 @@ select {
   cursor: inherit;
   line-height: inherit;
 }
+input[type=text]{
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   border: 1px solid lightgray;
+  padding: 6px 20px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  }
 
 input[type=number]{
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
    border-radius: 10px;
    border: 1px solid lightgray;
-  padding: 12px 20px;
+  padding: 6px 20px;
   margin: 0px;
   box-sizing: border-box;
   font-family: inherit;
@@ -125,6 +138,18 @@ input[type=number]{
   flex-basis: 100%;
   flex: 1;
 }
+.form-button{
+  width: 100px;
+  height: 35px;
+  align-self: center;
+  overflow: hidden;
+
+  background-color: lightgray;
+  border-radius: 25px;
+  border: none;
+
+}
+
 /*--Exercise Description--*/
 #exercise {
   display: flex;
@@ -261,7 +286,6 @@ input[type=number]{
   align-self: center;
   border: none;
 }
-
 #play {
   width: 100px;
   height: 50px;

@@ -26,18 +26,28 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <button @click="startTimer($event)">Start</button>
-    </div> -->
+    <div class="row">
+      <div class="column">
+        <div>Add Exercises (optional):</div>
+        <div><input type="text" v-model="newExercise" /></div>
+      </div>
+      <div class="column">
+        <div>&nbsp;</div>
+        <button @click="addExercise($event)" class="form-button">
+          <img id="play-pause" src="../assets/add.svg" />
+          <p class="sr-only">Add</p>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
-
 const store = useSetParamsStore()
 let minPerSet = ref(store.getMinPerSet)
+let newExercise = ref('')
 const setTypes = ref([
   { key: 'Standard', value: 'Standard' },
   { key: 'EMOM', value: 'EMOM' },
@@ -64,6 +74,10 @@ function changeSetType(event) {
 }
 function startTimer(event) {
   store.startStandardTimer()
+}
+function addExercise(event) {
+  store.addExercise(newExercise.value)
+  newExercise.value = ''
 }
 </script>
 
