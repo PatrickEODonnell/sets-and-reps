@@ -14,8 +14,8 @@
     <div id="card-heading"><h1>Exercises</h1></div>
 
     <div>
-      <p class="exercise-row" v-for="(exercise, index) in store.exercises" :key="exercise">
-        <span style="font-weight: 500"> Minute {{ index + 1 }}</span> -- {{ exercise }}
+      <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.seq">
+        <span style="font-weight: 500"> Minute {{ exercise.sequence }}</span> -- {{ exercise.name }}
       </p>
     </div>
     <div v-if="!store.timerIsRunning">

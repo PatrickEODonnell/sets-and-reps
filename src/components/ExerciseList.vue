@@ -14,7 +14,9 @@
     <div id="card-heading"><h1>Exercises</h1></div>
 
     <div>
-      <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise">{{ exercise }}</p>
+      <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
+        {{ exercise.name }}
+      </p>
     </div>
     <div v-if="!store.timerIsRunning">
       <button class="form-button" @click="clearExercises">Clear All</button>

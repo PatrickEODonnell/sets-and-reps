@@ -6,9 +6,16 @@
       <h1 id="sets-complete">{{ store.getSet }}</h1>
       <h1 id="sets-total">/{{ store.getSets }}</h1>
     </div>
-    <div>
+    <div v-if="!store.getSetType == 'EMOM'">
       <p id="time">
         {{ String(store.getMinutes) }}:{{ right('00' + String(store.getSeconds), 2) }}
+      </p>
+    </div>
+    <div v-if="store.getSetType == 'EMOM'">
+      <p id="emom-time">
+        {{ store.getCurrentExerciseLabel }} <br /><span style="font-size: 120px; font-weight: 400"
+          >:{{ right('00' + String(store.getSeconds), 2) }}</span
+        >
       </p>
     </div>
 
@@ -39,9 +46,22 @@ const right = (str, len) => {
   return str.substring(str.length - 2, str.length)
 }
 function startTimer(event) {
-  store.startStandardTimer()
+  if (store.getSetType == 'Standard') {
+    store.startStandardTimer()
+  } else if (store.getSetType == 'EMOM') {
+    store.startEmomTimer()
+  }
 }
 function stopTimer(event) {
   store.stopTimer()
 }
 </script>
+<style scoped>
+#emom-time {
+  text-align: center;
+  color: black;
+  font-size: 35px;
+  font-weight: 400;
+  margin: inherit;
+}
+</style>

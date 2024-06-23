@@ -16,12 +16,15 @@ export const useSetParamsStore = defineStore('setParams',() => {
     let showWorkoutCompleted = ref(false)
     let exercises = ref([])
     let showExercises = ref(false)
+    let currentExerciseLabel = ref("")
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
     const getMinutes = computed(() => { return minRemaining.value })
     const getSeconds = computed(() => { return secRemaining.value })
     const getSet = computed(() => set.value)
+    const getSetType = computed(() => {return setType.value})
+    const getCurrentExerciseLabel= computed(() => { return currentExerciseLabel.value })
 
     // Functions
     function updateMinPerSet(min){
@@ -38,7 +41,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
     function addExercise(exercise){
         console.log("Exercise:", exercise)
-        exercises.value.push(exercise)
+        let seq = exercises.value.length + 1
+        exercises.value.push({sequence: seq, name: exercise})
         if (exercises.value.length > 0){
             showExercises.value = true
         }
@@ -91,12 +95,51 @@ export const useSetParamsStore = defineStore('setParams',() => {
             }
         },1000)
     }
+    function startEmomTimer(){
+        timerIsRunning.value = true
+        showTimerParms.value = false
+        showWorkoutCompleted.value = false
+        set.value = 1
+        secPerSet.value = 60
+        let currentExercise  = 1
+        currentExerciseLabel.value = exercises.value[0].name
+        const x = setInterval(() => {
+            secPerSet.value -= 1
+            minRemaining.value = currentExercise
+            secRemaining.value = secPerSet.value % 60
+            if (secPerSet.value <= 0){
+                currentExercise += 1
+                if (currentExercise > exercises.value.length){
+                    set.value += 1
+                    currentExercise = 1
+                }
+                currentExerciseLabel.value = exercises.value[currentExercise - 1].name
+                secPerSet.value = 60
+                if (set.value > sets.value) {
+                    secPerSet.value = 0
+                    timerIsRunning.value = false
+                    showWorkoutCompleted.value = true
+                    showTimerParms.value = true
+                    clearInterval(x);
+                }
+                // set.value += set.value < sets.value ? 1 : 0
+            }
+            if (stopTimerNow.value){
+                secPerSet.value = 60
+                set.value = 1
+                timerIsRunning.value = false
+                stopTimerNow.value = false
+                showTimerParms.value = true
+                clearInterval(x);
+            }
+        },1000)
+    }
     function stopTimer(){
         stopTimerNow.value = true
     }
 
     
-    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises,
-        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises,
-        getMinPerSet, getSets, getMinutes, getSeconds, getSet}
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel,
+        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer,
+        getMinPerSet, getSets, getMinutes, getSeconds, getSet, getSetType, getCurrentExerciseLabel}
 })
