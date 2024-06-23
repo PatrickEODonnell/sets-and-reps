@@ -14,8 +14,8 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
       manifest: {
         name: 'Sets and Reps',
-        short_name: 'SnR',
-        description: 'Workout timer with Standard, Superset, EMOM, and Tabata timing parameters plus ability to add and save resistance exercises and workouts',
+        short_name: 'Sets and Reps',
+        description: 'Workout timer with Standard, Superset, EMOM, AMRAP, and Tabata timing parameters plus ability to add and save resistance exercises and workouts',
         theme_color: '#ffffff',
         icons: [
           {
