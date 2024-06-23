@@ -27,6 +27,9 @@
 import { ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
 const store = useSetParamsStore()
+function clearExercises() {
+  store.clearExercises()
+}
 </script>
 <style scoped>
 #exercise-list {
