@@ -42,6 +42,15 @@ export const useSetParamsStore = defineStore('setParams',() => {
         if (exercises.value.length > 0){
             showExercises.value = true
         }
+        if (setType.value == 'EMOM'){
+            updateMinPerSet(exercises.value.length)
+        }
+    }
+    function updateMinSecRemaining(min){
+        minPerSet.value = min
+        secPerSet.value = min * 60
+        minRemaining.value = ~~(secPerSet.value/60)
+        secRemaining.value = secPerSet.value % 60
     }
     function startStandardTimer(){
         timerIsRunning.value = true
@@ -53,10 +62,6 @@ export const useSetParamsStore = defineStore('setParams',() => {
             secPerSet.value -= 1
             minRemaining.value = ~~(secPerSet.value/60)
             secRemaining.value = secPerSet.value % 60
-            // console.log("secPerSet",secPerSet.value)
-            // console.log("remainingSets",remainingSets.value)
-            //  console.log("minRemaining", minRemaining.value)
-            // console.log("secRemaining", secRemaining.value)
             if (secPerSet.value <= 0){
                 remainingSets.value -= 1
                 secPerSet.value = minPerSet.value * 60

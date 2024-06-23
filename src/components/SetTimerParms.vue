@@ -14,29 +14,63 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="column">
-        <div>How many Sets?:</div>
-        <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
+    <div v-if="store.setType == 'Standard'">
+      <div class="row">
+        <div class="column">
+          <div>How many Sets?:</div>
+          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
+        </div>
+        <div class="column">
+          <div>Minutes per Set?</div>
+          <div>
+            <input type="number" v-model="minPerSet" @change="changeMinPerSet($event)" />
+          </div>
+        </div>
       </div>
-      <div class="column">
-        <div>Minutes per Set?</div>
-        <div>
-          <input type="number" v-model="minPerSet" @change="changeMinPerSet($event)" />
+      <div class="row">
+        <div class="column">
+          <div>Add Exercises (optional):</div>
+          <div><input type="text" v-model="newExercise" /></div>
+        </div>
+        <div class="column">
+          <div>&nbsp;</div>
+          <button @click="addExercise($event)" class="form-button">
+            <img id="play-pause" src="../assets/add.svg" />
+            <p class="sr-only">Add</p>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column" style="font-weight: 500; padding-top: 3px">
+          Total workout time: {{ store.sets * minPerSet }}
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="column">
-        <div>Add Exercises (optional):</div>
-        <div><input type="text" v-model="newExercise" /></div>
+
+    <div v-if="store.setType == 'EMOM'">
+      <div class="row">
+        <div class="column">
+          <div>How many Sets?:</div>
+          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
+        </div>
       </div>
-      <div class="column">
-        <div>&nbsp;</div>
-        <button @click="addExercise($event)" class="form-button">
-          <img id="play-pause" src="../assets/add.svg" />
-          <p class="sr-only">Add</p>
-        </button>
+      <div class="row">
+        <div class="column">
+          <div>Add Exercises:</div>
+          <div><input type="text" v-model="newExercise" /></div>
+        </div>
+        <div class="column">
+          <div>&nbsp;</div>
+          <button @click="addExercise($event)" class="form-button">
+            <img id="play-pause" src="../assets/add.svg" />
+            <p class="sr-only">Add</p>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column" style="font-weight: 500; padding-top: 3px">
+          Total workout time: {{ store.sets * store.exercises.length }}
+        </div>
       </div>
     </div>
   </div>
