@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div v-if="store.setType == 'Standard'">
+    <div v-if="store.setType == 'Standard' || store.setType == 'Superset'">
       <div class="row">
         <div class="column">
           <div>How many Sets?:</div>
@@ -73,6 +73,35 @@
         </div>
       </div>
     </div>
+
+    <div v-if="store.setType == 'AMRAP'">
+      <div class="row">
+        <div class="column">
+          <div>How many Minutes?:</div>
+          <div>
+            <input type="number" v-model="store.minPerSet" @change="changeMinPerSet($event)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div>Add Exercise(s):</div>
+          <div><input type="text" v-model="newExercise" /></div>
+        </div>
+        <div class="column">
+          <div>&nbsp;</div>
+          <button @click="addExercise($event)" class="form-button">
+            <img id="play-pause" src="../assets/add.svg" />
+            <p class="sr-only">Add</p>
+          </button>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="column" style="font-weight: 500; padding-top: 3px">
+          Total workout time: {{ store.minPerSet }}
+        </div>
+      </div> -->
+    </div>
   </div>
 </template>
 
@@ -84,27 +113,20 @@ let minPerSet = ref(store.getMinPerSet)
 let newExercise = ref('')
 const setTypes = ref([
   { key: 'Standard', value: 'Standard' },
+  { key: 'Superset', value: 'Superset' },
   { key: 'EMOM', value: 'EMOM' },
+  { key: 'AMRAP', value: 'AMRAP' },
   { key: 'Tabata', value: 'Tabata' }
 ])
 let numOfSets = ref(store.getSets)
 function changeMinPerSet(event) {
-  // console.log(event.target.value)
   store.updateMinPerSet(event.target.value)
-
-  // console.log('minPerSet', store.getMinPerSet)
-  // console.log('Minutes', store.minutesRemaining)
-  // console.log('Seconds', store.secondsRemaining)
 }
 function changeSets(event) {
-  // console.log(event.target.value)
   store.updateSets(event.target.value)
-
-  // console.log('sets', store.getSets)
-  // emits('onChangeParams', timerDetails)
 }
 function changeSetType(event) {
-  console.log(event.target.value)
+  store.updateSetType(event.target.value)
 }
 function startTimer(event) {
   store.startStandardTimer()

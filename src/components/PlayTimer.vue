@@ -4,7 +4,7 @@
     <div id="set-counter">
       <h1>Set:&nbsp;</h1>
       <h1 id="sets-complete">{{ store.getSet }}</h1>
-      <h1 id="sets-total">/{{ store.getSets }}</h1>
+      <h1 id="sets-total" v-if="store.setType != 'AMRAP'">/{{ store.getSets }}</h1>
     </div>
     <div v-if="store.getSetType != 'EMOM'">
       <p id="time">
@@ -41,12 +41,11 @@
 import { useSetParamsStore } from '@/libs/siteParams'
 
 const store = useSetParamsStore()
-console.log(store.getSet)
 const right = (str, len) => {
   return str.substring(str.length - 2, str.length)
 }
 function startTimer(event) {
-  if (store.getSetType == 'Standard') {
+  if (store.getSetType == 'Standard' || store.getSetType == 'Superset') {
     store.startStandardTimer()
   } else if (store.getSetType == 'EMOM') {
     store.startEmomTimer()

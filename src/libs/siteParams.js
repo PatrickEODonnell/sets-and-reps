@@ -38,10 +38,13 @@ export const useSetParamsStore = defineStore('setParams',() => {
         sets.value = numberOfSets
     }
     function updateSetType(type){
-        setType.value = type
+        // setType.value = type
+        if (type == "AMRAP"){
+            minPerSet.value = 5
+            secPerSet.value = 300
+        }
     }
     function addExercise(exercise){
-        console.log("Exercise:", exercise)
         let seq = exercises.value.length + 1
         exercises.value.push({sequence: seq, name: exercise})
         if (exercises.value.length > 0){
