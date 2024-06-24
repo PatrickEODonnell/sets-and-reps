@@ -6,7 +6,7 @@
       <h1 id="sets-complete">{{ store.getSet }}</h1>
       <h1 id="sets-total">/{{ store.getSets }}</h1>
     </div>
-    <div v-if="!store.getSetType == 'EMOM'">
+    <div v-if="store.getSetType != 'EMOM'">
       <p id="time">
         {{ String(store.getMinutes) }}:{{ right('00' + String(store.getSeconds), 2) }}
       </p>

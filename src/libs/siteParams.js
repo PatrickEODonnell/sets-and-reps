@@ -17,6 +17,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     let exercises = ref([])
     let showExercises = ref(false)
     let currentExerciseLabel = ref("")
+    let currentEmomSequence = ref(0)
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
@@ -102,6 +103,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
         set.value = 1
         secPerSet.value = 60
         let currentExercise  = 1
+        currentEmomSequence.value = 1
         currentExerciseLabel.value = exercises.value[0].name
         const x = setInterval(() => {
             secPerSet.value -= 1
@@ -109,9 +111,11 @@ export const useSetParamsStore = defineStore('setParams',() => {
             secRemaining.value = secPerSet.value % 60
             if (secPerSet.value <= 0){
                 currentExercise += 1
+                currentEmomSequence.value = currentExercise
                 if (currentExercise > exercises.value.length){
                     set.value += 1
                     currentExercise = 1
+                    currentEmomSequence.value = currentExercise
                 }
                 currentExerciseLabel.value = exercises.value[currentExercise - 1].name
                 secPerSet.value = 60
@@ -139,7 +143,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
 
     
-    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel,
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel, currentEmomSequence,
         updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer,
         getMinPerSet, getSets, getMinutes, getSeconds, getSet, getSetType, getCurrentExerciseLabel}
 })
