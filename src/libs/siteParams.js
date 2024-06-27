@@ -54,6 +54,15 @@ export const useSetParamsStore = defineStore('setParams',() => {
             updateMinPerSet(exercises.value.length)
         }
     }
+    function updateExercise(val, sequence){
+        for (let exercise of exercises.value) {
+            if (exercise.sequence == sequence){
+                exercise.name = val
+                break
+            }
+          }  
+          console.log("exercises:", exercises.value)  
+    }
     function clearExercises(){
         exercises.value = []
         showExercises.value = false
@@ -147,6 +156,6 @@ export const useSetParamsStore = defineStore('setParams',() => {
 
     
     return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel, currentEmomSequence,
-        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer,
+        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer, updateExercise,
         getMinPerSet, getSets, getMinutes, getSeconds, getSet, getSetType, getCurrentExerciseLabel}
 })

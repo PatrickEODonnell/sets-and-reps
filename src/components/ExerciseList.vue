@@ -13,10 +13,19 @@
   <div id="exercise-list">
     <div id="card-heading"><h1>Exercises</h1></div>
 
-    <div>
+    <div v-if="store.timerIsRunning">
       <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
         {{ exercise.name }}
       </p>
+    </div>
+    <div v-if="!store.timerIsRunning">
+      <div class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
+        <input
+          type="text"
+          v-model="exercise.name"
+          @change="updateExercise($event, exercise.sequence)"
+        />
+      </div>
     </div>
     <div v-if="!store.timerIsRunning">
       <button class="form-button" @click="clearExercises">Clear All</button>
@@ -28,6 +37,10 @@ import { useSetParamsStore } from '@/libs/siteParams'
 const store = useSetParamsStore()
 function clearExercises() {
   store.clearExercises()
+}
+function updateExercise(event, sequence) {
+  console.log(event.target.value, sequence)
+  store.updateExercise(event.target.value, sequence)
 }
 </script>
 <style scoped>
