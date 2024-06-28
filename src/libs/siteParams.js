@@ -63,6 +63,11 @@ export const useSetParamsStore = defineStore('setParams',() => {
           }  
           console.log("exercises:", exercises.value)  
     }
+    function deleteExercise(val, sequence){
+        const index = exercises.value.findIndex(ex => ex.sequence === sequence);
+        exercises.value.splice(index, 1);
+        console.log(exercises.value)
+    }
     function clearExercises(){
         exercises.value = []
         showExercises.value = false
@@ -156,6 +161,6 @@ export const useSetParamsStore = defineStore('setParams',() => {
 
     
     return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel, currentEmomSequence,
-        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer, updateExercise,
+        updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer, updateExercise,deleteExercise,
         getMinPerSet, getSets, getMinutes, getSeconds, getSet, getSetType, getCurrentExerciseLabel}
 })

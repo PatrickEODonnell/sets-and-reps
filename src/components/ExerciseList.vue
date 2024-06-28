@@ -40,6 +40,10 @@ function clearExercises() {
 }
 function updateExercise(event, sequence) {
   console.log(event.target.value, sequence)
+  if (event.target.value == '') {
+    store.deleteExercise(event.target.value, sequence)
+    return
+  }
   store.updateExercise(event.target.value, sequence)
 }
 </script>
