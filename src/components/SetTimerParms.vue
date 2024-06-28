@@ -102,6 +102,46 @@
         </div>
       </div> -->
     </div>
+    <div v-if="store.setType == 'Tabata'">
+      <div class="row">
+        <div class="column">
+          <div>How many Rounds?:</div>
+          <div><input type="number" v-model="rounds" @change="changeSets($event)" /></div>
+        </div>
+        <div class="column">
+          <div>Seconds On?</div>
+          <div>
+            <input type="number" v-model="secondsOn" @change="changeMinPerSet($event)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div>Seconds Off?</div>
+          <div>
+            <input type="number" v-model="secondsOff" @change="changeMinPerSet($event)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div>Add Exercises:</div>
+          <div><input type="text" v-model="newExercise" /></div>
+        </div>
+        <div class="column">
+          <div>&nbsp;</div>
+          <button @click="addExercise($event)" class="form-button">
+            <img id="play-pause" src="../assets/add.svg" />
+            <p class="sr-only">Add</p>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column" style="font-weight: 500; padding-top: 3px">
+          Total workout time: {{ (rounds * (secondsOn + secondsOff)) / 60 }} minutes.
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -118,6 +158,9 @@ const setTypes = ref([
   { key: 'AMRAP', value: 'AMRAP' },
   { key: 'Tabata', value: 'Tabata' }
 ])
+let secondsOn = ref(20)
+let secondsOff = ref(10)
+let rounds = ref(8)
 let numOfSets = ref(store.getSets)
 function changeMinPerSet(event) {
   store.updateMinPerSet(event.target.value)
