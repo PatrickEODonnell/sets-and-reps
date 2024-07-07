@@ -2,6 +2,12 @@
   <div id="timer-input">
     <div id="edit-heading"><h1>Edit Timer Details</h1></div>
     <div class="row">
+      <div class="column">&nbsp;</div>
+      <div class="column">&nbsp;</div>
+      <div class="column">&nbsp;</div>
+      <div class="column"><button @click="store.showSaveSet = true">Save Set</button></div>
+    </div>
+    <div class="row">
       <div class="column">
         <div>Choose type of Set:</div>
         <div>
@@ -111,7 +117,7 @@
         <div class="column">
           <div>Seconds On?</div>
           <div>
-            <input type="number" v-model="secondsOn" @change="changeMinPerSet($event)" />
+            <input type="number" v-model="secondsOn" @change="changeSecondsOn($event)" />
           </div>
         </div>
       </div>
@@ -119,7 +125,7 @@
         <div class="column">
           <div>Seconds Off?</div>
           <div>
-            <input type="number" v-model="secondsOff" @change="changeMinPerSet($event)" />
+            <input type="number" v-model="secondsOff" @change="changeSecondsOff($event)" />
           </div>
         </div>
       </div>
@@ -177,6 +183,12 @@ function startTimer(event) {
 function addExercise(event) {
   store.addExercise(newExercise.value)
   newExercise.value = ''
+}
+function changeSecondsOn(event) {
+  store.secondsOn = event.target.value
+}
+function changeSecondsOff(event) {
+  store.secondsOff = event.target.value
 }
 </script>
 

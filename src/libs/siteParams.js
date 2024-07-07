@@ -1,23 +1,36 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
+import { useSetsService} from './idbSets'
 
 export const useSetParamsStore = defineStore('setParams',() => {
-    let sets = ref(4)
-    let set = ref(1)
-    let minPerSet = ref(3)
-    let secPerSet = ref(180)
+
+    // Set Parameters
     let setType = ref("Standard")
+    let sets = ref(4)
+    let minPerSet = ref(3)
+    let exercises = ref([])
+    let setName = ref("")
+    let secondsOn = ref(20)
+    let secondsOff = ref(10)
+    let setId = ref(0)
+
+    // Play parameters
+    let set = ref(1)
+    let secPerSet = ref(180)
     let minRemaining = ref(3)
     let secRemaining = ref(0)
     let remainingSets = ref(4)
     let timerIsRunning = ref(false)
     let stopTimerNow = ref(false)
-    let showTimerParms = ref(true)
-    let showWorkoutCompleted = ref(false)
-    let exercises = ref([])
-    let showExercises = ref(false)
     let currentExerciseLabel = ref("")
     let currentEmomSequence = ref(0)
+
+    // Display parameters
+    let showTimerParms = ref(true)
+    let showWorkoutCompleted = ref(false)
+    let showSaveSet = ref(false)
+    let showExercises = ref(false)
+
     // Getters
     const getMinPerSet = computed(() => minPerSet.value)
     const getSets = computed(() => sets.value)
@@ -27,6 +40,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     const getSetType = computed(() => {return setType.value})
     const getCurrentExerciseLabel= computed(() => { return currentExerciseLabel.value })
 
+    const {addSet} = useSetsService()
     // Functions
     function updateMinPerSet(min){
         minPerSet.value = min
@@ -159,8 +173,21 @@ export const useSetParamsStore = defineStore('setParams',() => {
         stopTimerNow.value = true
     }
 
+    async function add(){
+        console.log("store-add:")
+        const newSet = {"name": setName.value, "setType": setType.value, "numOfSets": sets.value, "minPerSet": minPerSet.value, "secondsOn": secondsOn.value, "secondsOff": secondsOff.value,}
+        setId.value = await addSet(newSet)
+        console.log("Set Id: ", setId.value)
+    }
+    function save(){
+        
+
+    }
+
     
-    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel, currentEmomSequence,
+    return {sets, minPerSet, setType, timerIsRunning, stopTimerNow, showTimerParms, showWorkoutCompleted, exercises, showExercises, currentExerciseLabel, 
+        currentEmomSequence, showSaveSet, setName, secondsOff, secondsOn, setId,
         updateMinPerSet, updateSets, updateSetType, startStandardTimer, stopTimer, addExercise, clearExercises, startEmomTimer, updateExercise,deleteExercise,
+        save, add,
         getMinPerSet, getSets, getMinutes, getSeconds, getSet, getSetType, getCurrentExerciseLabel}
 })
