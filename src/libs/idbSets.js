@@ -18,7 +18,7 @@ export function useSetsService() {
 			let request = window.indexedDB.open(DB_NAME, DB_VERSION);
 			
 			request.onerror = e => {
-				console.log('Error opening db', e);
+				alert('Error opening db', e);
 				reject('Error');
 			};
 	
@@ -75,6 +75,9 @@ export function useSetsService() {
 					cursor.continue();
 				}
 			};
+			store.openCursor().onerror = e => {
+				alert("Error getSets ", e)
+			}
 
 		});
 	}
