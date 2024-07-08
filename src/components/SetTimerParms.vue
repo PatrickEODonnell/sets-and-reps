@@ -5,7 +5,15 @@
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
-      <div class="column"><button @click="store.showSaveSet = true">Save Set</button></div>
+      <div class="column"><button @click="saveSet" :disabled="isDisabled">Save Set</button></div>
+    </div>
+    <div class="row" v-if="editMode == 'Edit'">
+      <div class="column">
+        <div>Set Name:</div>
+        <div>
+          <div><input type="text" v-model="store.setName" /></div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="column">
@@ -152,9 +160,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
+const props = defineProps(['editMode'])
+const { editMode } = props
+
+const isDisabled = computed(() => {
+  console.log('setName', store.setName)
+  return editMode == 'Edit' && store.setName == ''
+})
+
 const store = useSetParamsStore()
+
 let minPerSet = ref(store.getMinPerSet)
 let newExercise = ref('')
 const setTypes = ref([
@@ -168,6 +185,7 @@ let secondsOn = ref(20)
 let secondsOff = ref(10)
 let rounds = ref(8)
 let numOfSets = ref(store.getSets)
+
 function changeMinPerSet(event) {
   store.updateMinPerSet(event.target.value)
 }
@@ -189,6 +207,13 @@ function changeSecondsOn(event) {
 }
 function changeSecondsOff(event) {
   store.secondsOff = event.target.value
+}
+async function saveSet() {
+  if (editMode == 'Edit') {
+    await store.save()
+  } else {
+    store.showSaveSet = true
+  }
 }
 </script>
 

@@ -4,7 +4,7 @@
   </header>
   <main>
     <TabHeading heading="W O R K O U T -- T I M E R" />
-    <SetTimerParms v-if="store.showTimerParms && !store.showSaveSet" />
+    <SetTimerParms v-if="store.showTimerParms && !store.showSaveSet" :edit-mode="editMode" />
     <ExerciseList v-if="store.showExercises && store.setType != 'EMOM' && !store.showSaveSet" />
     <ExerciseListEmom v-if="store.showExercises && store.setType == 'EMOM' && !store.showSaveSet" />
     <SaveSet v-if="!store.timerIsRunning" />
@@ -25,5 +25,6 @@ const store = useSetParamsStore()
 let setName = ref('')
 let showSaveDialog = ref(false)
 let showSaveSet = ref(false)
+let editMode = ref('Add')
 function saveSet() {}
 </script>
