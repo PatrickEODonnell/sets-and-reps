@@ -20,7 +20,7 @@ button {
 
 .light-11 {
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .normal-16 {
@@ -61,20 +61,19 @@ body {
 }
 
 header {
-  background-color: grey;
-  color: #ffffff;
+  background-color: darkgray;
+  color: whitesmoke;
   display: flex;
-  padding: 32px 20px 16px 20px;
+  padding: 20px 20px 16px 20px;
   align-items: baseline;
   gap: 12px;
   flex-shrink: 0;
   margin: 0;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   flex-grow: 1;
 
   border: 1px solid white;
@@ -82,6 +81,19 @@ main {
 
 main > div {
   margin: 30px 20px;
+}
+
+/*--Footer--*/
+footer {
+  /* color: #ffffff;
+  background-color: grey;
+  padding: 16px 20px 32px 20px;
+  text-align: center;
+  margin-bottom: 0; */
+  background-color: grey;
+  color: #ffffff;
+
+  flex-shrink: 0;
 }
 
 select {
@@ -357,15 +369,6 @@ input[type=number]{
   transition: all 0.8ms;
 }
 
-/*--Footer--*/
-footer {
-  color: #ffffff;
-  background-color: grey;
-  padding: 16px 20px 32px 20px;
-  text-align: center;
-  margin-bottom: 0;
-  flex-shrink: 0;
-}
 
 .ripplebutton {
   overflow: hidden;

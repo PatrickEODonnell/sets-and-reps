@@ -3,9 +3,11 @@
     <PageHeading />
   </header>
   <TabHeading heading="S E T S" />
+  <PageFooter />
   <p v-for="set in sets" :key="set.id">{{ set.id }} - {{ set.name }}</p>
 </template>
 <script setup>
+import PageFooter from '@/components/PageFooter.vue'
 import PageHeading from '../components/PageHeading.vue'
 import TabHeading from '../components/TabHeading.vue'
 import { useSetsService } from '../libs/idbSets'
