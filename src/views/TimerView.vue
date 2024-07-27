@@ -13,7 +13,7 @@
       <SaveSet v-if="!store.timerIsRunning" />
       <PlayTimer v-if="!store.showSaveSet" />
     </main>
-    <PageFooter />
+    <!-- <PageFooter /> -->
   </div>
 </template>
 <script setup>
