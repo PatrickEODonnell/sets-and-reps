@@ -40,7 +40,7 @@ export const useSetParamsStore = defineStore('setParams',() => {
     const getSetType = computed(() => {return setType.value})
     const getCurrentExerciseLabel= computed(() => { return currentExerciseLabel.value })
 
-    const {addSet} = useSetsService()
+    const {addNewSet} = useSetsService()
     // Functions
     function updateMinPerSet(min){
         minPerSet.value = min
@@ -102,6 +102,8 @@ export const useSetParamsStore = defineStore('setParams',() => {
         set.value = 1
         secPerSet.value = minPerSet.value * 60
         const x = setInterval(() => {
+            console.log("secPerSet",secPerSet.value)
+            console.log("remainingSets", remainingSets.value)
             secPerSet.value -= 1
             minRemaining.value = ~~(secPerSet.value/60)
             secRemaining.value = secPerSet.value % 60
@@ -173,10 +175,10 @@ export const useSetParamsStore = defineStore('setParams',() => {
         stopTimerNow.value = true
     }
 
-    async function add(){
+    function add(){
         console.log("store-add:")
         const newSet = {"name": setName.value, "setType": setType.value, "numOfSets": sets.value, "minPerSet": minPerSet.value, "secondsOn": secondsOn.value, "secondsOff": secondsOff.value,}
-        setId.value = await addSet(newSet)
+        setId.value = addNewSet(newSet)
         console.log("Set Id: ", setId.value)
     }
     function save(){

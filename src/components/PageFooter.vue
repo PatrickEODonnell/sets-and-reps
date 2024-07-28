@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer>
     <!-- Navigation Links -->
     <nav>
       <ul class="nav">
@@ -20,30 +20,9 @@
   </footer>
 </template>
 <style scoped>
-.footer {
-  width: 100%;
-  background-color: darkgray;
-
-  padding: 10px 0;
-  position: absolute;
-  bottom: 0;
-}
-.nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-}
-.nav-item {
-  margin: 0 10px;
-}
-.nav-link {
-  text-decoration: none;
-  color: whitesmoke;
-  font-size: 16px;
-}
-.nav-link:hover {
-  text-decoration: underline;
+ul {
+  margin: 0px;
+  height: 30px;
+  padding: 5px;
 }
 </style>

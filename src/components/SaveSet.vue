@@ -31,9 +31,9 @@
 import { ref } from 'vue'
 import { useSetParamsStore } from '@/libs/siteParams'
 const store = useSetParamsStore()
-async function saveSet() {
+function saveSet() {
   store.showSaveSet = false
-  await store.add()
+  store.add()
 }
 </script>
 

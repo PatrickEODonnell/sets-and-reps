@@ -101,6 +101,31 @@ export function useSetsService() {
 			// }
 		});
     }
+	function addNewSet(set){
+		let request = window.indexedDB.open(DB_NAME, DB_VERSION);
+		request.onsuccess = function(event) {
+			let db = event.target.result;
+			let transaction = db.transaction([DT_SETS], "readwrite");
+			let objectStore = transaction.objectStore(DT_SETS);
+		
+			// let data = { id: 1, name: "John Doe", age: 30 };
+			let addRequest = objectStore.add(set);
+		
+			addRequest.onsuccess = function(event) {
+				console.log("Data added successfully!");
+			};
+		
+			addRequest.onerror = function(event) {
+				console.error("Error adding data: ", event.target.error);
+			};
+		};
+		
+		request.onerror = function(event) {
+			console.error("Error opening database: ", event.target.error);
+		};
+		
+
+	}
 
 	async function saveSet(set) {
 
@@ -123,6 +148,7 @@ export function useSetsService() {
     return {
         getSets,
         addSet,
+		addNewSet,
         saveSet,
         deleteSet,
         initSets

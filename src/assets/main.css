@@ -53,10 +53,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 0 0 0 0;
 
   height: 100%;
-  border: 1px solid white;
   background-color: white;
 }
 
@@ -82,19 +81,9 @@ main {
 main > div {
   margin: 30px 20px;
 }
-
-/*--Footer--*/
-footer {
-  /* color: #ffffff;
-  background-color: grey;
-  padding: 16px 20px 32px 20px;
-  text-align: center;
-  margin-bottom: 0; */
-  background-color: grey;
-  color: #ffffff;
-
-  flex-shrink: 0;
-}
+/* .content {
+  padding: 5px;
+} */
 
 select {
   -webkit-border-radius: 10px;
@@ -388,4 +377,29 @@ span.ripple {
     transform: scale(4);
     opacity: 0;
   }
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: darkgray;
+  color: whitesmoke;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  
+}
+.nav-item {
+  margin: 0 10px;
+}
+.nav-link {
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 16px;
+}
+.nav-link:hover {
+  text-decoration: underline;
 }
