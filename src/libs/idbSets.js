@@ -81,7 +81,31 @@ export function useSetsService() {
 
 		});
 	}
-
+	async function getSetById(id){
+		let request = indexedDB.open(DB_NAME, DB_VERSION)
+		return new Promise(resolve => {
+			request.onsuccess = function(event){
+				let db = event.target.result;
+				let transaction = db.transaction([DT_SETS], "readonly");
+				let objectStore = transaction.objectStore(DT_SETS);
+				let getRequest = objectStore.get(id);
+				let set = null
+				getRequest.onsuccess = function(event){
+					if (getRequest.result){
+						console.log("Item Retrieved:");
+					}
+					else{
+						console.log("Item not found.");
+					}
+					set = getRequest.result
+					resolve(set)
+				}
+				getRequest.onerror = function(event){
+					console.log("Error: ", event.target.error);
+				}
+			}
+		});
+	}
     async function addSet(set) {
 
 		let db = await getDb();
@@ -151,6 +175,7 @@ export function useSetsService() {
 		addNewSet,
         saveSet,
         deleteSet,
-        initSets
+        initSets,
+		getSetById
       };
 }
