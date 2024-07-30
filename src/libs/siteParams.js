@@ -176,8 +176,12 @@ export const useSetParamsStore = defineStore('setParams',() => {
     }
 
     function add(){
+
         console.log("store-add:")
-        const newSet = {"name": setName.value, "setType": setType.value, "numOfSets": sets.value, "minPerSet": minPerSet.value, "secondsOn": secondsOn.value, "secondsOff": secondsOff.value,}
+        console.log("exercises: ", exercises.value)
+        let setExercises = JSON.parse(JSON.stringify(exercises.value))
+        console.log("exercises - serialized", setExercises)
+        const newSet = {"name": setName.value, "setType": setType.value, "numOfSets": sets.value, "minPerSet": minPerSet.value, "secondsOn": secondsOn.value, "secondsOff": secondsOff.value, "exercises": setExercises}
         setId.value = addNewSet(newSet)
         console.log("Set Id: ", setId.value)
     }

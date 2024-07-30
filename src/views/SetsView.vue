@@ -33,6 +33,15 @@ async function showSet(setId) {
   store.secondsOff = set.secondsOff
   store.secondsOn = set.secondsOn
   store.setId = set.id
+  if (set.exercises) {
+    console.log('exercises: ', set.exercises)
+    for (let i = 0; i < set.exercises.length; i++) {
+      store.addExercise(set.exercises[i])
+    }
+    store.exercises = set.exercises
+  } else {
+    store.clearExercises()
+  }
   store.updateMinPerSet(set.minPerSet)
   router.push('/')
 }
