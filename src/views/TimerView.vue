@@ -17,21 +17,21 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { useSetParamsStore } from '@/libs/siteParams'
-import SetTimerParms from '../components/SetTimerParms.vue'
-import PageHeading from '../components/PageHeading.vue'
-import TabHeading from '../components/TabHeading.vue'
-import PlayTimer from '../components/PlayTimer.vue'
-import ExerciseList from '../components/ExerciseList.vue'
-import ExerciseListEmom from '../components/ExerciseListEmom.vue'
-import SaveSet from '../components/SaveSet.vue'
-import PageFooter from '../components/PageFooter.vue'
-const store = useSetParamsStore()
-let setName = ref('')
-let showSaveDialog = ref(false)
-let showSaveSet = ref(false)
-let editMode = ref('Add')
+import { ref } from "vue";
+import { useSetParamsStore } from "@/libs/siteParams";
+import SetTimerParms from "../components/SetTimerParms.vue";
+import PageHeading from "../components/PageHeading.vue";
+import TabHeading from "../components/TabHeading.vue";
+import PlayTimer from "../components/PlayTimer.vue";
+import ExerciseList from "../components/ExerciseList.vue";
+import ExerciseListEmom from "../components/ExerciseListEmom.vue";
+import SaveSet from "../components/SaveSet.vue";
+import PageFooter from "../components/PageFooter.vue";
+const store = useSetParamsStore();
+let setName = ref("");
+let showSaveDialog = ref(false);
+let showSaveSet = ref(false);
+let editMode = ref("Add");
 function saveSet() {}
 </script>
 <style>

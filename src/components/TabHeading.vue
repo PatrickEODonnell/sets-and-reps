@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup>
-const props = defineProps(['heading'])
+const props = defineProps(["heading"]);
 </script>
 <style>
 #tab-heading {

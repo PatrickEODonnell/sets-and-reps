@@ -8,13 +8,13 @@
     </div>
     <div v-if="store.getSetType != 'EMOM'">
       <p id="time">
-        {{ String(store.getMinutes) }}:{{ right('00' + String(store.getSeconds), 2) }}
+        {{ String(store.getMinutes) }}:{{ right("00" + String(store.getSeconds), 2) }}
       </p>
     </div>
     <div v-if="store.getSetType == 'EMOM'">
       <p id="emom-time">
         {{ store.getCurrentExerciseLabel }} <br /><span style="font-size: 120px; font-weight: 400"
-          >:{{ right('00' + String(store.getSeconds), 2) }}</span
+          >:{{ right("00" + String(store.getSeconds), 2) }}</span
         >
       </p>
     </div>
@@ -38,23 +38,23 @@
   </div>
 </template>
 <script setup>
-import { useSetParamsStore } from '@/libs/siteParams'
+import { useSetParamsStore } from "@/libs/siteParams";
 
-const store = useSetParamsStore()
+const store = useSetParamsStore();
 const right = (str, len) => {
-  return str.substring(str.length - 2, str.length)
-}
+  return str.substring(str.length - 2, str.length);
+};
 function startTimer(event) {
-  if (store.getSetType == 'Standard' || store.getSetType == 'Superset') {
-    store.startStandardTimer()
-  } else if (store.getSetType == 'EMOM') {
-    store.startEmomTimer()
-  } else if (store.getSetType == 'AMRAP') {
-    store.startStandardTimer()
+  if (store.getSetType == "Standard" || store.getSetType == "Superset") {
+    store.startStandardTimer();
+  } else if (store.getSetType == "EMOM") {
+    store.startEmomTimer();
+  } else if (store.getSetType == "AMRAP") {
+    store.startStandardTimer();
   }
 }
 function stopTimer(event) {
-  store.stopTimer()
+  store.stopTimer();
 }
 </script>
 <style scoped>

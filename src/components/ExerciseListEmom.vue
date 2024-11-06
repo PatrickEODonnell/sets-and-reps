@@ -45,19 +45,19 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { useSetParamsStore } from '@/libs/siteParams'
-const store = useSetParamsStore()
+import { ref } from "vue";
+import { useSetParamsStore } from "@/libs/siteParams";
+const store = useSetParamsStore();
 function clearExercises() {
-  store.clearExercises()
+  store.clearExercises();
 }
 function updateExercise(event, sequence) {
-  console.log(event.target.value, sequence)
-  if (event.target.value == '') {
-    store.deleteExercise(event.target.value, sequence)
-    return
+  console.log(event.target.value, sequence);
+  if (event.target.value == "") {
+    store.deleteExercise(event.target.value, sequence);
+    return;
   }
-  store.updateExercise(event.target.value, sequence)
+  store.updateExercise(event.target.value, sequence);
 }
 </script>
 <style scoped>

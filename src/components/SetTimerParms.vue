@@ -160,59 +160,59 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { useSetParamsStore } from '@/libs/siteParams'
-const props = defineProps(['editMode'])
-const { editMode } = props
+import { computed, ref } from "vue";
+import { useSetParamsStore } from "@/libs/siteParams";
+const props = defineProps(["editMode"]);
+const { editMode } = props;
 
 const isDisabled = computed(() => {
-  console.log('setName', store.setName)
-  return editMode == 'Edit' && store.setName == ''
-})
+  console.log("setName", store.setName);
+  return editMode == "Edit" && store.setName == "";
+});
 
-const store = useSetParamsStore()
+const store = useSetParamsStore();
 
-let minPerSet = ref(store.getMinPerSet)
-let newExercise = ref('')
+let minPerSet = ref(store.getMinPerSet);
+let newExercise = ref("");
 const setTypes = ref([
-  { key: 'Standard', value: 'Standard' },
-  { key: 'Superset', value: 'Superset' },
-  { key: 'EMOM', value: 'EMOM' },
-  { key: 'AMRAP', value: 'AMRAP' },
-  { key: 'Tabata', value: 'Tabata' }
-])
-let secondsOn = ref(20)
-let secondsOff = ref(10)
-let rounds = ref(8)
-let numOfSets = ref(store.getSets)
+  { key: "Standard", value: "Standard" },
+  { key: "Superset", value: "Superset" },
+  { key: "EMOM", value: "EMOM" },
+  { key: "AMRAP", value: "AMRAP" },
+  { key: "Tabata", value: "Tabata" }
+]);
+let secondsOn = ref(20);
+let secondsOff = ref(10);
+let rounds = ref(8);
+let numOfSets = ref(store.getSets);
 
 function changeMinPerSet(event) {
-  store.updateMinPerSet(event.target.value)
+  store.updateMinPerSet(event.target.value);
 }
 function changeSets(event) {
-  store.updateSets(event.target.value)
+  store.updateSets(event.target.value);
 }
 function changeSetType(event) {
-  store.updateSetType(event.target.value)
+  store.updateSetType(event.target.value);
 }
 function startTimer(event) {
-  store.startStandardTimer()
+  store.startStandardTimer();
 }
 function addExercise(event) {
-  store.addExercise(newExercise.value)
-  newExercise.value = ''
+  store.addExercise(newExercise.value);
+  newExercise.value = "";
 }
 function changeSecondsOn(event) {
-  store.secondsOn = event.target.value
+  store.secondsOn = event.target.value;
 }
 function changeSecondsOff(event) {
-  store.secondsOff = event.target.value
+  store.secondsOff = event.target.value;
 }
 async function saveSet() {
-  if (editMode == 'Edit') {
-    await store.save()
+  if (editMode == "Edit") {
+    await store.save();
   } else {
-    store.showSaveSet = true
+    store.showSaveSet = true;
   }
 }
 </script>

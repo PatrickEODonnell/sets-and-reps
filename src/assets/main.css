@@ -88,8 +88,8 @@ main > div {
 select {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-   border-radius: 10px;
-   border: 1px solid lightgray;
+  border-radius: 10px;
+  border: 1px solid lightgray;
   background-color: transparent;
   padding: 6px 20px;
   margin: 0;
@@ -99,11 +99,11 @@ select {
   cursor: inherit;
   line-height: inherit;
 }
-input[type=text]{
+input[type="text"] {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-   border-radius: 10px;
-   border: 1px solid lightgray;
+  border-radius: 10px;
+  border: 1px solid lightgray;
   padding: 6px 20px;
   margin: 0px;
   box-sizing: border-box;
@@ -111,13 +111,13 @@ input[type=text]{
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  }
+}
 
-input[type=number]{
+input[type="number"] {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-   border-radius: 10px;
-   border: 1px solid lightgray;
+  border-radius: 10px;
+  border: 1px solid lightgray;
   padding: 6px 20px;
   margin: 0px;
   box-sizing: border-box;
@@ -125,7 +125,7 @@ input[type=number]{
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  }
+}
 .row {
   display: flex;
   flex-direction: row;
@@ -139,7 +139,7 @@ input[type=number]{
   flex-basis: 100%;
   flex: 1;
 }
-.form-button{
+.form-button {
   width: 100px;
   height: 35px;
   align-self: center;
@@ -148,7 +148,6 @@ input[type=number]{
   background-color: lightgray;
   border-radius: 25px;
   border: none;
-
 }
 
 /*--Exercise Description--*/
@@ -358,7 +357,6 @@ input[type=number]{
   transition: all 0.8ms;
 }
 
-
 .ripplebutton {
   overflow: hidden;
   transition: background 400ms;
@@ -389,8 +387,6 @@ span.ripple {
   list-style: none;
   display: flex;
   justify-content: center;
-
-  
 }
 .nav-item {
   margin: 0 10px;
