@@ -69,13 +69,13 @@ onMounted(async () => {
 }
 .set-row {
   border: 1px solid darkgray;
-  border-radius: 20px;
+  border-radius: 10px;
   box-sizing: border-box;
   font-family: inherit;
   font-size: inherit;
-  cursor: inherit;
+  cursor: pointer;
   line-height: inherit;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
 }
 </style>

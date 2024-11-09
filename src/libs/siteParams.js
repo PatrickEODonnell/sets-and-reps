@@ -110,8 +110,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     set.value = 1;
     secPerSet.value = minPerSet.value * 60;
     const x = setInterval(() => {
-      console.log("secPerSet", secPerSet.value);
-      console.log("remainingSets", remainingSets.value);
       secPerSet.value -= 1;
       minRemaining.value = ~~(secPerSet.value / 60);
       secRemaining.value = secPerSet.value % 60;

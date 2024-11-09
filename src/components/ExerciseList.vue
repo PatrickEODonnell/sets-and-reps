@@ -15,7 +15,7 @@
 
     <div v-if="store.timerIsRunning">
       <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
-        {{ exercise.name }}
+        <span style="font-size: 20px">{{ exercise.name }}</span>
       </p>
     </div>
     <div v-if="!store.timerIsRunning">
