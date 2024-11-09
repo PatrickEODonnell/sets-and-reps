@@ -46,10 +46,10 @@ async function showSet(setId) {
   router.push("/");
 }
 onMounted(async () => {
-  console.log("On Mounted");
   sets.value = await getSets();
+  sets.value.sort((a, b) => a.name.localeCompare(b.name));
+  console.log("Sets:", sets.value);
   if (sets.value.length == 0) {
-    console.log("init sets:");
     initSets();
   }
 });
