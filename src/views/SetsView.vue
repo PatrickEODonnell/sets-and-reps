@@ -6,7 +6,17 @@
   <PageFooter />
   <div id="sets-list">
     <div class="set-row" v-for="set in sets" :key="set.id" @click="showSet(set.id)">
+      <button @click.stop="expand(set.id)" class="expand-button">
+        <img id="play-pause" src="../assets/add.svg" />
+      </button>
       {{ set.name }}
+      <div v-if="expandedId == set.id" class="set-details">
+        {{ set.setType }}: {{ set.minPerSet }}mins/set for {{ set.numOfSets }} sets
+      </div>
+      <div v-if="expandedId == set.id" class="set-details">
+        Exercises:
+        <span v-for="(ex, sequence) in set.exercises" :key="sequence"><br />{{ ex.name }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -15,14 +25,21 @@ import PageFooter from "@/components/PageFooter.vue";
 import PageHeading from "../components/PageHeading.vue";
 import TabHeading from "../components/TabHeading.vue";
 import { useSetsService } from "../libs/idbSets";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
 const { getSets, initSets, getSetById } = useSetsService();
 const store = useSetParamsStore();
 let sets = ref([]);
 const router = useRouter();
-
+const expandedId = ref(0);
+function expand(id) {
+  if (expandedId.value == id) {
+    expandedId.value = 0;
+  } else {
+    expandedId.value = id;
+  }
+}
 async function showSet(setId) {
   console.log(setId);
   let set = await getSetById(setId);
@@ -45,6 +62,7 @@ async function showSet(setId) {
   store.updateMinPerSet(set.minPerSet);
   router.push("/");
 }
+
 onMounted(async () => {
   sets.value = await getSets();
   sets.value.sort((a, b) => a.name.localeCompare(b.name));
@@ -76,6 +94,19 @@ onMounted(async () => {
   cursor: pointer;
   line-height: inherit;
   padding: 10px;
-  text-align: center;
+  text-align: left;
+}
+.expand-button {
+  /* width: 100px;
+  height: 35px; */
+  align-self: center;
+  overflow: hidden;
+
+  border-radius: 25px;
+  border: none;
+}
+.set-details {
+  padding: 6px 3px 3px 10px;
+  font-size: smaller;
 }
 </style>
