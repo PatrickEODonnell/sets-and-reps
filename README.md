@@ -1,7 +1,6 @@
 # sets-and-reps
 
-This template should help get you started developing with Vue 3 in Vite.
-
+A simple timer to use while working out. Use with/without adding exercises. Save your sets and combine to build custom workouts.
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
