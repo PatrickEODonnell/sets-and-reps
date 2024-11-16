@@ -3,13 +3,21 @@
     <PageHeading />
   </header>
   <TabHeading heading="S E T S" />
-  <PageFooter />
   <div id="sets-list">
+    <SetsListItem v-for="set in sets" :key="set.id" :set="set" @delete="handleSetDelete" @click="showSet(set.id)" />
+  </div>
+  <PageFooter />
+  <!-- <div id="sets-list">
     <div class="set-row" v-for="set in sets" :key="set.id" @click="showSet(set.id)">
-      <button @click.stop="expand(set.id)" class="expand-button">
-        <img id="play-pause" src="../assets/add.svg" />
-      </button>
-      {{ set.name }}
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <button @click.stop="expand(set.id)" class="expand-button">
+      <IconPlus style="vertical-align: middle;" />
+    </button>
+    <span style="vertical-align: middle;">{{ set.id }}: {{ set.name }}</span>
+  </div>
+  <IconTrashCan style="vertical-align: middle;" />
+</div>
       <div v-if="expandedId == set.id" class="set-details">
         {{ set.setType }}: {{ set.minPerSet }}mins/set for {{ set.numOfSets }} sets
       </div>
@@ -18,7 +26,7 @@
         <span v-for="(ex, sequence) in set.exercises" :key="sequence"><br />{{ ex.name }}</span>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup>
 import PageFooter from "@/components/PageFooter.vue";
@@ -28,18 +36,12 @@ import { useSetsService } from "../libs/idbSets";
 import { ref, onMounted, computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
+import SetsListItem from "@/components/SetsListItem.vue";
 const { getSets, initSets, getSetById } = useSetsService();
 const store = useSetParamsStore();
 let sets = ref([]);
 const router = useRouter();
-const expandedId = ref(0);
-function expand(id) {
-  if (expandedId.value == id) {
-    expandedId.value = 0;
-  } else {
-    expandedId.value = id;
-  }
-}
+const handleSetDelete = (id) => { console.log(id)};
 async function showSet(setId) {
   console.log(setId);
   let set = await getSetById(setId);
@@ -78,7 +80,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
   gap: 10px;
   position: relative;
   /* border-radius: 20px;
