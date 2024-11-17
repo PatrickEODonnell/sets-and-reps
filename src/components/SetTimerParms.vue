@@ -1,11 +1,11 @@
 <template>
   <div id="timer-input">
     <div id="edit-heading"><h1>Edit Timer Details</h1></div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
       <div class="column"><button @click="saveSet" :disabled="isDisabled" class="sr-button">SAVE SET <IconContentSave style="vertical-align:middle;" /></button></div>
-    </div>
+    </div> -->
     <div class="row" v-if="editMode == 'Edit'">
       <div class="column">
         <div>Set Name:</div>
@@ -53,10 +53,11 @@
           </button>
         </div> -->
       </div>
-      <div class="row">
-        <div class="column" style="font-weight: 500; padding-top: 3px">
-          Total workout time: {{ store.sets * minPerSet }} minutes
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div  >
+          Total time: {{ store.sets * minPerSet }} min. 
         </div>
+        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
       </div>
     </div>
 
@@ -73,11 +74,13 @@
           <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus/></button></div>
         </div>
       </div>
-      <div class="row">
-        <div class="column" style="font-weight: 500; padding-top: 3px">
-          Total workout time: {{ store.sets * store.exercises.length }}
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div  >
+          Total time: {{ store.sets * store.exercises.length }} min. 
         </div>
+        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
       </div>
+
     </div>
 
     <div v-if="store.setType == 'AMRAP'">
@@ -94,6 +97,12 @@
           <div>Add Exercise(s):</div>
           <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
         </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div  >
+          Total time: {{ store.minPerSet }} min. 
+        </div>
+        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
       </div>
       <!-- <div class="row">
         <div class="column" style="font-weight: 500; padding-top: 3px">
@@ -128,10 +137,11 @@
           <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus style="font-size:large;vertical-align: middle;"/></button></div>
         </div>
       </div>
-      <div class="row">
-        <div class="column" style="font-weight: 500; padding-top: 3px">
-          Total workout time: {{ (rounds * (secondsOn + secondsOff)) / 60 }} minutes.
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div  >
+          Total time: {{ store.sets * store.exercises.length }} min. 
         </div>
+        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="set-row">
     
-      <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
   <div>
     <button @click.stop="expand(set.id)" class="sr-button">
       <IconPlus v-if="expandedId != set.id" style="vertical-align: middle;font-size: 24px;" />
