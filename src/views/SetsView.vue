@@ -37,11 +37,21 @@ import { ref, onMounted, computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
 import SetsListItem from "@/components/SetsListItem.vue";
-const { getSets, initSets, getSetById } = useSetsService();
+
+const { getSets, initSets, getSetById, deleteById } = useSetsService();
 const store = useSetParamsStore();
 let sets = ref([]);
 const router = useRouter();
-const handleSetDelete = (id) => { console.log(id)};
+const handleSetDelete = async (id) => { 
+  console.log(id)
+  await deleteById(id);
+  await refreshSets();
+};
+async function refreshSets(){
+  sets.value = await getSets();
+  sets.value.sort((a, b) => a.name.localeCompare(b.name));
+
+}
 async function showSet(setId) {
   console.log(setId);
   let set = await getSetById(setId);
@@ -66,12 +76,13 @@ async function showSet(setId) {
 }
 
 onMounted(async () => {
-  sets.value = await getSets();
-  sets.value.sort((a, b) => a.name.localeCompare(b.name));
+  await refreshSets();
+  // sets.value = await getSets();
+  // sets.value.sort((a, b) => a.name.localeCompare(b.name));
   console.log("Sets:", sets.value);
-  if (sets.value.length == 0) {
-    initSets();
-  }
+  // if (sets.value.length == 0) {
+  //   initSets();
+  // }
 });
 </script>
 

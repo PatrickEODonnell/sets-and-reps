@@ -76,6 +76,18 @@ export function useSetsService() {
       };
     });
   }
+  async function deleteById(id) {
+    let db = await getDb();
+    return new Promise((resolve) => {
+      let trans = db.transaction([DT_SETS], "readwrite");
+      trans.oncomplete = () => {
+        resolve();
+      };
+
+      let store = trans.objectStore(DT_SETS);
+      store.delete(id);
+    });
+  }
   async function getSetById(id) {
     let request = indexedDB.open(DB_NAME, DB_VERSION);
     return new Promise((resolve) => {
@@ -162,6 +174,7 @@ export function useSetsService() {
     saveSet,
     deleteSet,
     initSets,
-    getSetById
+    getSetById,
+    deleteById
   };
 }
