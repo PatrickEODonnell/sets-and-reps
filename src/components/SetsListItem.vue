@@ -4,12 +4,13 @@
       <div style="display: flex; justify-content: space-between; align-items: center;">
   <div>
     <button @click.stop="expand(set.id)" class="sr-button">
-      <IconPlus style="vertical-align: middle;" />
+      <IconPlus v-if="expandedId != set.id" style="vertical-align: middle;font-size: 24px;" />
+      <IconMinus v-if="expandedId == set.id" style="vertical-align: middle;font-size: 24px;" />
     </button>
-    <span style="vertical-align: middle;">{{ set.id }}: {{ set.name }}</span>
+    <span style="vertical-align: middle;font-size: large;">{{ set.name }}</span>
   </div>
   <button @click.stop="deleteSet" class="sr-button">
-    <IconTrashCan style="vertical-align: middle;" />
+    <IconTrashCan style="vertical-align: middle;font-size: 24px;" />
 </button>
 </div>
       <div v-if="expandedId == set.id" class="set-details">
@@ -26,6 +27,7 @@
 import { ref } from 'vue';
 import IconTrashCan from '~icons/mdi/trash-can';
 import IconPlus from '~icons/mdi/plus';
+import IconMinus from '~icons/mdi/minus';
 
 const props = defineProps({
     set: {required: true}
