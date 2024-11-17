@@ -20,12 +20,13 @@
     </div>
 
     <div id="controls">
-      <button id="stop" @click="stopTimer($event)" v-if="store.timerIsRunning">
-        <img id="play-pause" src="../assets/stop.svg" />
-        <p>Stop</p>
+      <button class="sr-button" @click="stopTimer($event)" v-if="store.timerIsRunning">
+        <IconStopCircleOutline style="font-size: 40; vertical-align: middle;" />
+        <!-- <img id="play-pause" src="../assets/stop.svg" /> -->
       </button>
-      <button id="play" @click="startTimer($event)" v-if="!store.timerIsRunning">
-        <img id="play-pause" src="../assets/play.svg" />
+      <button class="sr-button" @click="startTimer($event)" v-if="!store.timerIsRunning">
+          <IconPlayCircleOutline style="font-size: 40px;vertical-align: middle;" />
+        <!-- <img id="play-pause" src="../assets/play.svg" /> -->
         <p class="sr-only">Play</p>
       </button>
     </div>
@@ -39,7 +40,8 @@
 </template>
 <script setup>
 import { useSetParamsStore } from "@/libs/siteParams";
-
+import IconPlayCircleOutline from '~icons/mdi/play-circle-outline';
+import IconStopCircleOutline from '~icons/mdi/stop-circle-outline';
 const store = useSetParamsStore();
 const right = (str, len) => {
   return str.substring(str.length - 2, str.length);

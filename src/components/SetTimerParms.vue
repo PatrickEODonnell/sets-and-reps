@@ -4,8 +4,7 @@
     <div class="row">
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
-      <div class="column">&nbsp;</div>
-      <div class="column"><button @click="saveSet" :disabled="isDisabled">Save Set</button></div>
+      <div class="column"><button @click="saveSet" :disabled="isDisabled" class="sr-button">SAVE SET <IconContentSave style="vertical-align:middle;" /></button></div>
     </div>
     <div class="row" v-if="editMode == 'Edit'">
       <div class="column">
@@ -44,19 +43,19 @@
       <div class="row">
         <div class="column">
           <div>Add Exercises (optional):</div>
-          <div><input type="text" v-model="newExercise" /></div>
+          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
         </div>
-        <div class="column">
+        <!-- <div class="column">
           <div>&nbsp;</div>
           <button @click="addExercise($event)" class="form-button">
             <img id="play-pause" src="../assets/add.svg" />
             <p class="sr-only">Add</p>
           </button>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="column" style="font-weight: 500; padding-top: 3px">
-          Total workout time: {{ store.sets * minPerSet }}
+          Total workout time: {{ store.sets * minPerSet }} minutes
         </div>
       </div>
     </div>
@@ -71,14 +70,7 @@
       <div class="row">
         <div class="column">
           <div>Add Exercises:</div>
-          <div><input type="text" v-model="newExercise" /></div>
-        </div>
-        <div class="column">
-          <div>&nbsp;</div>
-          <button @click="addExercise($event)" class="form-button">
-            <img id="play-pause" src="../assets/add.svg" />
-            <p class="sr-only">Add</p>
-          </button>
+          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus/></button></div>
         </div>
       </div>
       <div class="row">
@@ -100,14 +92,7 @@
       <div class="row">
         <div class="column">
           <div>Add Exercise(s):</div>
-          <div><input type="text" v-model="newExercise" /></div>
-        </div>
-        <div class="column">
-          <div>&nbsp;</div>
-          <button @click="addExercise($event)" class="form-button">
-            <img id="play-pause" src="../assets/add.svg" />
-            <p class="sr-only">Add</p>
-          </button>
+          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
         </div>
       </div>
       <!-- <div class="row">
@@ -140,14 +125,7 @@
       <div class="row">
         <div class="column">
           <div>Add Exercises:</div>
-          <div><input type="text" v-model="newExercise" /></div>
-        </div>
-        <div class="column">
-          <div>&nbsp;</div>
-          <button @click="addExercise($event)" class="form-button">
-            <img id="play-pause" src="../assets/add.svg" />
-            <p class="sr-only">Add</p>
-          </button>
+          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus style="font-size:large;vertical-align: middle;"/></button></div>
         </div>
       </div>
       <div class="row">
@@ -162,6 +140,8 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
+import IconPlus from '~icons/mdi/plus';
+import IconContentSave from '~icons/mdi/content-save';
 const props = defineProps(["editMode"]);
 const { editMode } = props;
 

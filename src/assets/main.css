@@ -376,6 +376,15 @@ span.ripple {
     opacity: 0;
   }
 }
+.sr-button {
+  /* width: 100px;
+  height: 35px; */
+  align-self: center;
+  overflow: hidden;
+
+  /* border-radius: 25px; */
+  border: none;
+}
 
 .nav {
   position: fixed;
