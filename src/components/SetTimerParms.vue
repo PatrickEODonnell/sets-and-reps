@@ -1,19 +1,11 @@
 <template>
   <div id="timer-input">
-    <div id="edit-heading"><h1>Edit Timer Details</h1></div>
+    <div id="edit-heading"><h1><span v-if="store.editMode!='Edit'">New Timer Details</span><span v-if="store.editMode=='Edit'">{{ store.setName }}</span></h1></div>
     <!-- <div class="row">
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
       <div class="column"><button @click="saveSet" :disabled="isDisabled" class="sr-button">SAVE SET <IconContentSave style="vertical-align:middle;" /></button></div>
     </div> -->
-    <div class="row" v-if="editMode == 'Edit'">
-      <div class="column">
-        <div>Set Name:</div>
-        <div>
-          <div><input type="text" v-model="store.setName" /></div>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="column">
         <div>Choose type of Set:</div>
@@ -36,7 +28,7 @@
         <div class="column">
           <div>Minutes per Set?</div>
           <div>
-            <input type="number" v-model="minPerSet" @change="changeMinPerSet($event)" />
+            <input type="number" v-model="store.minPerSet" @change="changeMinPerSet($event)" />
           </div>
         </div>
       </div>
@@ -45,19 +37,12 @@
           <div>Add Exercises (optional):</div>
           <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
         </div>
-        <!-- <div class="column">
-          <div>&nbsp;</div>
-          <button @click="addExercise($event)" class="form-button">
-            <img id="play-pause" src="../assets/add.svg" />
-            <p class="sr-only">Add</p>
-          </button>
-        </div> -->
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div  >
-          Total time: {{ store.sets * minPerSet }} min. 
+          Total time: {{ store.sets * store.minPerSet }} min. 
         </div>
-        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
+        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
 
@@ -78,7 +63,8 @@
         <div  >
           Total time: {{ store.sets * store.exercises.length }} min. 
         </div>
-        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
+        <!-- <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>       -->
+        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
 
     </div>
@@ -102,7 +88,7 @@
         <div  >
           Total time: {{ store.minPerSet }} min. 
         </div>
-        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
+        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
       <!-- <div class="row">
         <div class="column" style="font-weight: 500; padding-top: 3px">
@@ -139,9 +125,9 @@
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div  >
-          Total time: {{ store.sets * store.exercises.length }} min. 
+          Total time: {{ (store.sets * (secondsOn + secondsOff))/60 }} min. 
         </div>
-        <div><button @click="saveSet" :disabled="isDisabled" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
+        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
   </div>
@@ -150,19 +136,23 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
+import { useSetsService } from '@/libs/idbSets';
 import IconPlus from '~icons/mdi/plus';
 import IconContentSave from '~icons/mdi/content-save';
+import IconCardPlus from '~icons/mdi/card-plus';
+import IconUndo from '~icons/mdi/undo';
 const props = defineProps(["editMode"]);
+import EditButton from "./EditButton.vue";
 const { editMode } = props;
-
-const isDisabled = computed(() => {
-  console.log("setName", store.setName);
-  return editMode == "Edit" && store.setName == "";
-});
-
+const { saveSet } = useSetsService;
+// const isDisabled = computed(() => {
+//   console.log("setName", store.setName);
+//   return localEditMode.value == "Edit" && store.setName == "";
+// });
+const addIsDisabled = ref(false);
 const store = useSetParamsStore();
 
-let minPerSet = ref(store.getMinPerSet);
+//let minPerSet = ref(store.getMinPerSet);
 let newExercise = ref("");
 const setTypes = ref([
   { key: "Standard", value: "Standard" },
@@ -178,32 +168,67 @@ let numOfSets = ref(store.getSets);
 
 function changeMinPerSet(event) {
   store.updateMinPerSet(event.target.value);
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function changeSets(event) {
   store.updateSets(event.target.value);
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function changeSetType(event) {
   store.updateSetType(event.target.value);
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function startTimer(event) {
   store.startStandardTimer();
+  store.undoDisabled = true;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function addExercise(event) {
   store.addExercise(newExercise.value);
   newExercise.value = "";
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function changeSecondsOn(event) {
   store.secondsOn = event.target.value;
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
 function changeSecondsOff(event) {
   store.secondsOff = event.target.value;
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    addIsDisabled.value = true;
 }
-async function saveSet() {
-  if (editMode == "Edit") {
-    await store.save();
+function undo(){
+  addIsDisabled.value = false;
+  store.undoChanges();
+  store.undoDisabled = true;
+}
+function save() {
+  if (store.editMode == "Edit") {
+    console.log("saveSet");
+    store.save();
+    store.saveOriginalSet();
   } else {
     store.showSaveSet = true;
   }
+  store.undoDisabled = true;
+  console.log("saveSet completed");
+}
+function addNew(){
+  store.initSet();
+  store.clearExercises();
+  store.editMode = "Add";
 }
 </script>
 

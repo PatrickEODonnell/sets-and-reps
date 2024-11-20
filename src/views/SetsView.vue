@@ -55,7 +55,6 @@ async function refreshSets(){
 async function showSet(setId) {
   console.log(setId);
   let set = await getSetById(setId);
-  console.log(set);
   store.setType = set.setType;
   store.sets = set.numOfSets;
   store.setName = set.name;
@@ -63,7 +62,6 @@ async function showSet(setId) {
   store.secondsOn = set.secondsOn;
   store.setId = set.id;
   if (set.exercises) {
-    console.log("exercises: ", set.exercises);
     for (let i = 0; i < set.exercises.length; i++) {
       store.addExercise(set.exercises[i]);
     }
@@ -71,7 +69,10 @@ async function showSet(setId) {
   } else {
     store.clearExercises();
   }
+  store.editMode = "Edit";
   store.updateMinPerSet(set.minPerSet);
+  store.undoDisabled = true;
+  store.saveOriginalSet();
   router.push("/");
 }
 

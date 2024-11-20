@@ -153,18 +153,26 @@ export function useSetsService() {
     };
   }
 
-  async function saveSet(set) {
-    let db = await getDb();
+  function saveSet(set) {
+    let db = window.indexedDB.open(DB_NAME, DB_VERSION);
+    db.onsuccess = function (event) {
+      let db = event.target.result;
+      let transaction = db.transaction([DT_SETS], "readwrite");
+      let objectStore = transaction.objectStore(DT_SETS);
+      let putRequest = objectStore.put(set);
 
-    return new Promise((resolve) => {
-      let trans = db.transaction([DT_SETS], "readwrite");
-      trans.oncomplete = () => {
-        resolve();
+      putRequest.onsuccess = function (event) {
+        console.log("Data saved successfully!");
       };
 
-      let store = trans.objectStore(DT_SETS);
-      store.put(set);
-    });
+      putRequest.onerror = function (event) {
+        console.error("Error saving data: ", event.target.error);
+      };
+
+    }
+    db.onerror = function (event) {
+      console.error("Error opening database: ", event.target.error);
+    };
   }
 
   return {

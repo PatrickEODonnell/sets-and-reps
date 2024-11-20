@@ -6,13 +6,25 @@ export const useSetParamsStore = defineStore("setParams", () => {
   // Set Parameters
   let setType = ref("Standard");
   let sets = ref(4);
-  let minPerSet = ref(3);
+  const minPerSet = ref(3);
   let exercises = ref([]);
   let setName = ref("");
   let secondsOn = ref(20);
   let secondsOff = ref(10);
   let setId = ref(0);
   let test = ref("Yes");
+  let editMode = ref("Add");
+  let undoDisabled = ref(true);
+
+  // Backup Set Parameters
+  let backSetType = "";
+  let backSets = 4;
+  let backMinPerSet = 3;
+  let backSetName = "";
+  let backSecondsOn = 20;
+  let backSecondsOff = 10;
+  let backSetId = 0;
+  let backExercises = [];
 
   // Play parameters
   let set = ref(1);
@@ -40,7 +52,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   const getSeconds = computed(() => {
     return secRemaining.value;
   });
-  const getSet = computed(() => set.value);
+  const getSet = computed(() => { return set.value});
   const getSetType = computed(() => {
     return setType.value;
   });
@@ -48,8 +60,47 @@ export const useSetParamsStore = defineStore("setParams", () => {
     return currentExerciseLabel.value;
   });
 
-  const { addNewSet } = useSetsService();
+  const { addNewSet, saveSet } = useSetsService();
   // Functions
+  function initSet(){
+    setType.value = "Standard";
+    sets.value = 4;
+    updateMinPerSet(3);
+    setName.value = "";
+    secondsOn.value = 20;
+    secondsOff.value = 10;
+    setId.value = 0;
+    editMode.value = "Add";
+  }
+  function saveOriginalSet(){
+    backSetType = setType.value;
+    backMinPerSet = minPerSet.value;
+    backSecondsOff = secondsOff.value;
+    backSecondsOn = secondsOn.value;
+    backSetId = setId.value;
+    backSetName = setName.value;
+    backSets = sets.value;
+    backExercises = [];
+    exercises.value.forEach(exercise => {
+      backExercises.push(exercise);
+    });
+  }
+  function undoChanges(){
+    setType.value = backSetType;
+    minPerSet.value = backMinPerSet;
+    secondsOff.value = backSecondsOff;
+    secondsOn.value = backSecondsOn;
+    setId.value = backSetId;
+    setName.value = backSetName;
+    sets.value = backSets;
+    exercises.value = [];
+    console.log(exercises.value);
+    backExercises.forEach(exercise => {
+      restoreExercise({sequence: exercise.sequence, name: exercise.name});
+    });
+    console.log(exercises.value);
+
+  }
   function updateMinPerSet(min) {
     minPerSet.value = min;
     secPerSet.value = min * 60;
@@ -85,17 +136,26 @@ export const useSetParamsStore = defineStore("setParams", () => {
     }
     console.log("exercises:", exercises.value);
   }
+  function restoreExercise(ex){
+    console.log(ex);
+    exercises.value = [];
+    exercises.value.push({sequence: ex.sequence, name: ex.name});
+    showExercises.value = true;
+  }
   function deleteExercise(val, sequence) {
     const index = exercises.value.findIndex((ex) => ex.sequence === sequence);
     exercises.value.splice(index, 1);
     console.log(exercises.value);
   }
   function clearExercises() {
+    console.log(exercises.value);
     exercises.value = [];
+    console.log(exercises.value);
     showExercises.value = false;
     if (setType.value == "EMOM") {
       updateMinSecRemaining(0);
     }
+    undoDisabled.value = false;
   }
   function updateMinSecRemaining(min) {
     minPerSet.value = min;
@@ -198,7 +258,24 @@ export const useSetParamsStore = defineStore("setParams", () => {
     setId.value = addNewSet(newSet);
     console.log("Set Id: ", setId.value);
   }
-  function save() {}
+  function save() {
+    console.log("store-save:");
+    console.log("exercises: ", exercises.value);
+    let setExercises = JSON.parse(JSON.stringify(exercises.value));
+    console.log("exercises - serialized", setExercises);
+    const setToSave = {
+      id: setId.value,
+      name: setName.value,
+      setType: setType.value,
+      numOfSets: sets.value,
+      minPerSet: minPerSet.value,
+      secondsOn: secondsOn.value,
+      secondsOff: secondsOff.value,
+      exercises: setExercises
+    };
+    saveSet(setToSave);
+    console.log("set saved");
+  }
 
   return {
     sets,
@@ -235,6 +312,11 @@ export const useSetParamsStore = defineStore("setParams", () => {
     getSeconds,
     getSet,
     getSetType,
-    getCurrentExerciseLabel
-  };
+    getCurrentExerciseLabel,
+    initSet,
+    undoChanges,
+    saveOriginalSet,
+    undoDisabled,
+    restoreExercise,
+    };
 });

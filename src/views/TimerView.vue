@@ -5,7 +5,7 @@
     </header>
     <main class="flex-grow-1">
       <TabHeading heading="W O R K O U T -- T I M E R" />
-      <SetTimerParms v-if="store.showTimerParms && !store.showSaveSet" :edit-mode="editMode" />
+      <SetTimerParms v-if="store.showTimerParms && !store.showSaveSet" :edit-mode="store.editMode" />
       <ExerciseList v-if="store.showExercises && store.setType != 'EMOM' && !store.showSaveSet" />
       <ExerciseListEmom
         v-if="store.showExercises && store.setType == 'EMOM' && !store.showSaveSet"
