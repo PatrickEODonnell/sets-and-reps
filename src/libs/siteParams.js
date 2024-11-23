@@ -71,6 +71,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     secondsOff.value = 10;
     setId.value = 0;
     editMode.value = "Add";
+    exercises.value = [];
   }
   function saveOriginalSet(){
     
@@ -248,6 +249,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
       exercises: setExercises
     };
     setId.value = addNewSet(newSet);
+    editMode.value = "Edit"
+    console.log("Edit Mode: ", editMode.value);
   }
   function save() {
     let setExercises = JSON.parse(JSON.stringify(exercises.value));
@@ -305,5 +308,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     saveOriginalSet,
     undoDisabled,
     restoreExercise,
+    editMode,
     };
 });

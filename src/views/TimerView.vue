@@ -31,8 +31,6 @@ const store = useSetParamsStore();
 let setName = ref("");
 let showSaveDialog = ref(false);
 let showSaveSet = ref(false);
-let editMode = ref("Add");
-function saveSet() {}
 </script>
 <style>
 #container {
