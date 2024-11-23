@@ -15,6 +15,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let test = ref("Yes");
   let editMode = ref("Add");
   let undoDisabled = ref(true);
+  const defaultTabataRounds = 8;
 
   // Backup Set Parameters
   let backSetType = "";
@@ -36,6 +37,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let stopTimerNow = ref(false);
   let currentExerciseLabel = ref("");
   let currentEmomSequence = ref(0);
+  let tabataSecRemaining = ref(secondsOn.value);
+  let tabataOnOffMessage = ref("Go");
 
   // Display parameters
   let showTimerParms = ref(true);
@@ -46,6 +49,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
   // Getters
   const getMinPerSet = computed(() => minPerSet.value);
   const getSets = computed(() => sets.value);
+  const getTabataMinRemaining = computed(() => {
+    return ~~(tabataSecRemaining.value/60);
+  });
+  const getTabataSecRemaining = computed(() => {
+    return tabataSecRemaining.value % 60
+  })
   const getMinutes = computed(() => {
     return minRemaining.value;
   });
@@ -120,6 +129,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
       minPerSet.value = 5;
       secPerSet.value = 300;
     }
+    if (type == "Tabata"){
+      sets.value = defaultTabataRounds;
+    }
   }
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
@@ -192,6 +204,55 @@ export const useSetParamsStore = defineStore("setParams", () => {
         clearInterval(x);
       }
     }, 1000);
+  }
+  function startTabataTimer(){
+    remainingSets.value = sets.value;
+    let tabataSets = sets.value * 2;
+    let timePeriodToggle = "On";
+    timerIsRunning.value = true;
+    showTimerParms.value = false;
+    showWorkoutCompleted.value = false;
+    set.value = 1;
+    tabataSecRemaining.value = secondsOn.value;
+    const x = setInterval(() => {
+      tabataSecRemaining.value -= 1;
+      // minRemaining.value = ~~(secPerSet.value / 60);
+      // secRemaining.value = secPerSet.value % 60;
+      if (tabataSecRemaining.value <= 0) {
+        timePeriodToggle = timePeriodToggle == "On" ? "Off" : "On";
+        console.log("Toggle: ", timePeriodToggle);
+        if (timePeriodToggle == "On"){
+          tabataSecRemaining.value = secondsOn.value;
+          tabataOnOffMessage.value = "Go";
+        }
+        else{
+          tabataSecRemaining.value = secondsOff.value;
+          tabataOnOffMessage.value = "Rest";
+        }
+        tabataSets -= 1;
+        if ((tabataSets % 2) === 0 ){
+          remainingSets.value -= 1;
+          set.value += 1;
+        }
+        if (remainingSets.value <= 0) {
+          set.value = sets.value;
+          tabataSecRemaining.value = 0;
+          timerIsRunning.value = false;
+          showWorkoutCompleted.value = true;
+          showTimerParms.value = true;
+          clearInterval(x);
+        }
+      }
+      if (stopTimerNow.value) {
+        tabataSecRemaining.value = 0;
+        set.value = 1;
+        timerIsRunning.value = false;
+        stopTimerNow.value = false;
+        showTimerParms.value = true;
+        clearInterval(x);
+      }
+    }, 1000);
+
   }
   function startEmomTimer() {
     timerIsRunning.value = true;
@@ -311,5 +372,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
     undoDisabled,
     restoreExercise,
     editMode,
-    };
+    startTabataTimer,
+    tabataSecRemaining,
+    getTabataMinRemaining,
+    getTabataSecRemaining,
+    tabataOnOffMessage,
+      };
 });

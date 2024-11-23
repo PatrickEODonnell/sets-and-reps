@@ -100,7 +100,7 @@
       <div class="row">
         <div class="column">
           <div>How many Rounds?:</div>
-          <div><input type="number" v-model="rounds" @change="changeSets($event)" /></div>
+          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
         </div>
         <div class="column">
           <div>Seconds On?</div>
