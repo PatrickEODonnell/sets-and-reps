@@ -73,6 +73,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     editMode.value = "Add";
   }
   function saveOriginalSet(){
+    
     backSetType = setType.value;
     backMinPerSet = minPerSet.value;
     backSecondsOff = secondsOff.value;
@@ -83,7 +84,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
     backExercises = [];
     exercises.value.forEach(exercise => {
       backExercises.push(exercise);
+    
     });
+    
   }
   function undoChanges(){
     setType.value = backSetType;
@@ -94,12 +97,11 @@ export const useSetParamsStore = defineStore("setParams", () => {
     setName.value = backSetName;
     sets.value = backSets;
     exercises.value = [];
-    console.log(exercises.value);
     backExercises.forEach(exercise => {
       restoreExercise({sequence: exercise.sequence, name: exercise.name});
     });
-    console.log(exercises.value);
-
+    showExercises.value = true;
+ 
   }
   function updateMinPerSet(min) {
     minPerSet.value = min;
@@ -134,23 +136,16 @@ export const useSetParamsStore = defineStore("setParams", () => {
         break;
       }
     }
-    console.log("exercises:", exercises.value);
   }
   function restoreExercise(ex){
-    console.log(ex);
-    exercises.value = [];
     exercises.value.push({sequence: ex.sequence, name: ex.name});
-    showExercises.value = true;
   }
   function deleteExercise(val, sequence) {
     const index = exercises.value.findIndex((ex) => ex.sequence === sequence);
     exercises.value.splice(index, 1);
-    console.log(exercises.value);
   }
   function clearExercises() {
-    console.log(exercises.value);
     exercises.value = [];
-    console.log(exercises.value);
     showExercises.value = false;
     if (setType.value == "EMOM") {
       updateMinSecRemaining(0);
@@ -242,10 +237,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
 
   function add() {
-    console.log("store-add:");
-    console.log("exercises: ", exercises.value);
     let setExercises = JSON.parse(JSON.stringify(exercises.value));
-    console.log("exercises - serialized", setExercises);
     const newSet = {
       name: setName.value,
       setType: setType.value,
@@ -256,13 +248,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
       exercises: setExercises
     };
     setId.value = addNewSet(newSet);
-    console.log("Set Id: ", setId.value);
   }
   function save() {
-    console.log("store-save:");
-    console.log("exercises: ", exercises.value);
     let setExercises = JSON.parse(JSON.stringify(exercises.value));
-    console.log("exercises - serialized", setExercises);
     const setToSave = {
       id: setId.value,
       name: setName.value,
@@ -274,7 +262,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
       exercises: setExercises
     };
     saveSet(setToSave);
-    console.log("set saved");
   }
 
   return {
