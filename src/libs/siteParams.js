@@ -72,6 +72,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     setId.value = 0;
     editMode.value = "Add";
     exercises.value = [];
+    showWorkoutCompleted.value = false;
   }
   function saveOriginalSet(){
     
@@ -160,6 +161,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     secRemaining.value = secPerSet.value % 60;
   }
   function startStandardTimer() {
+    remainingSets.value = sets.value;
     timerIsRunning.value = true;
     showTimerParms.value = false;
     showWorkoutCompleted.value = false;

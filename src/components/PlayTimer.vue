@@ -52,6 +52,7 @@ function startTimer(event) {
   } else if (store.getSetType == "EMOM") {
     store.startEmomTimer();
   } else if (store.getSetType == "AMRAP") {
+    store.sets = 1;
     store.startStandardTimer();
   }
 }
