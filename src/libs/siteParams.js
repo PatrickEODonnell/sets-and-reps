@@ -3,6 +3,19 @@ import { defineStore } from "pinia";
 import { useSetsService } from "./idbSets";
 
 export const useSetParamsStore = defineStore("setParams", () => {
+
+  // Default Values
+  const defaultSetType = "Standard";
+  const defaultEditMode = "Add";
+  const standardMinPerSet = 3;
+  const standardSets = 4;
+  const amrapMinPerSet = 5
+  const emomSets = 3;
+  const tabataSecondsOn = 20;
+  const tabataSecondsOff = 10;
+  const tabataRounds = 8;
+  const tabataDefaultMessage = "Go";
+
   // Set Parameters
   let setType = ref("Standard");
   let sets = ref(4);
@@ -15,8 +28,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let test = ref("Yes");
   let editMode = ref("Add");
   let undoDisabled = ref(true);
-  const defaultTabataRounds = 8;
-
+  
   // Backup Set Parameters
   let backSetType = "";
   let backSets = 4;
@@ -30,15 +42,15 @@ export const useSetParamsStore = defineStore("setParams", () => {
   // Play parameters
   let set = ref(1);
   let secPerSet = ref(180);
-  let minRemaining = ref(3);
+  let minRemaining = ref(standardMinPerSet);
   let secRemaining = ref(0);
-  let remainingSets = ref(4);
+  let remainingSets = ref(standardSets);
   let timerIsRunning = ref(false);
   let stopTimerNow = ref(false);
   let currentExerciseLabel = ref("");
   let currentEmomSequence = ref(0);
   let tabataSecRemaining = ref(secondsOn.value);
-  let tabataOnOffMessage = ref("Go");
+  let tabataOnOffMessage = ref(tabataDefaultMessage);
 
   // Display parameters
   let showTimerParms = ref(true);
@@ -72,14 +84,14 @@ export const useSetParamsStore = defineStore("setParams", () => {
   const { addNewSet, saveSet } = useSetsService();
   // Functions
   function initSet(){
-    setType.value = "Standard";
-    sets.value = 4;
-    updateMinPerSet(3);
+    setType.value = defaultSetType;
+    sets.value = standardSets;
+    updateMinPerSet(standardMinPerSet);
     setName.value = "";
-    secondsOn.value = 20;
-    secondsOff.value = 10;
+    secondsOn.value = tabataSecondsOn;
+    secondsOff.value = tabataSecondsOff;
     setId.value = 0;
-    editMode.value = "Add";
+    editMode.value = defaultEditMode;
     exercises.value = [];
     showWorkoutCompleted.value = false;
   }
@@ -125,13 +137,26 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function updateSetType(type) {
     // setType.value = type
+    if (type == "Standard" || type == "Superset"){
+      sets.value = standardSets
+      minPerSet.value = standardMinPerSet;
+      minRemaining.value = standardMinPerSet;
+    }
+    if (type == "EMOM"){
+      sets.value = emomSets;
+      minPerSet.value = 1;
+    }
     if (type == "AMRAP") {
-      minPerSet.value = 5;
+      minPerSet.value = amrapMinPerSet;
+      minRemaining.value = amrapMinPerSet;
       secPerSet.value = 300;
     }
     if (type == "Tabata"){
-      sets.value = defaultTabataRounds;
+      sets.value = tabataRounds;
+      set .value = 1;
+      minRemaining.value = tabataSecondsOn;
     }
+    set.value = 1;
   }
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
@@ -209,6 +234,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     remainingSets.value = sets.value;
     let tabataSets = sets.value * 2;
     let timePeriodToggle = "On";
+    tabataOnOffMessage.value = "Go";
     timerIsRunning.value = true;
     showTimerParms.value = false;
     showWorkoutCompleted.value = false;
