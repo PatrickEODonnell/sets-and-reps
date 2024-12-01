@@ -136,7 +136,6 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
-import { useSetsService } from '@/libs/idbSets';
 import IconPlus from '~icons/mdi/plus';
 import IconContentSave from '~icons/mdi/content-save';
 import IconCardPlus from '~icons/mdi/card-plus';
@@ -144,7 +143,7 @@ import IconUndo from '~icons/mdi/undo';
 const props = defineProps(["editMode"]);
 import EditButton from "./EditButton.vue";
 const { editMode } = props;
-const { saveSet } = useSetsService;
+// const { saveSet } = useSetsService;
 // const isDisabled = computed(() => {
 //   console.log("setName", store.setName);
 //   return localEditMode.value == "Edit" && store.setName == "";
@@ -214,10 +213,10 @@ function undo(){
   store.undoChanges();
   store.undoDisabled = true;
 }
-function save() {
+async function save() {
   if (store.editMode == "Edit") {
     console.log("saveSet");
-    store.save();
+    await store.save();
     store.saveOriginalSet();
   } else {
     store.showSaveSet = true;

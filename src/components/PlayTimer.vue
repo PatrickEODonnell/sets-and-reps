@@ -41,12 +41,17 @@
         <p class="sr-only">Play</p>
       </button>
     </div>
-
-    <button id="complete" class="normal-16 ripplebutton" v-if="store.showWorkoutCompleted">
-      <img src="../assets/check.png" />
-      Workout Completed
-      <div></div>
+    <div v-if="store.showWorkoutCompleted" style="display: flex; justify-content: space-between; align-items: center;">
+      <button id="logSet" class="form-button" @click="logSet">
+      Log Set
     </button>
+    <button id="logSetAndRecord" class="form-button" @click="recordWeight">
+      Record Weight
+    </button>
+    <button id="close" class="form-button" @click="closeTImer" >
+      Close
+    </button>
+    </div>
   </div>
 </template>
 <script setup>
@@ -54,10 +59,22 @@ import { useSetParamsStore } from "@/libs/siteParams";
 import { computed } from "vue";
 import IconPlayCircleOutline from '~icons/mdi/play-circle-outline';
 import IconStopCircleOutline from '~icons/mdi/stop-circle-outline';
+
 const store = useSetParamsStore();
 const right = (str, len) => {
   return str.substring(str.length - 2, str.length);
 };
+const closeTImer = () => {
+  console.log("Close Timer")
+}
+const logSet = async () => {
+  console.log("Log set");
+  await store.logSet();
+
+}
+const recordWeight = () => {
+  console.log("Record Weight");
+}
 function startTimer(event) {
   console.log ("Set Type: ", store.getSetType);
   if (store.getSetType == "Standard" || store.getSetType == "Superset") {

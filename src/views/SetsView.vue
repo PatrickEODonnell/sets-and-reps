@@ -32,29 +32,32 @@
 import PageFooter from "@/components/PageFooter.vue";
 import PageHeading from "../components/PageHeading.vue";
 import TabHeading from "../components/TabHeading.vue";
-import { useSetsService } from "../libs/idbSets";
 import { ref, onMounted, computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
 import SetsListItem from "@/components/SetsListItem.vue";
-
-const { getSets, initSets, getSetById, deleteById } = useSetsService();
+import { useIdbservice } from "@/libs/useIdbService";
+const { getAll, getById, deleteById: deleteSet} = useIdbservice("sets");
 const store = useSetParamsStore();
 let sets = ref([]);
 const router = useRouter();
 const handleSetDelete = async (id) => { 
   console.log(id)
-  await deleteById(id);
+  // await deleteById(id);
+  await deleteSet(id);
   await refreshSets();
 };
 async function refreshSets(){
-  sets.value = await getSets();
+  // sets.value = await getSets();
+  sets.value = await getAll();
+  console.log("Refresh",sets.value);
   sets.value.sort((a, b) => a.name.localeCompare(b.name));
 
 }
 async function showSet(setId) {
   console.log(setId);
-  let set = await getSetById(setId);
+  // let set = await getSetById(setId);
+  let set = await getById(setId);
   store.setType = set.setType;
   store.sets = set.numOfSets;
   store.setName = set.name;

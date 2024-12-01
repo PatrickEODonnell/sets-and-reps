@@ -28,11 +28,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 const store = useSetParamsStore();
-function saveSet() {
-  store.add();
+async function saveSet() {
+  await store.add();
   store.showSaveSet = false;
 }
 </script>

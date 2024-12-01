@@ -1,7 +1,6 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import { useSetsService } from "./idbSets";
-
+import { useIdbservice } from "./useIdbService";
 export const useSetParamsStore = defineStore("setParams", () => {
 
   // Default Values
@@ -81,7 +80,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
     return currentExerciseLabel.value;
   });
 
-  const { addNewSet, saveSet } = useSetsService();
+  const { addItem: addLog } = useIdbservice("logs");
+  const { addItem: addSet, saveItem: saveSetItem } = useIdbservice("sets");
   // Functions
   function initSet(){
     setType.value = defaultSetType;
@@ -215,7 +215,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
           secPerSet.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
-          showTimerParms.value = true;
+          // showTimerParms.value = true;
           clearInterval(x);
         }
         set.value += set.value < sets.value ? 1 : 0;
@@ -225,7 +225,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
         set.value = 1;
         timerIsRunning.value = false;
         stopTimerNow.value = false;
-        showTimerParms.value = true;
+        // showTimerParms.value = true;
         clearInterval(x);
       }
     }, 1000);
@@ -242,8 +242,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     tabataSecRemaining.value = secondsOn.value;
     const x = setInterval(() => {
       tabataSecRemaining.value -= 1;
-      // minRemaining.value = ~~(secPerSet.value / 60);
-      // secRemaining.value = secPerSet.value % 60;
       if (tabataSecRemaining.value <= 0) {
         timePeriodToggle = timePeriodToggle == "On" ? "Off" : "On";
         console.log("Toggle: ", timePeriodToggle);
@@ -326,7 +324,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     stopTimerNow.value = true;
   }
 
-  function add() {
+  async function add() {
     let setExercises = JSON.parse(JSON.stringify(exercises.value));
     const newSet = {
       name: setName.value,
@@ -337,11 +335,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secondsOff: secondsOff.value,
       exercises: setExercises
     };
-    setId.value = addNewSet(newSet);
+    // setId.value = addNewSet(newSet);
+    setId.value = await addSet(newSet);
     editMode.value = "Edit"
     console.log("Edit Mode: ", editMode.value);
   }
-  function save() {
+  async function save() {
     let setExercises = JSON.parse(JSON.stringify(exercises.value));
     const setToSave = {
       id: setId.value,
@@ -353,9 +352,19 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secondsOff: secondsOff.value,
       exercises: setExercises
     };
-    saveSet(setToSave);
+    // saveSet(setToSave);
+    await saveSetItem(setToSave)
   }
-
+// Logging
+  async function logSet(){
+    const logEntry = {
+      setId: setId.value,
+      completed: Date(),
+      notes: [],
+    }
+    console.log("Call to logSet");
+    await addLog(logEntry);
+  }
   return {
     sets,
     minPerSet,
@@ -403,5 +412,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     getTabataMinRemaining,
     getTabataSecRemaining,
     tabataOnOffMessage,
+    logSet,
       };
 });
