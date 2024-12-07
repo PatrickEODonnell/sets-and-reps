@@ -10,8 +10,9 @@
       <ExerciseListEmom
         v-if="store.showExercises && store.setType == 'EMOM' && !store.showSaveSet"
       />
-      <SaveSet v-if="!store.timerIsRunning" />
-      <PlayTimer v-if="!store.showSaveSet" />
+      <SaveSet v-if="store.showSaveSet" />
+      <LogSet v-if="store.showSaveLog" />
+      <PlayTimer v-if="!store.showSaveSet && !store.showSaveLog" />
     </main>
     <PageFooter />
   </div>
@@ -26,6 +27,7 @@ import PlayTimer from "../components/PlayTimer.vue";
 import ExerciseList from "../components/ExerciseList.vue";
 import ExerciseListEmom from "../components/ExerciseListEmom.vue";
 import SaveSet from "../components/SaveSet.vue";
+import LogSet from "@/components/LogSet.vue";
 import PageFooter from "../components/PageFooter.vue";
 const store = useSetParamsStore();
 let setName = ref("");

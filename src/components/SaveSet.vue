@@ -1,5 +1,5 @@
 <template>
-  <div id="timer-input" v-if="store.showSaveSet">
+  <div id="timer-input" >
     <div>
       <div id="edit-heading"><h1>Save Set</h1></div>
       <div class="row">

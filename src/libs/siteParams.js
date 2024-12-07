@@ -56,7 +56,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let showWorkoutCompleted = ref(false);
   let showSaveSet = ref(false);
   let showExercises = ref(false);
-
+  let showSaveLog = ref(false);
   // Getters
   const getMinPerSet = computed(() => minPerSet.value);
   const getSets = computed(() => sets.value);
@@ -78,6 +78,15 @@ export const useSetParamsStore = defineStore("setParams", () => {
   });
   const getCurrentExerciseLabel = computed(() => {
     return currentExerciseLabel.value;
+  });
+  const getCurrentDateTime = computed(() => {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const currentDateTime = `${month}-${day} ${hour}:${min}`;
+    return currentDateTime;
   });
 
   const { addItem: addLog } = useIdbservice("logs");
@@ -221,10 +230,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
         set.value += set.value < sets.value ? 1 : 0;
       }
       if (stopTimerNow.value) {
+        console.log("Timer stopped.");
         secPerSet.value = 0;
         set.value = 1;
         timerIsRunning.value = false;
         stopTimerNow.value = false;
+        showWorkoutCompleted.value = true;
         // showTimerParms.value = true;
         clearInterval(x);
       }
@@ -356,12 +367,13 @@ export const useSetParamsStore = defineStore("setParams", () => {
     await saveSetItem(setToSave)
   }
 // Logging
-  async function logSet(){
-    const logEntry = {
-      setId: setId.value,
-      completed: Date(),
-      notes: [],
-    }
+  async function logSet(logEntry){
+    // const logEntry = {
+    //   setId: setId.value,
+    //   completed: Date(),
+    //   notes: [],
+    // }
+    console.log("LogEntry:",logEntry);
     console.log("Call to logSet");
     await addLog(logEntry);
   }
@@ -413,5 +425,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     getTabataSecRemaining,
     tabataOnOffMessage,
     logSet,
-      };
+    showSaveLog,
+    getCurrentDateTime,
+        };
 });

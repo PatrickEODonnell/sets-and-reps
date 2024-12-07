@@ -32,7 +32,7 @@
 
     <div id="controls">
       <button class="sr-button" @click="stopTimer($event)" v-if="store.timerIsRunning">
-        <IconStopCircleOutline style="font-size: 40; vertical-align: middle;" />
+        <IconStopCircleOutline style="font-size: 40px; vertical-align: middle;" />
         <!-- <img id="play-pause" src="../assets/stop.svg" /> -->
       </button>
       <button class="sr-button" @click="startTimer($event)" v-if="!store.timerIsRunning">
@@ -42,15 +42,19 @@
       </button>
     </div>
     <div v-if="store.showWorkoutCompleted" style="display: flex; justify-content: space-between; align-items: center;">
-      <button id="logSet" class="form-button" @click="logSet">
+      <!-- <button id="logSet" class="form-button" @click="logSet">
       Log Set
+    </button> -->
+    <div>
+      <button id="logSetAndRecord" class="form-button" @click="recordWeight" style="margin-right: 5px;">
+      Record Set
     </button>
-    <button id="logSetAndRecord" class="form-button" @click="recordWeight">
-      Record Weight
-    </button>
-    <button id="close" class="form-button" @click="closeTImer" >
+    </div>
+    <div>
+      <button id="close" class="form-button" @click="closeTImer" >
       Close
     </button>
+    </div>
     </div>
   </div>
 </template>
@@ -66,14 +70,19 @@ const right = (str, len) => {
 };
 const closeTImer = () => {
   console.log("Close Timer")
+  store.showTimerParms = true;
+  store.showWorkoutCompleted = false;
 }
 const logSet = async () => {
   console.log("Log set");
   await store.logSet();
+  store.showTimerParms = true;
+  store.showWorkoutCompleted = false;
 
 }
 const recordWeight = () => {
   console.log("Record Weight");
+  store.showSaveLog = true;
 }
 function startTimer(event) {
   console.log ("Set Type: ", store.getSetType);

@@ -9,7 +9,6 @@
         </div>
       </div>
     </div> -->
-
   <div id="exercise-list">
     <div id="card-heading"><h1>Exercises</h1></div>
 
