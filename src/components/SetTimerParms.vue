@@ -219,7 +219,7 @@ async function save() {
     await store.save();
     store.saveOriginalSet();
   } else {
-    store.showSaveSet = true;
+    store.editMode = "Save";
   }
   store.undoDisabled = true;
   console.log("saveSet completed");

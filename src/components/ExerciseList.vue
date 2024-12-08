@@ -13,12 +13,12 @@
   <div id="exercise-list">
     <div id="card-heading"><h1>Exercises</h1></div>
 
-    <div v-if="store.timerIsRunning">
+    <div v-if="displayExercises">
       <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
         <span style="font-size: 20px">{{ exercise.name }}</span>
       </p>
     </div>
-    <div v-if="!store.timerIsRunning">
+    <div v-if="editExercises">
       <div class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
         <input
           type="text"
@@ -27,12 +27,13 @@
         />
       </div>
     </div>
-    <div v-if="!store.timerIsRunning">
+    <div v-if="editExercises">
       <button class="form-button" @click="clearExercises">Clear All</button>
     </div>
   </div>
 </template>
 <script setup>
+import { computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 const store = useSetParamsStore();
 function clearExercises() {
@@ -46,6 +47,12 @@ function updateExercise(event, sequence) {
   }
   store.updateExercise(event.target.value, sequence);
 }
+const displayExercises = computed(() => {
+  return store.editMode == "Play";
+})
+const editExercises = computed(() => {
+  return store.editMode == "Add" || store.editMode == "Edit"
+})
 </script>
 <style scoped>
 #exercise-list {

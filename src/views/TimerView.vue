@@ -5,20 +5,20 @@
     </header>
     <main class="flex-grow-1">
       <TabHeading heading="W O R K O U T -- T I M E R" />
-      <SetTimerParms v-if="store.showTimerParms && !store.showSaveSet" :edit-mode="store.editMode" />
-      <ExerciseList v-if="store.showExercises && store.setType != 'EMOM' && !store.showSaveSet" />
+      <SetTimerParms v-if="showTimerParms" :edit-mode="store.editMode" />
+      <ExerciseList v-if="showExercises" />
       <ExerciseListEmom
-        v-if="store.showExercises && store.setType == 'EMOM' && !store.showSaveSet"
+        v-if="showExercisesEmom"
       />
-      <SaveSet v-if="store.showSaveSet" />
-      <LogSet v-if="store.showSaveLog" />
-      <PlayTimer v-if="!store.showSaveSet && !store.showSaveLog" />
+      <SaveSet v-if="showSaveSet" />
+      <LogSet v-if="showSaveLog" />
+      <PlayTimer v-if="showPlaySet" />
     </main>
     <PageFooter />
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import SetTimerParms from "../components/SetTimerParms.vue";
 import PageHeading from "../components/PageHeading.vue";
@@ -32,7 +32,25 @@ import PageFooter from "../components/PageFooter.vue";
 const store = useSetParamsStore();
 let setName = ref("");
 let showSaveDialog = ref(false);
-let showSaveSet = ref(false);
+
+const showExercises = computed(() => {
+  return (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") && store.setType != "EMOM" && store.exercises.length > 0;
+})
+const showTimerParms = computed(() => {
+  return store.editMode == "Add" || store.editMode == "Edit" 
+})
+const showPlaySet = computed(() => {
+  return store.editMode == "Play" || store.editMode == "Add" || store.editMode == "Edit" 
+})
+const showSaveLog = computed(() => {
+  return store.editMode == "Log"
+})
+const showSaveSet = computed(() => {
+  return store.editMode == "Save"
+})
+const showExercisesEmom = computed(() => {
+  return (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") && store.setType == "EMOM" && store.exercises.length > 0;
+})
 </script>
 <style>
 #container {

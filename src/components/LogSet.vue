@@ -74,11 +74,16 @@ store.exercises.forEach(exs => {
    prs.value.push(pr);
 });
 const closeLogSet = () => {
-  store.timerIsRunning = false;
-  store.showSaveLog = false;
-  store.showTimerParms = true;
+  if (store.setName == ""){
+    store.editMode = "Add";
+  } else {
+    store.editMode = "Edit";
+  }
+  // store.timerIsRunning = false;
+  // store.showSaveLog = false;
+  // store.showTimerParms = true;
   store.showWorkoutCompleted = false;
-
+  // store.showExercises = true;
 }
 </script>
 <style lang="css">

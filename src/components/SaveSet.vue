@@ -13,7 +13,7 @@
       <div class="row">&nbsp;</div>
       <div class="row">
         <div class="column">
-          <button @click="store.showSaveSet = false" class="form-button">
+          <button @click="cancel" class="form-button">
             <p>Cancel</p>
           </button>
         </div>
@@ -32,7 +32,11 @@ import { useSetParamsStore } from "@/libs/siteParams";
 const store = useSetParamsStore();
 async function saveSet() {
   await store.add();
-  store.showSaveSet = false;
+  store.editMode = "Edit"
+  // store.showSaveSet = false;
+}
+function cancel(){
+  store.editMode = "Add";
 }
 </script>
 

@@ -70,7 +70,12 @@ const right = (str, len) => {
 };
 const closeTImer = () => {
   console.log("Close Timer")
-  store.showTimerParms = true;
+  if (store.setName != ""){
+    store.editMode = "Edit"
+  } else {
+    store.editMode = "Add"
+  }
+  // store.showTimerParms = true;
   store.showWorkoutCompleted = false;
 }
 const logSet = async () => {
@@ -82,10 +87,13 @@ const logSet = async () => {
 }
 const recordWeight = () => {
   console.log("Record Weight");
-  store.showSaveLog = true;
+  store.editMode = "Log";
+  // store.showSaveLog = true;
+  // store.showExercises = false;
 }
 function startTimer(event) {
   console.log ("Set Type: ", store.getSetType);
+  store.editMode = "Play"
   if (store.getSetType == "Standard" || store.getSetType == "Superset") {
     store.startStandardTimer();
   } else if (store.getSetType == "EMOM") {
