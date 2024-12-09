@@ -77,6 +77,7 @@ async function showSet(setId) {
   store.undoDisabled = true;
   store.saveOriginalSet();
   router.push("/");
+  console.log("undoDisabled", store.undoDisabled);
 }
 
 onMounted(async () => {

@@ -2,9 +2,15 @@
     <div>
         <div id="timer-input" >
     <div>
-      <div id="edit-heading"><h1>Log Workout</h1></div>
-      <div><strong>{{ store.setName }}</strong> completed at  {{ store.getCurrentDateTime }}</div>
-      <div class="row" style="margin-top: 5px;">
+      <div id="edit-heading"><h1>Log {{store.setName}}</h1></div>
+      <div style="display: flex;  align-items: right;">
+        <button @click="cancel" class="close-button">
+            <IconCloseCircleOutline  />
+          </button>
+      </div>
+
+      <div><strong>{{ store.setName }}</strong> completed at  {{ store.getCurrentTime }}</div>
+      <div class="row" style="margin-top: 10px;">
         <div class="column">
           <div>Notes:</div>
           <div>
@@ -12,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-top: 5px;">
+      <div class="row" style="margin-top: 10px;">
         <div class="column">
           <div>Personal Record/Progress:</div>
         </div>
@@ -31,14 +37,14 @@
       </div>
       <div class="row">&nbsp;</div>
       <div class="row">
-        <div class="column">
-          <button @click="cancel" class="form-button">
-            <p>Cancel</p>
+        <!-- <div class="column">
+          <button @click="cancel" class="sr-button">
+            <IconCloseCircleOutline style="font-size: 35px; vertical-align: middle;" />
           </button>
-        </div>
+        </div> -->
         <div class="column">
           <button @click="saveLog" class="form-button">
-            <p>Save</p>
+            <p>Save Progress</p>
           </button>
         </div>
       </div>
@@ -50,6 +56,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useSetParamsStore } from '@/libs/siteParams';
+import IconCloseCircleOutline from '~icons/mdi/close-circle-outline';
+
 const store = useSetParamsStore();
 const logNotes = ref("");
 const cancel = () => {
@@ -79,14 +87,10 @@ const closeLogSet = () => {
   } else {
     store.editMode = "Edit";
   }
-  // store.timerIsRunning = false;
-  // store.showSaveLog = false;
-  // store.showTimerParms = true;
   store.showWorkoutCompleted = false;
-  // store.showExercises = true;
 }
 </script>
-<style lang="css">
+<style >
 #notes {
   width: 100%;  /* Makes the textarea take up the full width of its container */
   height: 100px;  /* Sets the height of the textarea */
@@ -98,5 +102,8 @@ const closeLogSet = () => {
   box-sizing: border-box;  /* Ensures padding and border are included in the width and height */
   resize: vertical;  /* Allows the user to resize the textarea vertically only */
 }
+
+
+
 
 </style>

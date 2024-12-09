@@ -5,6 +5,9 @@
     </header>
     <main class="flex-grow-1">
       <TabHeading heading="W O R K O U T -- T I M E R" />
+      <div v-if="showSetName" style="font-size: 24px;  color:#555;border: 1px;border-style: solid; border-radius: 15px; padding: 3px; text-align: center;">
+    {{ setName }}
+   </div>
       <SetTimerParms v-if="showTimerParms" :edit-mode="store.editMode" />
       <ExerciseList v-if="showExercises" />
       <ExerciseListEmom
@@ -30,7 +33,6 @@ import SaveSet from "../components/SaveSet.vue";
 import LogSet from "@/components/LogSet.vue";
 import PageFooter from "../components/PageFooter.vue";
 const store = useSetParamsStore();
-let setName = ref("");
 let showSaveDialog = ref(false);
 
 const showExercises = computed(() => {
@@ -50,6 +52,12 @@ const showSaveSet = computed(() => {
 })
 const showExercisesEmom = computed(() => {
   return (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") && store.setType == "EMOM" && store.exercises.length > 0;
+});
+const setName = computed(() =>{
+  return store.setName != "" ? store.setName : "New Timer/Set";
+})
+const showSetName = computed(() => {
+  return store.editMode != "Log";
 })
 </script>
 <style>
@@ -58,4 +66,14 @@ const showExercisesEmom = computed(() => {
   flex-direction: column;
   min-height: 100vh;
 }
+.close-button {
+  position: absolute; /* Position the button relative to the nearest positioned ancestor (box) */
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove the border */
+  font-size: 20px; /* Adjust the font size */
+  cursor: pointer; /* Change the cursor to a pointer on hover */
+}
+
 </style>

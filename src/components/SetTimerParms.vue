@@ -1,6 +1,6 @@
 <template>
   <div id="timer-input">
-    <div id="edit-heading"><h1><span v-if="store.editMode!='Edit'">New Timer Details</span><span v-if="store.editMode=='Edit'">{{ store.setName }}</span></h1></div>
+    <div id="edit-heading"><h1>Settings</h1></div>
     <!-- <div class="row">
       <div class="column">&nbsp;</div>
       <div class="column">&nbsp;</div>
@@ -90,11 +90,6 @@
         </div>
         <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
-      <!-- <div class="row">
-        <div class="column" style="font-weight: 500; padding-top: 3px">
-          Total workout time: {{ store.minPerSet }}
-        </div>
-      </div> -->
     </div>
     <div v-if="store.setType == 'Tabata'">
       <div class="row">
@@ -137,21 +132,12 @@
 import { computed, ref } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import IconPlus from '~icons/mdi/plus';
-import IconContentSave from '~icons/mdi/content-save';
-import IconCardPlus from '~icons/mdi/card-plus';
-import IconUndo from '~icons/mdi/undo';
 const props = defineProps(["editMode"]);
 import EditButton from "./EditButton.vue";
 const { editMode } = props;
-// const { saveSet } = useSetsService;
-// const isDisabled = computed(() => {
-//   console.log("setName", store.setName);
-//   return localEditMode.value == "Edit" && store.setName == "";
-// });
 const addIsDisabled = ref(false);
 const store = useSetParamsStore();
 
-//let minPerSet = ref(store.getMinPerSet);
 let newExercise = ref("");
 const setTypes = ref([
   { key: "Standard", value: "Standard" },
@@ -162,10 +148,9 @@ const setTypes = ref([
 ]);
 let secondsOn = ref(20);
 let secondsOff = ref(10);
-let rounds = ref(8);
-let numOfSets = ref(store.getSets);
 
 function changeMinPerSet(event) {
+  console.log("undoDisabled", store.undoDisabled);
   store.updateMinPerSet(event.target.value);
   store.undoDisabled = false;
   if (store.editMode == "Edit")

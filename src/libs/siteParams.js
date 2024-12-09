@@ -24,8 +24,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let secondsOn = ref(20);
   let secondsOff = ref(10);
   let setId = ref(0);
-  let test = ref("Yes");
-  let editMode = ref("Add");
+   let editMode = ref("Add");
   let undoDisabled = ref(true);
   
   // Backup Set Parameters
@@ -52,11 +51,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let tabataOnOffMessage = ref(tabataDefaultMessage);
 
   // Display parameters
-  let showTimerParms = ref(true);
   let showWorkoutCompleted = ref(false);
-  let showSaveSet = ref(false);
-  let showExercises = ref(false);
-  let showSaveLog = ref(false);
+
   // Getters
   const getMinPerSet = computed(() => minPerSet.value);
   const getSets = computed(() => sets.value);
@@ -86,6 +82,15 @@ export const useSetParamsStore = defineStore("setParams", () => {
     const hour = now.getHours();
     const min = now.getMinutes();
     const currentDateTime = `${month}-${day} ${hour}:${min}`;
+    return currentDateTime;
+  });
+  const getCurrentTime = computed(() => {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const currentDateTime = `${hour}:${min}`;
     return currentDateTime;
   });
 
@@ -132,7 +137,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     backExercises.forEach(exercise => {
       restoreExercise({sequence: exercise.sequence, name: exercise.name});
     });
-    showExercises.value = true;
  
   }
   function updateMinPerSet(min) {
@@ -170,9 +174,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
     exercises.value.push({ sequence: seq, name: exercise });
-    if (exercises.value.length > 0) {
-      showExercises.value = true;
-    }
     if (setType.value == "EMOM") {
       updateMinPerSet(exercises.value.length);
     }
@@ -194,7 +195,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function clearExercises() {
     exercises.value = [];
-    showExercises.value = false;
     if (setType.value == "EMOM") {
       updateMinSecRemaining(0);
     }
@@ -209,7 +209,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
   function startStandardTimer() {
     remainingSets.value = sets.value;
     timerIsRunning.value = true;
-    showTimerParms.value = false;
     showWorkoutCompleted.value = false;
     set.value = 1;
     secPerSet.value = minPerSet.value * 60;
@@ -224,7 +223,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
           secPerSet.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
-          // showTimerParms.value = true;
           clearInterval(x);
         }
         set.value += set.value < sets.value ? 1 : 0;
@@ -236,7 +234,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
         timerIsRunning.value = false;
         stopTimerNow.value = false;
         showWorkoutCompleted.value = true;
-        // showTimerParms.value = true;
         clearInterval(x);
       }
     }, 1000);
@@ -247,7 +244,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
     let timePeriodToggle = "On";
     tabataOnOffMessage.value = "Go";
     timerIsRunning.value = true;
-    showTimerParms.value = false;
     showWorkoutCompleted.value = false;
     set.value = 1;
     tabataSecRemaining.value = secondsOn.value;
@@ -274,7 +270,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
           tabataSecRemaining.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
-          showTimerParms.value = true;
           clearInterval(x);
         }
       }
@@ -283,7 +278,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
         set.value = 1;
         timerIsRunning.value = false;
         stopTimerNow.value = false;
-        showTimerParms.value = true;
         clearInterval(x);
       }
     }, 1000);
@@ -291,7 +285,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function startEmomTimer() {
     timerIsRunning.value = true;
-    showTimerParms.value = false;
+    // showTimerParms.value = false;
     showWorkoutCompleted.value = false;
     set.value = 1;
     secPerSet.value = 60;
@@ -316,17 +310,15 @@ export const useSetParamsStore = defineStore("setParams", () => {
           secPerSet.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
-          showTimerParms.value = true;
           clearInterval(x);
         }
-        // set.value += set.value < sets.value ? 1 : 0
       }
       if (stopTimerNow.value) {
         secPerSet.value = 60;
         set.value = 1;
         timerIsRunning.value = false;
         stopTimerNow.value = false;
-        showTimerParms.value = true;
+        showWorkoutCompleted.value = true;
         clearInterval(x);
       }
     }, 1000);
@@ -346,7 +338,6 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secondsOff: secondsOff.value,
       exercises: setExercises
     };
-    // setId.value = addNewSet(newSet);
     setId.value = await addSet(newSet);
     editMode.value = "Edit"
     console.log("Edit Mode: ", editMode.value);
@@ -363,16 +354,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secondsOff: secondsOff.value,
       exercises: setExercises
     };
-    // saveSet(setToSave);
     await saveSetItem(setToSave)
   }
 // Logging
   async function logSet(logEntry){
-    // const logEntry = {
-    //   setId: setId.value,
-    //   completed: Date(),
-    //   notes: [],
-    // }
     console.log("LogEntry:",logEntry);
     console.log("Call to logSet");
     await addLog(logEntry);
@@ -383,13 +368,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
     setType,
     timerIsRunning,
     stopTimerNow,
-    showTimerParms,
     showWorkoutCompleted,
     exercises,
-    showExercises,
     currentExerciseLabel,
     currentEmomSequence,
-    showSaveSet,
     setName,
     secondsOff,
     secondsOn,
@@ -425,7 +407,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     getTabataSecRemaining,
     tabataOnOffMessage,
     logSet,
-    showSaveLog,
     getCurrentDateTime,
-        };
+    getCurrentTime
+  };
 });
