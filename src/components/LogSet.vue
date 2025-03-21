@@ -64,7 +64,7 @@ const cancel = () => {
   closeLogSet();
 }
 const saveLog = async () => {
-      const logEntry = {
+    const logEntry = {
       setId: store.setId,
       completed: Date(),
       notes: logNotes.value,

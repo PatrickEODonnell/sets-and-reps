@@ -1,6 +1,9 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useIdbservice } from "./useIdbService";
+import { useSound } from "@vueuse/sound";
+import countdownsound from '../assets/countdown-sound.mp3';
+
 export const useSetParamsStore = defineStore("setParams", () => {
 
   // Default Values
@@ -14,6 +17,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   const tabataSecondsOff = 10;
   const tabataRounds = 8;
   const tabataDefaultMessage = "Go";
+  const {play} = useSound(countdownsound);
 
   // Set Parameters
   let setType = ref("Standard");
@@ -24,8 +28,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let secondsOn = ref(20);
   let secondsOff = ref(10);
   let setId = ref(0);
-   let editMode = ref("Add");
+  let editMode = ref("Add");
   let undoDisabled = ref(true);
+  let soundEnabled = ref(true);
+  let countDownEnabled = ref(true);
   
   // Backup Set Parameters
   let backSetType = "";
@@ -171,6 +177,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
     }
     set.value = 1;
   }
+  function updateSoundEnabled(val){
+    console.log("updateSoundEnabled", val);
+    soundEnabled.value = val;
+  }
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
     exercises.value.push({ sequence: seq, name: exercise });
@@ -207,6 +217,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
     secRemaining.value = secPerSet.value % 60;
   }
   function startStandardTimer() {
+    console.log("soundEnabled", soundEnabled.value)
+    let playingSound = false;
     remainingSets.value = sets.value;
     timerIsRunning.value = true;
     showWorkoutCompleted.value = false;
@@ -216,9 +228,14 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secPerSet.value -= 1;
       minRemaining.value = ~~(secPerSet.value / 60);
       secRemaining.value = secPerSet.value % 60;
+      if (secPerSet.value <= 4 && !playingSound && soundEnabled.value){
+        playingSound = true;
+        play();
+      }
       if (secPerSet.value <= 0) {
         remainingSets.value -= 1;
         secPerSet.value = minPerSet.value * 60;
+        playingSound = false;
         if (remainingSets.value <= 0) {
           secPerSet.value = 0;
           timerIsRunning.value = false;
@@ -408,6 +425,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
     tabataOnOffMessage,
     logSet,
     getCurrentDateTime,
-    getCurrentTime
+    getCurrentTime,
+    soundEnabled,
+    countDownEnabled,
+    updateSoundEnabled
   };
 });

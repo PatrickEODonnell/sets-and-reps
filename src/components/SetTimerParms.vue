@@ -42,6 +42,8 @@
         <div  >
           Total time: {{ store.sets * store.minPerSet }} min. 
         </div>
+        <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
+        <div class="sr-button" >Count Down<input type="checkbox" @change='changeCountDownEnabled($event)' v-model="countdownEnabled"/></div>
         <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
@@ -120,9 +122,10 @@
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div  >
-          Total time: {{ (store.sets * (secondsOn + secondsOff))/60 }} min. 
+          Time: {{ (store.sets * (secondsOn + secondsOff))/60 }} min. 
         </div>
-        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
+
+        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" :sound-enabled="true" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
   </div>
@@ -148,16 +151,29 @@ const setTypes = ref([
 ]);
 let secondsOn = ref(20);
 let secondsOff = ref(10);
+let soundEnabled = ref(true);
+let countdownEnabled = ref(true);
 
 function changeMinPerSet(event) {
+  if(event.target.value < 0){
+    store.updateMinPerSet(0);
+  }
+  else{
+    store.updateMinPerSet(event.target.value);
+  }
+
   console.log("undoDisabled", store.undoDisabled);
-  store.updateMinPerSet(event.target.value);
   store.undoDisabled = false;
   if (store.editMode == "Edit")
     addIsDisabled.value = true;
 }
 function changeSets(event) {
-  store.updateSets(event.target.value);
+  if (event.target.value < 0){
+    store.updateSets(0);  
+  }
+  else{
+    store.updateSets(event.target.value);
+  }
   store.undoDisabled = false;
   if (store.editMode == "Edit")
     addIsDisabled.value = true;
@@ -192,6 +208,14 @@ function changeSecondsOff(event) {
   store.undoDisabled = false;
   if (store.editMode == "Edit")
     addIsDisabled.value = true;
+}
+function changeSoundEnabled(){
+  console.log("ChangeSoundEnabled", soundEnabled.value);
+  store.updateSoundEnabled(soundEnabled.value);
+}
+function changeCountDownEnabled(event){
+  console.log(countdownEnabled.value);
+
 }
 function undo(){
   addIsDisabled.value = false;

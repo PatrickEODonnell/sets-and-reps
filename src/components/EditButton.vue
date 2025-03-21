@@ -12,7 +12,7 @@ import IconUndo from '~icons/mdi/undo';
 import IconContentSave from '~icons/mdi/content-save';
 
 const props = defineProps(["addIsDisabled", "undoIsDisabled","editMode"]);
-const { addIsDisabled, undoIsDisabled, editMode} = toRefs(props);
+const { addIsDisabled, undoIsDisabled, editMode,soundEnabled, countDownEnabled} = toRefs(props);
 const emit = defineEmits(['save','undo','add'])
 const saveSet = () => { 
     emit('save');
