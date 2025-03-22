@@ -186,7 +186,19 @@ input[type="number"] {
 .sets > img {
   padding-right: 5px;
 }
+.countdown-clock
+ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0px;
+  gap: 20px;
+  position: relative;
 
+  border-radius: 20px;
+  border: 1px solid black;
+  
+}
 #exercise > div > img {
   margin: auto;
 }

@@ -43,7 +43,7 @@
           Total time: {{ store.sets * store.minPerSet }} min. 
         </div>
         <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
-        <div class="sr-button" >Count Down<input type="checkbox" @change='changeCountDownEnabled($event)' v-model="countdownEnabled"/></div>
+        <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
         <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
@@ -215,7 +215,7 @@ function changeSoundEnabled(){
 }
 function changeCountDownEnabled(event){
   console.log(countdownEnabled.value);
-
+  
 }
 function undo(){
   addIsDisabled.value = false;

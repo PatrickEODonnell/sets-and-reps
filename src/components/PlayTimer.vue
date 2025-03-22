@@ -55,7 +55,7 @@
 </template>
 <script setup>
 import { useSetParamsStore } from "@/libs/siteParams";
-import { computed } from "vue";
+import { computed, onMounted, watch } from "vue";
 import IconPlayCircleOutline from '~icons/mdi/play-circle-outline';
 import IconStopCircleOutline from '~icons/mdi/stop-circle-outline';
 import IconCloseCircleOutline from '~icons/mdi/close-circle-outline';
@@ -71,7 +71,6 @@ const closeTImer = () => {
   } else {
     store.editMode = "Add"
   }
-  // store.showTimerParms = true;
   store.showWorkoutCompleted = false;
 }
 const showWorkoutCompleted = computed(()=>{
@@ -90,22 +89,14 @@ const logSet = async () => {
 const recordWeight = () => {
   console.log("Record Weight");
   store.editMode = "Log";
-  // store.showSaveLog = true;
-  // store.showExercises = false;
 }
 function startTimer(event) {
-  console.log ("Set Type: ", store.getSetType);
-  store.editMode = "Play"
-  if (store.getSetType == "Standard" || store.getSetType == "Superset") {
-    store.startStandardTimer();
-  } else if (store.getSetType == "EMOM") {
-    store.startEmomTimer();
-  } else if (store.getSetType == "AMRAP") {
-    store.sets = 1;
-    store.startStandardTimer();
-  } else if (store.getSetType == "Tabata") {
-    store.startTabataTimer();
+  if (store.countdownEnabled == true){
+    store.editMode = "CountDown"
+  } else {
+    store.startTimer();
   }
+
 }
 function stopTimer(event) {
   store.stopTimer();
@@ -116,6 +107,12 @@ const onOffClass = computed(() => {
     tabataoff: store.tabataOnOffMessage != "Go"
   }
 });
+watch(() => store.editMode, (newValue, oldValue) => {
+  console.log(newValue, oldValue);
+})
+onMounted(() => {
+  console.log(store.editMode);
+})
 </script>
 <style scoped>
 #emom-time {

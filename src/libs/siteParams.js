@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useIdbservice } from "./useIdbService";
 import { useSound } from "@vueuse/sound";
-import countdownsound from '../assets/countdown-sound.mp3';
+import countdownsound from '../assets/s gihort-beep-countdown.wav';
 
 export const useSetParamsStore = defineStore("setParams", () => {
 
@@ -30,8 +30,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let setId = ref(0);
   let editMode = ref("Add");
   let undoDisabled = ref(true);
-  let soundEnabled = ref(true);
-  let countDownEnabled = ref(true);
+  let soundEnabled = ref(false);
+  let countdownEnabled = ref(false);
   
   // Backup Set Parameters
   let backSetType = "";
@@ -216,6 +216,19 @@ export const useSetParamsStore = defineStore("setParams", () => {
     minRemaining.value = ~~(secPerSet.value / 60);
     secRemaining.value = secPerSet.value % 60;
   }
+  function startTimer(){
+    editMode.value = "Play"
+    if (getSetType.value == "Standard" || getSetType.value == "Superset") {
+      startStandardTimer();
+    } else if (getSetType.value == "EMOM") {
+      startEmomTimer();
+    } else if (getSetType.value == "AMRAP") {
+      sets.value = 1;
+      startStandardTimer();
+    } else if (getSetType.value == "Tabata") {
+      startTabataTimer();
+    }
+  }
   function startStandardTimer() {
     console.log("soundEnabled", soundEnabled.value)
     let playingSound = false;
@@ -228,7 +241,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secPerSet.value -= 1;
       minRemaining.value = ~~(secPerSet.value / 60);
       secRemaining.value = secPerSet.value % 60;
-      if (secPerSet.value <= 4 && !playingSound && soundEnabled.value){
+      if (secPerSet.value < 4 && !playingSound && soundEnabled.value){
         playingSound = true;
         play();
       }
@@ -427,7 +440,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
     getCurrentDateTime,
     getCurrentTime,
     soundEnabled,
-    countDownEnabled,
-    updateSoundEnabled
+    countdownEnabled,
+    updateSoundEnabled,
+    startTimer
   };
 });
