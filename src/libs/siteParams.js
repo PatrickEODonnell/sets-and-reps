@@ -308,6 +308,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
         set.value = 1;
         timerIsRunning.value = false;
         stopTimerNow.value = false;
+        showWorkoutCompleted.value = true;
         clearInterval(x);
       }
     }, 1000);
