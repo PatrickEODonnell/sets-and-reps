@@ -38,7 +38,7 @@
         <IconStopCircleOutline style="font-size: 40px; vertical-align: middle;" />
         <!-- <img id="play-pause" src="../assets/stop.svg" /> -->
       </button>
-      <button class="sr-button" @click="startTimer($event)" v-if="!store.timerIsRunning">
+      <button class="sr-button" @click="startTimer($event)" :disabled="startDisabled" v-if="!store.timerIsRunning">
           <IconPlayCircleOutline style="font-size: 40px;vertical-align: middle;" />
         <!-- <img id="play-pause" src="../assets/play.svg" /> -->
         <p class="sr-only">Play</p>
@@ -107,6 +107,9 @@ const onOffClass = computed(() => {
     tabataoff: store.tabataOnOffMessage != "Go"
   }
 });
+const startDisabled = computed(() => {
+  return (store.setType == "EMOM" && store.exercises.length <= 0)
+})
 watch(() => store.editMode, (newValue, oldValue) => {
   console.log(newValue, oldValue);
 })
