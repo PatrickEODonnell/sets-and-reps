@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useIdbservice } from "./useIdbService";
 import { useSound } from "@vueuse/sound";
-import countdownsound from '../assets/s gihort-beep-countdown.wav';
+import countdownsound from '../assets/short-beep-countdown.wav';
 
 export const useSetParamsStore = defineStore("setParams", () => {
 
