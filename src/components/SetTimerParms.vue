@@ -44,7 +44,7 @@
         </div>
           <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
         <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
-        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
+        <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
 
@@ -67,7 +67,7 @@
         </div>
         <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
         <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
-        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
+        <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
 
     </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
         <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
-        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
+        <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
     <div v-if="store.setType == 'Tabata'" style="width: 100%;">
@@ -105,7 +105,7 @@
         <div class="column">
           <div>Seconds On?</div>
           <div>
-            <input type="number" v-model="secondsOn" @change="changeSecondsOn($event)" />
+            <input type="number" v-model="store.secondsOn" @change="changeSecondsOn($event)" />
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
         <div class="column">
           <div>Seconds Off?</div>
           <div>
-            <input type="number" v-model="secondsOff" @change="changeSecondsOff($event)" />
+            <input type="number" v-model="store.secondsOff" @change="changeSecondsOff($event)" />
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@
         <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
         <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
 
-        <EditButton :add-is-disabled="addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" :sound-enabled="true" @add="addNew" @undo="undo" @save="save" />
+        <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" :sound-enabled="true" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
   </div>
@@ -170,49 +170,50 @@ function changeMinPerSet(event) {
   console.log("undoDisabled", store.undoDisabled);
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function changeSets(event) {
   if (event.target.value < 0){
     store.updateSets(0);  
   }
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    store.addIsDisabled = true;
   else{
     store.updateSets(event.target.value);
   }
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function changeSetType(event) {
   store.updateSetType(event.target.value);
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function startTimer(event) {
   store.startStandardTimer();
   store.undoDisabled = true;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function addExercise(event) {
   store.addExercise(newExercise.value);
   newExercise.value = "";
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function changeSecondsOn(event) {
-  store.secondsOn = event.target.value;
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function changeSecondsOff(event) {
-  store.secondsOff = event.target.value;
   store.undoDisabled = false;
   if (store.editMode == "Edit")
-    addIsDisabled.value = true;
+    store.addIsDisabled = true;
 }
 function changeSoundEnabled(){
   console.log("ChangeSoundEnabled", soundEnabled.value);
@@ -223,11 +224,12 @@ function changeCountDownEnabled(event){
   
 }
 function undo(){
-  addIsDisabled.value = false;
+  store.addIsDisabled = false;
   store.undoChanges();
   store.undoDisabled = true;
 }
 async function save() {
+  console.log("Save function:");
   if (store.editMode == "Edit") {
     console.log("saveSet");
     await store.save();
@@ -236,6 +238,7 @@ async function save() {
     store.editMode = "Save";
   }
   store.undoDisabled = true;
+  store.addIsDisabled = false;
   console.log("saveSet completed");
 }
 function addNew(){
