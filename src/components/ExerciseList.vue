@@ -19,12 +19,15 @@
       </p>
     </div>
     <div v-if="editExercises">
-      <div class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
+      <div style="display: flex;  " class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
+        <input type="text" v-model="exercise.reps" style="width: 70px;margin-right: 5px;" />
         <input
+          style="width: 175px;"
           type="text"
           v-model="exercise.name"
           @change="updateExercise($event, exercise.sequence)"
         />
+        <input type="checkbox"  v-model="exercise.log" style=""/>
       </div>
     </div>
     <div v-if="editExercises">

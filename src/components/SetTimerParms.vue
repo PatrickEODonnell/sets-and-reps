@@ -1,18 +1,33 @@
 <template>
   <div id="timer-input">
     <div id="edit-heading"><h1>Settings</h1></div>
-    <!-- <div class="row">
-      <div class="column">&nbsp;</div>
-      <div class="column">&nbsp;</div>
-      <div class="column"><button @click="saveSet" :disabled="isDisabled" class="sr-button">SAVE SET <IconContentSave style="vertical-align:middle;" /></button></div>
-    </div> -->
     <div class="row">
-      <div class="column">
-        <div>Choose type of Set:</div>
+      <div class="column" style="padding-right: 10px;">
+        <div>Set Timing:</div>
         <div>
           <select v-model="store.setType" @change="changeSetType($event)">
-            <option v-for="type in setTypes" :key="type.key">
+            <option v-for="type in SET_TIMING" :key="type.key">
               {{ type.value }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="column" style="padding-right: 10px;">
+        <div>Section</div>
+        <div>
+          <select v-model="store.sectionType" >
+            <option v-for="section in SET_SECTIONS" :key="section.key">
+              {{ section.value }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="column">
+        <div>Movement</div>
+        <div>
+          <select v-model="store.movementType" >
+            <option v-for="movement in MOVEMENTS" :key="movement.key">
+              {{ movement.value }}
             </option>
           </select>
         </div>
@@ -20,92 +35,55 @@
     </div>
 
     <div v-if="store.setType == 'Standard' || store.setType == 'Superset'" style="width: 100%;" >
-      <div class="row">
-        <div class="column">
-          <div>How many Sets?:</div>
-          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
-        </div>
-        <div class="column">
-          <div>Minutes per Set?</div>
-          <div>
-            <input type="number" v-model="store.minPerSet" @change="changeMinPerSet($event)" />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <div>Add Exercises (optional):</div>
-          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
-        </div>
-      </div>
-      <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
-        <div >
-          Total time: {{ store.sets * store.minPerSet }} min. 
-        </div>
-          <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
-        <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
+      <SetsAndMinutes :show-sets="true" :show-minutes="true" />
+          <AddExToSet @save="saveExercise" />
+        <SoundAndCountdown />
+      <div class="row" style="display: flex;margin-top: 10px; ">
+        <MinPerSet />
         <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
-      </div>
+      </div> 
     </div>
 
     <div v-if="store.setType == 'EMOM'" style="width: 100%;">
+      <SetsAndMinutes :show-minutes="false" :show-sets="true" />
+      <AddExToSet @save="saveExercise" />
+      <SoundAndCountdown />
       <div class="row">
-        <div class="column">
-          <div>How many Sets?:</div>
-          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <div>Add Exercises:</div>
-          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus/></button></div>
-        </div>
-      </div>
-      <div style="display: flex; justify-content: space-between; align-items: center;">
         <div  >
           Total time: {{ store.sets * store.exercises.length }} min. 
         </div>
-        <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
-        <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
         <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
 
     </div>
 
     <div v-if="store.setType == 'AMRAP'" style="width: 100%;">
-      <div class="row">
-        <div class="column">
-          <div>How many Minutes?:</div>
-          <div>
-            <input type="number" v-model="store.minPerSet" @change="changeMinPerSet($event)" />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <div>Add Exercise(s):</div>
-          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus /></button></div>
-        </div>
-      </div>
+      <SetsAndMinutes :show-minutes="true" :show-sets="false" />
+      <AddExToSet @save="saveExercise" />
+      <SoundAndCountdown />
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div  >
           Total time: {{ store.minPerSet }} min. 
         </div>
-        <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
-        <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
         <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
     <div v-if="store.setType == 'Tabata'" style="width: 100%;">
       <div class="row">
         <div class="column">
-          <div>How many Rounds?:</div>
-          <div><input type="number" v-model="store.sets" @change="changeSets($event)" /></div>
+          <div>Rounds:</div>
+          <div><input type="number" v-model="store.sets" @change="changeSets($event)" style="width: 70px;" /></div>
         </div>
         <div class="column">
-          <div>Seconds On?</div>
+          <div>Seconds On</div>
           <div>
-            <input type="number" v-model="store.secondsOn" @change="changeSecondsOn($event)" />
+            <input type="number" v-model="store.secondsOn" @change="changeSecondsOn($event)" style="width: 70px;" />
+          </div>
+        </div>
+        <div class="column">
+          <div>Seconds Off</div>
+          <div>
+            <input type="number" v-model="store.secondsOff" @change="changeSecondsOff($event)" style="width: 70px;"/>
           </div>
         </div>
       </div>
@@ -113,24 +91,26 @@
         <div class="column">
           <div>Seconds Off?</div>
           <div>
-            <input type="number" v-model="store.secondsOff" @change="changeSecondsOff($event)" />
+            <input type="number" v-model="store.secondsOff" @change="changeSecondsOff($event)" style="width: 70px;"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          <div>Add Exercises:</div>
-          <div><input type="text" v-model="newExercise" /><button @click="addExercise($event)" class="sr-button"><IconPlus style="font-size:large;vertical-align: middle;"/></button></div>
+          <AddExToSet />
         </div>
       </div>
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div  >
-          Time: {{ (store.sets * (secondsOn + secondsOff))/60 }} min. 
+      <div class="row">
+        <div class="columns">
+        <SoundAndCountdown />
+      </div>
+      </div>
+      <div class="row">
+        <div  style="display: flex;">
+            Time: {{ (store.sets * (secondsOn + secondsOff))/60 }} min. 
+          <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" :sound-enabled="true" @add="addNew" @undo="undo" @save="save" />
         </div>
-        <div class="sr-button" >Sound<input type="checkbox"  v-model="store.soundEnabled" /></div>
-        <div class="sr-button" >Count Down<input type="checkbox"  v-model="store.countdownEnabled"/></div>
 
-        <EditButton :add-is-disabled="store.addIsDisabled" :edit-mode="store.editMode" :undo-is-disabled="store.undoDisabled" :sound-enabled="true" @add="addNew" @undo="undo" @save="save" />
       </div>
     </div>
   </div>
@@ -142,23 +122,27 @@ import { useSetParamsStore } from "@/libs/siteParams";
 import IconPlus from '~icons/mdi/plus';
 const props = defineProps(["editMode"]);
 import EditButton from "./EditButton.vue";
+import AddExToSet from "./AddExToSet.vue";
+import SoundAndCountdown from "./SoundAndCountdown.vue";
+import SetsAndMinutes from "./SetsAndMinutes.vue";
+import MinPerSet from "./MinPerSet.vue";
+import { SET_SECTIONS, MOVEMENTS, SET_TIMING } from "@/libs/common";
+
 const { editMode } = props;
 const addIsDisabled = ref(false);
 const store = useSetParamsStore();
 
 let newExercise = ref("");
-const setTypes = ref([
-  { key: "Standard", value: "Standard" },
-  { key: "Superset", value: "Superset" },
-  { key: "EMOM", value: "EMOM" },
-  { key: "AMRAP", value: "AMRAP" },
-  { key: "Tabata", value: "Tabata" }
-]);
 let secondsOn = ref(20);
 let secondsOff = ref(10);
 let soundEnabled = ref(true);
 let countdownEnabled = ref(true);
-
+function saveExercise(exercise){
+  store.addExercise(exercise);
+  store.undoDisabled = false;
+  if (store.editMode == "Edit")
+    store.addIsDisabled = true;
+}
 function changeMinPerSet(event) {
   if(event.target.value < 0){
     store.updateMinPerSet(0);

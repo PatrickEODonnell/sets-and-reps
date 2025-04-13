@@ -21,6 +21,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
 
   // Set Parameters
   let setType = ref("Standard");
+  let sectionType = ref("Warm Up");
+  let movementType = ref("");
   let sets = ref(4);
   const minPerSet = ref(3);
   let exercises = ref([]);
@@ -183,7 +185,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
-    exercises.value.push({ sequence: seq, name: exercise });
+    exercises.value.push({ sequence: seq, name: exercise.name, reps: exercise.reps, log: exercise.log });
     if (setType.value == "EMOM") {
       updateMinPerSet(exercises.value.length);
     }
@@ -272,6 +274,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     remainingSets.value = sets.value;
     let tabataSets = sets.value * 2;
     let timePeriodToggle = "On";
+    let playingSound = false;
     tabataOnOffMessage.value = "Go";
     timerIsRunning.value = true;
     showWorkoutCompleted.value = false;
@@ -279,9 +282,14 @@ export const useSetParamsStore = defineStore("setParams", () => {
     tabataSecRemaining.value = secondsOn.value;
     const x = setInterval(() => {
       tabataSecRemaining.value -= 1;
+      if (tabataSecRemaining.value < 4 && !playingSound && soundEnabled.value){
+        playingSound = true;
+        play();
+      }
+
       if (tabataSecRemaining.value <= 0) {
+        playingSound = false;
         timePeriodToggle = timePeriodToggle == "On" ? "Off" : "On";
-        console.log("Toggle: ", timePeriodToggle);
         if (timePeriodToggle == "On"){
           tabataSecRemaining.value = secondsOn.value;
           tabataOnOffMessage.value = "Go";
@@ -296,10 +304,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
           set.value += 1;
         }
         if (remainingSets.value <= 0) {
+          console.log("Remaining Sec < 0")
           set.value = sets.value;
           tabataSecRemaining.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
+          tabataOnOffMessage.value = "You're Done!"
           clearInterval(x);
         }
       }
@@ -309,6 +319,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
         timerIsRunning.value = false;
         stopTimerNow.value = false;
         showWorkoutCompleted.value = true;
+        tabataOnOffMessage.value = "Stopped"
         clearInterval(x);
       }
     }, 1000);
@@ -316,6 +327,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function startEmomTimer() {
     timerIsRunning.value = true;
+    let playingSound = false;
     // showTimerParms.value = false;
     showWorkoutCompleted.value = false;
     set.value = 1;
@@ -327,7 +339,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secPerSet.value -= 1;
       minRemaining.value = currentExercise;
       secRemaining.value = secPerSet.value % 60;
+      if (secPerSet.value < 4 && !playingSound && soundEnabled.value){
+        playingSound = true;
+        play();
+      }
       if (secPerSet.value <= 0) {
+        playingSound = false;
         currentExercise += 1;
         currentEmomSequence.value = currentExercise;
         if (currentExercise > exercises.value.length) {
@@ -338,6 +355,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
         currentExerciseLabel.value = exercises.value[currentExercise - 1].name;
         secPerSet.value = 60;
         if (set.value > sets.value) {
+          set.value--;
           secPerSet.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
@@ -367,7 +385,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
       minPerSet: minPerSet.value,
       secondsOn: secondsOn.value,
       secondsOff: secondsOff.value,
-      exercises: setExercises
+      exercises: setExercises,
+      section: sectionType.value,
+      movement: movementType.value
     };
     setId.value = await addSet(newSet);
     editMode.value = "Edit"
@@ -383,7 +403,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
       minPerSet: minPerSet.value,
       secondsOn: secondsOn.value,
       secondsOff: secondsOff.value,
-      exercises: setExercises
+      exercises: setExercises,
+      section: sectionType.value,
+      movement: movementType.value
     };
     await saveSetItem(setToSave)
   }
@@ -443,6 +465,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
     soundEnabled,
     countdownEnabled,
     updateSoundEnabled,
-    startTimer
+    startTimer,
+    sectionType,
+    movementType
   };
 });

@@ -64,6 +64,8 @@ async function showSet(setId) {
   store.secondsOff = set.secondsOff;
   store.secondsOn = set.secondsOn;
   store.setId = set.id;
+  store.movementType = set.movement;
+  store.sectionType = set.section;
   if (set.exercises) {
     for (let i = 0; i < set.exercises.length; i++) {
       store.addExercise(set.exercises[i]);

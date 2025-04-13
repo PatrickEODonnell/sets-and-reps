@@ -1,5 +1,5 @@
 <template>
-    <div style="display: flex; justify-content: space-between; align-items: right;">
+    <div style="display: flex;">
         <div><button @click="addNew" :disabled="addIsDisabled" class="sr-button"><IconCardPlus style="vertical-align: middle;font-size: 24px;" /></button></div>      
         <div v-if="editMode=='Edit'"><button @click="undo" :disabled="undoIsDisabled" class="sr-button"><IconUndo style="vertical-align: middle;font-size: 24px;" /></button></div>      
         <div><button @click="saveSet" class="sr-button"><IconContentSave style="vertical-align: middle;font-size: 24px;" /></button></div>      
