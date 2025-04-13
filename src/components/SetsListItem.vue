@@ -13,12 +13,18 @@
     <IconTrashCan style="vertical-align: middle;font-size: 24px;" />
 </button>
 </div>
-      <div v-if="expandedId == set.id" class="set-details">
-        {{ set.setType }}: {{ set.minPerSet }}mins/set for {{ set.numOfSets }} sets
+      <div  class="set-details">
+        <strong>{{ set.setType }} - {{ set.section }} - {{ set.movement }} </strong>
+
+      </div>
+      <div class="set-details">
+        {{ set.minPerSet }} mins/set for {{ set.numOfSets }} sets
       </div>
       <div v-if="expandedId == set.id" class="set-details">
-        Exercises:
-        <span v-for="(ex, sequence) in set.exercises" :key="sequence"><br />{{ ex.name }}</span>
+        <strong>Exercises:</strong>
+        <span v-for="(ex, sequence) in set.exercises" :key="sequence">
+          <br />{{ ex.reps }} x {{ ex.name }}
+        </span>
       </div>
     
   </div>

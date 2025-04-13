@@ -14,9 +14,9 @@
     <div id="card-heading"><h1>Exercises</h1></div>
 
     <div v-if="displayExercises">
-      <p class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
-        <span style="font-size: 20px">{{ exercise.name }}</span>
-      </p>
+      <div class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
+        <span style="font-size: 20px">{{ exercise.reps }}</span> x <span style="font-size: 20px">{{ exercise.name }}</span>
+      </div>
     </div>
     <div v-if="editExercises">
       <div style="display: flex;  " class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">

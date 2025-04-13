@@ -19,16 +19,17 @@
 </div> -->
 <div style="display: flex;  align-items: center;">
   <!-- Input Fields -->
-  <div style="margin-right: 10px;">
+  <div style="margin-right: 2%;">
     <label for="reps" style="display: block;">Reps</label>
     <input id="reps" type="text" style="width: 70px;" v-model="reps" />
   </div>
-  <div style="margin-right: 10px;">
+  <div style="margin-right: 2%;">
     <label for="exercise" style="display: block;">Exercise</label>
     <input id="exercise" type="text" style="width: 175px;" v-model="exerciseName" />
   </div>
   <div style="margin-right: 5px; margin-top: 20px;">
-    <div class="sr-button" >Log<input type="checkbox"  v-model="log"/></div>
+    <div style="display: block;">Log</div>
+    <div class="sr-button" ><input type="checkbox"  v-model="log"/></div>
 </div>
   
   <!-- Save Button -->
