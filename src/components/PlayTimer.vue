@@ -45,9 +45,9 @@
       </button>
     </div>
     <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div v-if="showWorkoutCompleted">
+    <div v-if="showLogResultButton" style="display: flex; justify-content: space-between; align-items: center;">
       <button id="logSetAndRecord" class="form-button" @click="recordWeight" style="margin-right: 5px;">
-      Record Set
+      Log Result
     </button>
     </div>
     </div>
@@ -73,13 +73,16 @@ const closeTImer = () => {
   }
   store.showWorkoutCompleted = false;
 }
+const showLogResultButton = computed(() => {
+  return store.setName != "" && store.editMode == "Edit";
+});
 const showWorkoutCompleted = computed(()=>{
   return store.showWorkoutCompleted && store.setName != "";
 });
 const showClose = computed(()=>{
   return store.showWorkoutCompleted;
 })
-const logSet = async () => {
+const logSet = async () => {  
   console.log("Log set");
   await store.logSet();
   store.showTimerParms = true;
