@@ -15,19 +15,25 @@
 
     <div v-if="displayExercises">
       <div class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
-        <span style="font-size: 20px">{{ exercise.reps }}</span> x <span style="font-size: 20px">{{ exercise.name }}</span>
+        <span style="font-size: 20px">{{ exercise.reps }}</span> x
+        <span style="font-size: 20px">{{ exercise.name }}</span>
       </div>
     </div>
     <div v-if="editExercises">
-      <div style="display: flex;  " class="exercise-row" v-for="exercise in store.exercises" :key="exercise.sequence">
-        <input type="text" v-model="exercise.reps" style="width: 70px;margin-right: 5px;" />
+      <div
+        style="display: flex"
+        class="exercise-row"
+        v-for="exercise in store.exercises"
+        :key="exercise.sequence"
+      >
+        <input type="text" v-model="exercise.reps" style="width: 70px; margin-right: 5px" />
         <input
-          style="width: 175px;"
+          style="width: 175px"
           type="text"
           v-model="exercise.name"
           @change="updateExercise($event, exercise.sequence)"
         />
-        <input type="checkbox"  v-model="exercise.log" style=""/>
+        <input type="checkbox" v-model="exercise.log" style="" />
       </div>
     </div>
     <div v-if="editExercises">
@@ -39,6 +45,7 @@
 import { computed } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 const store = useSetParamsStore();
+
 function clearExercises() {
   store.clearExercises();
 }
@@ -52,10 +59,10 @@ function updateExercise(event, sequence) {
 }
 const displayExercises = computed(() => {
   return store.editMode == "Play";
-})
+});
 const editExercises = computed(() => {
-  return store.editMode == "Add" || store.editMode == "Edit"
-})
+  return store.editMode == "Add" || store.editMode == "Edit";
+});
 </script>
 <style scoped>
 #exercise-list {
