@@ -1,5 +1,6 @@
 export const EXERCISE_LIST = [
   {
+    id: 1,
     name: "Goblet Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -11,9 +12,11 @@ export const EXERCISE_LIST = [
     tempo: "3-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 2,
     name: "Front Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -25,9 +28,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 3,
     name: "Back Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -39,9 +44,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 4,
     name: "Split Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -53,9 +60,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 5,
     name: "Pallof Press",
     movement: "Squat",
     muscleGroup: "Core",
@@ -67,9 +76,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-2",
     primaryMuscles: ["obliques"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 6,
     name: "RKC Plank",
     movement: "Squat",
     muscleGroup: "Core",
@@ -81,9 +92,11 @@ export const EXERCISE_LIST = [
     tempo: "isometric",
     primaryMuscles: ["rectus abdominis", "transverse abdominis"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 7,
     name: "Push-Up",
     movement: "Bench Press",
     muscleGroup: "Upper Body Push",
@@ -95,9 +108,11 @@ export const EXERCISE_LIST = [
     tempo: "3-1-1",
     primaryMuscles: ["pectorals", "triceps"],
     secondaryMuscles: ["anterior deltoid", "core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 8,
     name: "Barbell Bench Press",
     movement: "Bench Press",
     muscleGroup: "Upper Body Push",
@@ -109,9 +124,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["pectorals"],
     secondaryMuscles: ["triceps", "anterior deltoid"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 9,
     name: "Dumbbell Incline Press",
     movement: "Bench Press",
     muscleGroup: "Upper Body Push",
@@ -123,9 +140,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["upper pectorals"],
     secondaryMuscles: ["triceps", "anterior deltoid"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 10,
     name: "SA Cable Chest Press",
     movement: "Bench Press",
     muscleGroup: "Upper Body Push",
@@ -137,9 +156,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-2",
     primaryMuscles: ["pectorals"],
     secondaryMuscles: ["triceps", "core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 11,
     name: "Deadbug w/ Reach",
     movement: "Bench Press",
     muscleGroup: "Core",
@@ -151,9 +172,11 @@ export const EXERCISE_LIST = [
     tempo: "controlled",
     primaryMuscles: ["transverse abdominis"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 12,
     name: "Trap Bar Deadlift",
     movement: "Deadlift",
     muscleGroup: "Posterior Chain",
@@ -165,9 +188,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["glutes", "hamstrings"],
     secondaryMuscles: ["quads", "lower back"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 13,
     name: "Romanian Deadlift",
     movement: "Deadlift",
     muscleGroup: "Posterior Chain",
@@ -179,9 +204,11 @@ export const EXERCISE_LIST = [
     tempo: "3-1-1",
     primaryMuscles: ["hamstrings", "glutes"],
     secondaryMuscles: ["lower back"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 14,
     name: "Step-Up",
     movement: "Deadlift",
     muscleGroup: "Lower Body",
@@ -193,9 +220,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["hamstrings"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 15,
     name: "Cable Pull-Through",
     movement: "Deadlift",
     muscleGroup: "Posterior Chain",
@@ -207,9 +236,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["glutes"],
     secondaryMuscles: ["hamstrings"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 16,
     name: "Bird Dog",
     movement: "Deadlift",
     muscleGroup: "Core",
@@ -221,9 +252,11 @@ export const EXERCISE_LIST = [
     tempo: "hold",
     primaryMuscles: ["erector spinae", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 17,
     name: "Pull-Up",
     movement: "Pull-Up",
     muscleGroup: "Upper Body Pull",
@@ -235,9 +268,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["lats"],
     secondaryMuscles: ["biceps", "scapular stabilizers"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 18,
     name: "1-Arm DB Row",
     movement: "Pull-Up",
     muscleGroup: "Upper Body Pull",
@@ -249,9 +284,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["lats", "rhomboids"],
     secondaryMuscles: ["biceps"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 19,
     name: "Inverted Row",
     movement: "Pull-Up",
     muscleGroup: "Upper Body Pull",
@@ -263,9 +300,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["lats", "traps"],
     secondaryMuscles: ["biceps"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 20,
     name: "Farmer Carry",
     movement: "Pull-Up",
     muscleGroup: "Grip/Shoulders",
@@ -277,9 +316,11 @@ export const EXERCISE_LIST = [
     tempo: "static",
     primaryMuscles: ["grip", "traps"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 21,
     name: "Banded Face Pulls",
     movement: "Pull-Up",
     muscleGroup: "Upper Body Pull",
@@ -291,9 +332,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-2",
     primaryMuscles: ["rear delts", "traps"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 22,
     name: "Seated DB Shoulder Press",
     movement: "Overhead Press",
     muscleGroup: "Shoulders",
@@ -305,9 +348,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["deltoids"],
     secondaryMuscles: ["triceps"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 23,
     name: "Incline DB Press",
     movement: "Bench Press",
     muscleGroup: "Upper Chest",
@@ -319,9 +364,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["pectorals (upper)", "anterior deltoids"],
     secondaryMuscles: ["triceps"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 24,
     name: "Cable Lateral Raise",
     movement: "Lateral Raise",
     muscleGroup: "Lateral Deltoids",
@@ -333,9 +380,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["lateral deltoids"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 25,
     name: "Rope Triceps Pushdown",
     movement: "Triceps Extension",
     muscleGroup: "Triceps",
@@ -347,9 +396,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-1",
     primaryMuscles: ["triceps"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 26,
     name: "Leg Press",
     movement: "Squat",
     muscleGroup: "Quads",
@@ -361,9 +412,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads"],
     secondaryMuscles: ["glutes"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 27,
     name: "Walking Lunges",
     movement: "Lunge",
     muscleGroup: "Quads/Glutes",
@@ -375,9 +428,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["hamstrings"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 28,
     name: "Bulgarian Split Squat",
     movement: "Split Squat",
     muscleGroup: "Quads/Glutes",
@@ -389,9 +444,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["quads", "glutes"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 29,
     name: "Hanging Leg Raise",
     movement: "Leg Raise",
     muscleGroup: "Core",
@@ -403,9 +460,11 @@ export const EXERCISE_LIST = [
     tempo: "controlled",
     primaryMuscles: ["abdominals"],
     secondaryMuscles: ["hip flexors"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 30,
     name: "Side Plank Reach Through",
     movement: "Plank",
     muscleGroup: "Core/Obliques",
@@ -417,9 +476,11 @@ export const EXERCISE_LIST = [
     tempo: "controlled",
     primaryMuscles: ["obliques"],
     secondaryMuscles: ["transverse abdominis"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 31,
     name: "Barbell Row",
     movement: "Row",
     muscleGroup: "Back",
@@ -431,9 +492,11 @@ export const EXERCISE_LIST = [
     tempo: "2-0-2",
     primaryMuscles: ["lats", "rhomboids"],
     secondaryMuscles: ["biceps", "rear delts"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 32,
     name: "Cable Lat Pulldown",
     movement: "Lat Pulldown",
     muscleGroup: "Lats",
@@ -445,9 +508,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["lats"],
     secondaryMuscles: ["biceps"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 33,
     name: "Incline DB Curl",
     movement: "Curl",
     muscleGroup: "Biceps",
@@ -459,9 +524,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["biceps"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 34,
     name: "Rear Delt Fly",
     movement: "Reverse Fly",
     muscleGroup: "Rear Delts",
@@ -473,9 +540,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["rear deltoids"],
     secondaryMuscles: ["traps"],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 35,
     name: "RDL",
     movement: "Deadlift",
     muscleGroup: "Hamstrings/Glutes",
@@ -487,9 +556,11 @@ export const EXERCISE_LIST = [
     tempo: "3-1-1",
     primaryMuscles: ["hamstrings", "glutes"],
     secondaryMuscles: ["lower back"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 36,
     name: "Hip Thrust",
     movement: "Hip Thrust",
     muscleGroup: "Glutes",
@@ -501,9 +572,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-1",
     primaryMuscles: ["glutes"],
     secondaryMuscles: ["hamstrings"],
+    warmup: false,
     stabilityChallenge: true
   },
   {
+    id: 37,
     name: "Seated Hamstring Curl",
     movement: "Leg Curl",
     muscleGroup: "Hamstrings",
@@ -515,9 +588,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["hamstrings"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 38,
     name: "Calf Raise",
     movement: "Calf Raise",
     muscleGroup: "Calves",
@@ -529,9 +604,11 @@ export const EXERCISE_LIST = [
     tempo: "2-1-2",
     primaryMuscles: ["calves"],
     secondaryMuscles: [],
+    warmup: false,
     stabilityChallenge: false
   },
   {
+    id: 39,
     name: "Woodchopper",
     movement: "Rotation",
     muscleGroup: "Obliques",
@@ -543,6 +620,295 @@ export const EXERCISE_LIST = [
     tempo: "controlled",
     primaryMuscles: ["obliques"],
     secondaryMuscles: ["core"],
+    warmup: false,
     stabilityChallenge: true
+  },
+  {
+    id: 40,
+    name: "Worlds Greatest Stretch",
+    movement: "Squat",
+    muscleGroup: "Full Body",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "multi",
+    unilateral: true,
+    tempo: "controlled",
+    primaryMuscles: ["hip flexors", "thoracic spine"],
+    secondaryMuscles: ["hamstrings", "quads"],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 41,
+    name: "Deep Squat Hold w/ T-Spine Rotation",
+    movement: "Squat",
+    muscleGroup: "Lower Body",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "sagittal/transverse",
+    unilateral: false,
+    tempo: "isometric",
+    primaryMuscles: ["hips", "thoracic spine"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 42,
+    name: "Ankle Rockers",
+    movement: "Squat",
+    muscleGroup: "Lower Body",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "sagittal",
+    unilateral: true,
+    tempo: "controlled",
+    primaryMuscles: ["ankles"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 43,
+    name: "Cat-Cow",
+    movement: "Squat/Deadlift",
+    muscleGroup: "Spine",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["spine"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 44,
+    name: "Glute Bridge",
+    movement: "Squat/Deadlift",
+    muscleGroup: "Posterior Chain",
+    equipment: "bodyweight",
+    skillLevel: "beginner",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "2-1-1",
+    primaryMuscles: ["glutes"],
+    secondaryMuscles: ["hamstrings"],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 45,
+    name: "Bodyweight Squats",
+    movement: "Squat",
+    muscleGroup: "Lower Body",
+    equipment: "bodyweight",
+    skillLevel: "beginner",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "3-1-1",
+    primaryMuscles: ["quads", "glutes"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 46,
+    name: "Banded Lateral Walks",
+    movement: "Squat",
+    muscleGroup: "Glutes",
+    equipment: "band",
+    skillLevel: "all",
+    type: "activation",
+    planeOfMotion: "frontal",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["glute medius"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 47,
+    name: "Foam Roll Thoracic Spine",
+    movement: "Bench Press",
+    muscleGroup: "Upper Back",
+    equipment: "foam roller",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "rolling",
+    primaryMuscles: ["thoracic spine"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 48,
+    name: "Band Pull-Aparts",
+    movement: "Bench Press/Pull-Up",
+    muscleGroup: "Shoulders",
+    equipment: "band",
+    skillLevel: "all",
+    type: "activation",
+    planeOfMotion: "transverse",
+    unilateral: false,
+    tempo: "2-1-2",
+    primaryMuscles: ["rear deltoids", "traps"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 49,
+    name: "Scapular Push-Ups",
+    movement: "Bench Press",
+    muscleGroup: "Scapular Stabilizers",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["serratus anterior"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 50,
+    name: "Deadbug w/ Arm Extension",
+    movement: "Bench Press",
+    muscleGroup: "Core",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["transverse abdominis"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 51,
+    name: "Hip Flexor Stretch",
+    movement: "Deadlift",
+    muscleGroup: "Hip Flexors",
+    equipment: "bodyweight",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "sagittal",
+    unilateral: true,
+    tempo: "static",
+    primaryMuscles: ["hip flexors"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 52,
+    name: "Bird Dog",
+    movement: "Deadlift",
+    muscleGroup: "Core",
+    equipment: "bodyweight",
+    skillLevel: "beginner",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: true,
+    tempo: "hold",
+    primaryMuscles: ["glutes", "erector spinae"],
+    secondaryMuscles: ["core"],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 53,
+    name: "Banded Good Mornings",
+    movement: "Deadlift",
+    muscleGroup: "Posterior Chain",
+    equipment: "band",
+    skillLevel: "beginner",
+    type: "activation",
+    planeOfMotion: "sagittal",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["glutes", "hamstrings"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 54,
+    name: "Shoulder Dislocates w/ Band",
+    movement: "Pull-Up",
+    muscleGroup: "Shoulders",
+    equipment: "band",
+    skillLevel: "beginner",
+    type: "mobility",
+    planeOfMotion: "transverse",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["deltoids"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
+  },
+  {
+    id: 55,
+    name: "Dead Hang",
+    movement: "Pull-Up",
+    muscleGroup: "Shoulders/Grip",
+    equipment: "bar",
+    skillLevel: "all",
+    type: "mobility",
+    planeOfMotion: "vertical",
+    unilateral: false,
+    tempo: "static",
+    primaryMuscles: ["lats", "grip"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 56,
+    name: "Scapular Pull-Ups",
+    movement: "Pull-Up",
+    muscleGroup: "Scapular Stabilizers",
+    equipment: "bar",
+    skillLevel: "intermediate",
+    type: "activation",
+    planeOfMotion: "vertical",
+    unilateral: false,
+    tempo: "controlled",
+    primaryMuscles: ["traps", "rhomboids"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: true
+  },
+  {
+    id: 57,
+    name: "Face Pulls",
+    movement: "Pull-Up",
+    muscleGroup: "Shoulders",
+    equipment: "band or cable",
+    skillLevel: "all",
+    type: "activation",
+    planeOfMotion: "transverse",
+    unilateral: false,
+    tempo: "2-1-2",
+    primaryMuscles: ["rear delts", "traps"],
+    secondaryMuscles: [],
+    warmup: true,
+    stabilityChallenge: false
   }
 ];
