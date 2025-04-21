@@ -6,7 +6,7 @@ export const defaultSets = [
     minPerSet: 10,
     movement: "Squat",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -84,7 +84,7 @@ export const defaultSets = [
     minPerSet: 2,
     movement: "Squat",
     section: "Accessories",
-    setType: "Core/Stability",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -106,9 +106,9 @@ export const defaultSets = [
     name: "Day 2 - Warm-Up - Bench Press",
     numOfSets: 1,
     minPerSet: 10,
-    movement: "Bench Press",
+    movement: "Push/Pull",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -142,7 +142,7 @@ export const defaultSets = [
     name: "Day 2 - Primary - Bench Press",
     numOfSets: 5,
     minPerSet: 3,
-    movement: "Bench Press",
+    movement: "Push/Pull",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -160,7 +160,7 @@ export const defaultSets = [
     name: "Day 2 - Secondary - Bench Press",
     numOfSets: 3,
     minPerSet: 3,
-    movement: "Bench Press",
+    movement: "Push/Pull",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -184,9 +184,9 @@ export const defaultSets = [
     name: "Day 2 - Accessories - Bench Press",
     numOfSets: 2,
     minPerSet: 2,
-    movement: "Bench Press",
+    movement: "Push/Pull",
     section: "Accessories",
-    setType: "Stability",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -210,7 +210,7 @@ export const defaultSets = [
     minPerSet: 10,
     movement: "Deadlift",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -288,7 +288,7 @@ export const defaultSets = [
     minPerSet: 2,
     movement: "Deadlift",
     section: "Accessories",
-    setType: "Core/Stability",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -310,9 +310,9 @@ export const defaultSets = [
     name: "Day 4 - Warm-Up - Pull-Up",
     numOfSets: 1,
     minPerSet: 10,
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -340,7 +340,7 @@ export const defaultSets = [
     name: "Day 4 - Primary - Pull-Up",
     numOfSets: 5,
     minPerSet: 3,
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -358,7 +358,7 @@ export const defaultSets = [
     name: "Day 4 - Secondary - Pull-Up",
     numOfSets: 3,
     minPerSet: 3,
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -382,9 +382,9 @@ export const defaultSets = [
     name: "Day 4 - Accessories - Pull-Up",
     numOfSets: 3,
     minPerSet: 2,
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     section: "Accessories",
-    setType: "Grip/Stability",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -406,9 +406,9 @@ export const defaultSets = [
     name: "Hypertrophy Day 1 - Warm-Up - Push",
     numOfSets: 1,
     minPerSet: 10,
-    movement: "Push",
+    movement: "Push/Pull",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -436,7 +436,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 1 - Primary - Push",
     numOfSets: 4,
     minPerSet: 2.5,
-    movement: "Bench Press",
+    movement: "Push/Pull",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -454,7 +454,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 1 - Secondary - Push",
     numOfSets: 3,
     minPerSet: 2.5,
-    movement: "Push",
+    movement: "Push/Pull",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -478,9 +478,9 @@ export const defaultSets = [
     name: "Hypertrophy Day 1 - Accessories - Push",
     numOfSets: 3,
     minPerSet: 2,
-    movement: "Push",
+    movement: "Push/Pull",
     section: "Accessories",
-    setType: "Isolation",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -504,7 +504,7 @@ export const defaultSets = [
     minPerSet: 10,
     movement: "Squat",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -532,7 +532,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 2 - Primary - Lower A",
     numOfSets: 4,
     minPerSet: 2.5,
-    movement: "Leg Press",
+    movement: "Squat",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -550,7 +550,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 2 - Secondary - Lower A",
     numOfSets: 3,
     minPerSet: 2.5,
-    movement: "Lunge",
+    movement: "Squat",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -576,7 +576,7 @@ export const defaultSets = [
     minPerSet: 2,
     movement: "Core",
     section: "Accessories",
-    setType: "Core",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -598,9 +598,9 @@ export const defaultSets = [
     name: "Hypertrophy Day 3 - Warm-Up - Pull",
     numOfSets: 1,
     minPerSet: 10,
-    movement: "Pull",
+    movement: "Push/Pull",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -628,7 +628,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 3 - Primary - Pull",
     numOfSets: 4,
     minPerSet: 2.5,
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -646,7 +646,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 3 - Secondary - Pull",
     numOfSets: 3,
     minPerSet: 2.5,
-    movement: "Row",
+    movement: "Push/Pull",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -670,9 +670,9 @@ export const defaultSets = [
     name: "Hypertrophy Day 3 - Accessories - Pull",
     numOfSets: 3,
     minPerSet: 2,
-    movement: "Pull",
+    movement: "Push/Pull",
     section: "Accessories",
-    setType: "Isolation",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -696,7 +696,7 @@ export const defaultSets = [
     minPerSet: 10,
     movement: "Deadlift",
     section: "Warm-Up",
-    setType: "Prep",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,
@@ -724,7 +724,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 4 - Primary - Lower B",
     numOfSets: 4,
     minPerSet: 2.5,
-    movement: "RDL",
+    movement: "Deadlift",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -742,7 +742,7 @@ export const defaultSets = [
     name: "Hypertrophy Day 4 - Secondary - Lower B",
     numOfSets: 3,
     minPerSet: 2.5,
-    movement: "Hip Thrust",
+    movement: "Deadlift",
     section: "Secondary",
     setType: "Standard",
     exercises: [
@@ -766,9 +766,9 @@ export const defaultSets = [
     name: "Hypertrophy Day 4 - Accessories - Lower B",
     numOfSets: 4,
     minPerSet: 2,
-    movement: "Core/Calves",
+    movement: "Core",
     section: "Accessories",
-    setType: "Core/Isolation",
+    setType: "Standard",
     exercises: [
       {
         sequence: 1,

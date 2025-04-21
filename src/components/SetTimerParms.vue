@@ -3,7 +3,7 @@
     <div id="edit-heading"><h1>Settings</h1></div>
     <div class="row">
       <div class="column" style="padding-right: 10px">
-        <div>Set Timing:</div>
+        <div>Timing:</div>
         <div>
           <select v-model="store.setType" @change="changeSetType($event)">
             <option v-for="type in SET_TIMING" :key="type.key">
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="column" style="padding-right: 10px">
-        <div>Section</div>
+        <div>Segment</div>
         <div>
           <select v-model="store.sectionType">
             <option v-for="section in SET_SECTIONS" :key="section.key">
