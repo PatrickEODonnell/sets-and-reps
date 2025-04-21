@@ -2,9 +2,15 @@
   <header>
     <PageHeading />
   </header>
-  <TabHeading heading="S E T S" />
+  <TabHeading heading="W O R K O U T - S E G M E N T S" />
   <div id="sets-list">
-    <SetsListItem v-for="set in sets" :key="set.id" :set="set" @delete="handleSetDelete" @click="showSet(set.id)" />
+    <SetsListItem
+      v-for="set in sets"
+      :key="set.id"
+      :set="set"
+      @delete="handleSetDelete"
+      @click="showSet(set.id, set.source)"
+    />
   </div>
   <PageFooter />
   <!-- <div id="sets-list">
@@ -37,27 +43,38 @@ import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
 import SetsListItem from "@/components/SetsListItem.vue";
 import { useIdbservice } from "@/libs/useIdbService";
-const { getAll, getById, deleteById: deleteSet} = useIdbservice("sets");
+import { defaultSets } from "@/libs/sets";
+const { getAll, getById, deleteById: deleteSet } = useIdbservice("sets");
 const store = useSetParamsStore();
 let sets = ref([]);
+
 const router = useRouter();
-const handleSetDelete = async (id) => { 
-  console.log(id)
+const handleSetDelete = async (id) => {
+  console.log(id);
   // await deleteById(id);
   await deleteSet(id);
   await refreshSets();
 };
-async function refreshSets(){
+async function refreshSets() {
   // sets.value = await getSets();
   sets.value = await getAll();
-  console.log("Refresh",sets.value);
+  addDefaults();
   sets.value.sort((a, b) => a.name.localeCompare(b.name));
-
 }
-async function showSet(setId) {
+function addDefaults() {
+  store.defSets.forEach((set) => {
+    sets.value.push(set);
+  });
+}
+async function showSet(setId, source) {
   console.log(setId);
-  // let set = await getSetById(setId);
-  let set = await getById(setId);
+  let set = {};
+  if (source == "D") {
+    // default sets
+    set = sets.value.find((s) => s.id == setId);
+  } else {
+    set = await getById(setId);
+  }
   store.setType = set.setType;
   store.sets = set.numOfSets;
   store.setName = set.name;
@@ -84,12 +101,6 @@ async function showSet(setId) {
 
 onMounted(async () => {
   await refreshSets();
-  // sets.value = await getSets();
-  // sets.value.sort((a, b) => a.name.localeCompare(b.name));
-  console.log("Sets:", sets.value);
-  // if (sets.value.length == 0) {
-  //   initSets();
-  // }
 });
 </script>
 
@@ -101,8 +112,6 @@ onMounted(async () => {
   padding: 10px;
   gap: 10px;
   position: relative;
-  /* border-radius: 20px;
-  border: 1px solid black; */
   margin: 25px;
 }
 .set-row {
@@ -117,8 +126,6 @@ onMounted(async () => {
   text-align: left;
 }
 .expand-button {
-  /* width: 100px;
-  height: 35px; */
   align-self: center;
   overflow: hidden;
 

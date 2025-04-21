@@ -7,10 +7,10 @@
           <router-link to="/" class="nav-link">Timer</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/sets" class="nav-link">Sets</router-link>
+          <router-link to="/workouts" class="nav-link">Workouts</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/sets" class="nav-link">W/O Segments</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/contact" class="nav-link">Contact</router-link>

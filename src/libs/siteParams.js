@@ -2,23 +2,23 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useIdbservice } from "./useIdbService";
 import { useSound } from "@vueuse/sound";
-import countdownsound from '../assets/short-beep-countdown.wav';
+import { defaultSets } from "./sets";
+import countdownsound from "../assets/short-beep-countdown.wav";
 
 export const useSetParamsStore = defineStore("setParams", () => {
-
   // Default Values
   const defaultSetType = "Standard";
   const defaultEditMode = "Add";
   const standardMinPerSet = 3;
   const standardSets = 4;
-  const amrapMinPerSet = 5
+  const amrapMinPerSet = 5;
   const emomSets = 3;
   const tabataSecondsOn = 20;
   const tabataSecondsOff = 10;
   const tabataRounds = 8;
   const tabataDefaultMessage = "Go";
-  const {play} = useSound(countdownsound);
-
+  const { play } = useSound(countdownsound);
+  const defSets = defaultSets;
   // Set Parameters
   let setType = ref("Standard");
   let sectionType = ref("Warm Up");
@@ -34,7 +34,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   let undoDisabled = ref(true);
   let soundEnabled = ref(false);
   let countdownEnabled = ref(false);
-  
+
   // Backup Set Parameters
   let backSetType = "";
   let backSets = 4;
@@ -65,18 +65,20 @@ export const useSetParamsStore = defineStore("setParams", () => {
   const getMinPerSet = computed(() => minPerSet.value);
   const getSets = computed(() => sets.value);
   const getTabataMinRemaining = computed(() => {
-    return ~~(tabataSecRemaining.value/60);
+    return ~~(tabataSecRemaining.value / 60);
   });
   const getTabataSecRemaining = computed(() => {
-    return tabataSecRemaining.value % 60
-  })
+    return tabataSecRemaining.value % 60;
+  });
   const getMinutes = computed(() => {
     return minRemaining.value;
   });
   const getSeconds = computed(() => {
     return secRemaining.value;
   });
-  const getSet = computed(() => { return set.value});
+  const getSet = computed(() => {
+    return set.value;
+  });
   const getSetType = computed(() => {
     return setType.value;
   });
@@ -105,7 +107,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
   const { addItem: addLog } = useIdbservice("logs");
   const { addItem: addSet, saveItem: saveSetItem } = useIdbservice("sets");
   // Functions
-  function initSet(){
+  function initSet() {
     setType.value = defaultSetType;
     sets.value = standardSets;
     updateMinPerSet(standardMinPerSet);
@@ -117,8 +119,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     exercises.value = [];
     showWorkoutCompleted.value = false;
   }
-  function saveOriginalSet(){
-    
+  function saveOriginalSet() {
     backSetType = setType.value;
     backMinPerSet = minPerSet.value;
     backSecondsOff = secondsOff.value;
@@ -127,13 +128,11 @@ export const useSetParamsStore = defineStore("setParams", () => {
     backSetName = setName.value;
     backSets = sets.value;
     backExercises = [];
-    exercises.value.forEach(exercise => {
+    exercises.value.forEach((exercise) => {
       backExercises.push(exercise);
-    
     });
-    
   }
-  function undoChanges(){
+  function undoChanges() {
     setType.value = backSetType;
     minPerSet.value = backMinPerSet;
     secondsOff.value = backSecondsOff;
@@ -142,10 +141,9 @@ export const useSetParamsStore = defineStore("setParams", () => {
     setName.value = backSetName;
     sets.value = backSets;
     exercises.value = [];
-    backExercises.forEach(exercise => {
-      restoreExercise({sequence: exercise.sequence, name: exercise.name});
+    backExercises.forEach((exercise) => {
+      restoreExercise({ sequence: exercise.sequence, name: exercise.name });
     });
- 
   }
   function updateMinPerSet(min) {
     minPerSet.value = min;
@@ -158,12 +156,12 @@ export const useSetParamsStore = defineStore("setParams", () => {
   }
   function updateSetType(type) {
     // setType.value = type
-    if (type == "Standard" || type == "Superset"){
-      sets.value = standardSets
+    if (type == "Standard" || type == "Superset") {
+      sets.value = standardSets;
       minPerSet.value = standardMinPerSet;
       minRemaining.value = standardMinPerSet;
     }
-    if (type == "EMOM"){
+    if (type == "EMOM") {
       sets.value = emomSets;
       minPerSet.value = 1;
     }
@@ -172,20 +170,26 @@ export const useSetParamsStore = defineStore("setParams", () => {
       minRemaining.value = amrapMinPerSet;
       secPerSet.value = 300;
     }
-    if (type == "Tabata"){
+    if (type == "Tabata") {
       sets.value = tabataRounds;
-      set .value = 1;
+      set.value = 1;
       minRemaining.value = tabataSecondsOn;
     }
     set.value = 1;
   }
-  function updateSoundEnabled(val){
+  function updateSoundEnabled(val) {
     console.log("updateSoundEnabled", val);
     soundEnabled.value = val;
   }
   function addExercise(exercise) {
     let seq = exercises.value.length + 1;
-    exercises.value.push({ sequence: seq, name: exercise.name, reps: exercise.reps, log: exercise.log });
+    exercises.value.push({
+      sequence: seq,
+      name: exercise.name,
+      reps: exercise.reps,
+      log: exercise.log,
+      exsId: exercise.id
+    });
     if (setType.value == "EMOM") {
       updateMinPerSet(exercises.value.length);
     }
@@ -198,8 +202,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
       }
     }
   }
-  function restoreExercise(ex){
-    exercises.value.push({sequence: ex.sequence, name: ex.name});
+  function restoreExercise(ex) {
+    exercises.value.push({ sequence: ex.sequence, name: ex.name });
   }
   function deleteExercise(val, sequence) {
     const index = exercises.value.findIndex((ex) => ex.sequence === sequence);
@@ -218,8 +222,8 @@ export const useSetParamsStore = defineStore("setParams", () => {
     minRemaining.value = ~~(secPerSet.value / 60);
     secRemaining.value = secPerSet.value % 60;
   }
-  function startTimer(){
-    editMode.value = "Play"
+  function startTimer() {
+    editMode.value = "Play";
     if (getSetType.value == "Standard" || getSetType.value == "Superset") {
       startStandardTimer();
     } else if (getSetType.value == "EMOM") {
@@ -232,7 +236,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     }
   }
   function startStandardTimer() {
-    console.log("soundEnabled", soundEnabled.value)
+    console.log("soundEnabled", soundEnabled.value);
     let playingSound = false;
     remainingSets.value = sets.value;
     timerIsRunning.value = true;
@@ -243,7 +247,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secPerSet.value -= 1;
       minRemaining.value = ~~(secPerSet.value / 60);
       secRemaining.value = secPerSet.value % 60;
-      if (secPerSet.value < 4 && !playingSound && soundEnabled.value){
+      if (secPerSet.value < 4 && !playingSound && soundEnabled.value) {
         playingSound = true;
         play();
       }
@@ -270,7 +274,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
       }
     }, 1000);
   }
-  function startTabataTimer(){
+  function startTabataTimer() {
     remainingSets.value = sets.value;
     let tabataSets = sets.value * 2;
     let timePeriodToggle = "On";
@@ -282,7 +286,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     tabataSecRemaining.value = secondsOn.value;
     const x = setInterval(() => {
       tabataSecRemaining.value -= 1;
-      if (tabataSecRemaining.value < 4 && !playingSound && soundEnabled.value){
+      if (tabataSecRemaining.value < 4 && !playingSound && soundEnabled.value) {
         playingSound = true;
         play();
       }
@@ -290,26 +294,25 @@ export const useSetParamsStore = defineStore("setParams", () => {
       if (tabataSecRemaining.value <= 0) {
         playingSound = false;
         timePeriodToggle = timePeriodToggle == "On" ? "Off" : "On";
-        if (timePeriodToggle == "On"){
+        if (timePeriodToggle == "On") {
           tabataSecRemaining.value = secondsOn.value;
           tabataOnOffMessage.value = "Go";
-        }
-        else{
+        } else {
           tabataSecRemaining.value = secondsOff.value;
           tabataOnOffMessage.value = "Rest";
         }
         tabataSets -= 1;
-        if ((tabataSets % 2) === 0 ){
+        if (tabataSets % 2 === 0) {
           remainingSets.value -= 1;
           set.value += 1;
         }
         if (remainingSets.value <= 0) {
-          console.log("Remaining Sec < 0")
+          console.log("Remaining Sec < 0");
           set.value = sets.value;
           tabataSecRemaining.value = 0;
           timerIsRunning.value = false;
           showWorkoutCompleted.value = true;
-          tabataOnOffMessage.value = "You're Done!"
+          tabataOnOffMessage.value = "You're Done!";
           clearInterval(x);
         }
       }
@@ -319,11 +322,10 @@ export const useSetParamsStore = defineStore("setParams", () => {
         timerIsRunning.value = false;
         stopTimerNow.value = false;
         showWorkoutCompleted.value = true;
-        tabataOnOffMessage.value = "Stopped"
+        tabataOnOffMessage.value = "Stopped";
         clearInterval(x);
       }
     }, 1000);
-
   }
   function startEmomTimer() {
     timerIsRunning.value = true;
@@ -339,7 +341,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
       secPerSet.value -= 1;
       minRemaining.value = currentExercise;
       secRemaining.value = secPerSet.value % 60;
-      if (secPerSet.value < 4 && !playingSound && soundEnabled.value){
+      if (secPerSet.value < 4 && !playingSound && soundEnabled.value) {
         playingSound = true;
         play();
       }
@@ -390,7 +392,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
       movement: movementType.value
     };
     setId.value = await addSet(newSet);
-    editMode.value = "Edit"
+    editMode.value = "Edit";
     console.log("Edit Mode: ", editMode.value);
   }
   async function save() {
@@ -407,11 +409,11 @@ export const useSetParamsStore = defineStore("setParams", () => {
       section: sectionType.value,
       movement: movementType.value
     };
-    await saveSetItem(setToSave)
+    await saveSetItem(setToSave);
   }
-// Logging
-  async function logSet(logEntry){
-    console.log("LogEntry:",logEntry);
+  // Logging
+  async function logSet(logEntry) {
+    console.log("LogEntry:", logEntry);
     console.log("Call to logSet");
     await addLog(logEntry);
   }
@@ -467,6 +469,7 @@ export const useSetParamsStore = defineStore("setParams", () => {
     updateSoundEnabled,
     startTimer,
     sectionType,
-    movementType
+    movementType,
+    defSets
   };
 });

@@ -5,14 +5,23 @@
     </header>
     <main class="flex-grow-1">
       <TabHeading heading="W O R K O U T -- T I M E R" />
-      <div v-if="showSetName" style="font-size: 24px;  color:#555;border: 1px;border-style: solid; border-radius: 15px; padding: 3px; text-align: center;">
-    {{ setName }}
-   </div>
+      <div
+        v-if="showSetName"
+        style="
+          font-size: 24px;
+          color: #555;
+          border: 1px;
+          border-style: solid;
+          border-radius: 15px;
+          padding: 3px;
+          text-align: center;
+        "
+      >
+        {{ setName }}
+      </div>
       <SetTimerParms v-if="showTimerParms" :edit-mode="store.editMode" />
       <ExerciseList v-if="showExercises" />
-      <ExerciseListEmom
-        v-if="showExercisesEmom"
-      />
+      <ExerciseListEmom v-if="showExercisesEmom" />
       <SaveSet v-if="showSaveSet" />
       <LogSet v-if="showSaveLog" />
       <CountDownTimer v-if="showCountDownTimer" />
@@ -22,7 +31,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed,onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useSetParamsStore } from "@/libs/siteParams";
 import SetTimerParms from "../components/SetTimerParms.vue";
 import PageHeading from "../components/PageHeading.vue";
@@ -37,36 +46,44 @@ import PageFooter from "../components/PageFooter.vue";
 const store = useSetParamsStore();
 let showSaveDialog = ref(false);
 
-onMounted(() =>{
-  console.log(store.editMode)
-})
-const showExercises = computed(() => {
-  return (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") && store.setType != "EMOM" && store.exercises.length > 0;
-})
-const showTimerParms = computed(() => {
-  return store.editMode == "Add" || store.editMode == "Edit" 
-})
-const showPlaySet = computed(() => {
-  return store.editMode == "Play" || store.editMode == "Add" || store.editMode == "Edit" 
-})
-const showSaveLog = computed(() => {
-  return store.editMode == "Log"
-})
-const showSaveSet = computed(() => {
-  return store.editMode == "Save"
-})
-const showExercisesEmom = computed(() => {
-  return (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") && store.setType == "EMOM" && store.exercises.length > 0;
+onMounted(() => {
+  console.log(store.editMode);
 });
-const setName = computed(() =>{
-  return store.setName != "" ? store.setName : "New Timer/Set";
-})
+const showExercises = computed(() => {
+  return (
+    (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") &&
+    store.setType != "EMOM" &&
+    store.exercises.length > 0
+  );
+});
+const showTimerParms = computed(() => {
+  return store.editMode == "Add" || store.editMode == "Edit";
+});
+const showPlaySet = computed(() => {
+  return store.editMode == "Play" || store.editMode == "Add" || store.editMode == "Edit";
+});
+const showSaveLog = computed(() => {
+  return store.editMode == "Log";
+});
+const showSaveSet = computed(() => {
+  return store.editMode == "Save";
+});
+const showExercisesEmom = computed(() => {
+  return (
+    (store.editMode == "Add" || store.editMode == "Edit" || store.editMode == "Play") &&
+    store.setType == "EMOM" &&
+    store.exercises.length > 0
+  );
+});
+const setName = computed(() => {
+  return store.setName != "" ? store.setName : "New Timer/Segment";
+});
 const showSetName = computed(() => {
   return store.editMode != "Log";
-})
+});
 const showCountDownTimer = computed(() => {
   return store.editMode == "CountDown";
-})
+});
 </script>
 <style>
 #container {
@@ -83,5 +100,4 @@ const showCountDownTimer = computed(() => {
   font-size: 20px; /* Adjust the font size */
   cursor: pointer; /* Change the cursor to a pointer on hover */
 }
-
 </style>
