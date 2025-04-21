@@ -171,7 +171,6 @@ import AddExToSet from "./AddExToSet.vue";
 import SoundAndCountdown from "./SoundAndCountdown.vue";
 import SetsAndMinutes from "./SetsAndMinutes.vue";
 import MinPerSet from "./MinPerSet.vue";
-import ExerciseInput from "./ExerciseInput.vue";
 import { SET_SECTIONS, MOVEMENTS, SET_TIMING } from "@/libs/common";
 
 const { editMode } = props;
