@@ -1,32 +1,12 @@
 <template>
-  <!-- <div>
-    <div class="row">
-        <div>Add Exercise</div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <div>Reps:</div>
-            <div><input  style="width: 70px;" type="number" v-model="reps" /></div>
-        </div>
-        <div class="column">
-            <div>Exercise:</div>
-            <div><input  style="width: 120px;" type="text" v-model="exercise" /></div>
-        </div>
-        <div class="column">
-            
-        </div>
-    </div>
-</div> -->
+
   <div style="display: flex; align-items: center">
     <!-- Input Fields -->
     <div style="margin-right: 2%">
       <label for="reps" style="display: block">Reps</label>
       <input id="reps" type="text" style="width: 70px" v-model="reps" />
     </div>
-    <!-- <div style="margin-right: 2%;">
-    <label for="exercise" style="display: block;">Exercise</label>
-    <input id="exercise" type="text" style="width: 175px;" v-model="exerciseName" />
-  </div> -->
+
 
     <div style="margin-right: 2%">
       <!-- Autocomplete Input -->
@@ -53,8 +33,6 @@
         </li>
       </ul>
 
-      <!-- Selected Value -->
-      <!-- <p v-if="selectedValue">Selected: {{ selectedValue }}</p> -->
     </div>
 
     <div style="margin-right: 5px; margin-top: 20px">

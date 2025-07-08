@@ -10,8 +10,9 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "World\u2019s Greatest Stretch",
-        reps: 2,
+        name: "Worlds Greatest Stretch",
+        reps: 5,
+        measurement: "/side",
         log: false
       },
       {
@@ -29,6 +30,7 @@ export const defaultSets = [
       {
         sequence: 4,
         name: "Glute Bridge",
+        options: "Single Leg, Double Leg",
         reps: 10,
         log: false
       }
@@ -65,14 +67,23 @@ export const defaultSets = [
       {
         sequence: 1,
         name: "Split Squat",
+        options: "Barbell, Dumbbell, Bodyweight",
         reps: 8,
-        log: true
+        log: false
       },
       {
         sequence: 2,
         name: "Goblet Squat (tempo 3-1-1)",
         reps: 10,
-        log: true
+        log: false
+      },
+      {
+        sequence: 4,
+        name: "Lunges",
+        options:"Forward, Reverse, Lateral, Weighted, Bodyweight",
+        reps: 10,
+        measurement: "/side",
+        log: false
       }
     ],
     source: "D"
@@ -94,10 +105,42 @@ export const defaultSets = [
       },
       {
         sequence: 2,
-        name: "RKC Plank",
-        reps: 1,
+        name: "Plank",
+        options: "Front, Side",
+        reps: 30,
+        measurement: "sec.",
         log: true
+      },
+      {
+        sequence: 3,
+        name: "Calf Raise",
+        options: "Standing, Seated, Single Leg, Weighted, Bodyweight",
+        reps: 10,
+        measurement: "/side",
+        log: false
+      },
+      {
+        sequence: 4,
+        name: "Banded Dead Bug",
+        reps: 10,
+        measurement: "/side",
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Banded Leg Adduction",
+        options: "Cable, Band",
+        reps: 8,
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Banded Leg Abduction",
+        options: "Cable, Band",
+        reps: 8,
+        log: false
       }
+
     ],
     source: "D"
   },
@@ -112,14 +155,14 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Foam Roll Thoracic Spine",
-        reps: 1,
+        name: "Band Pull-Aparts",
+        reps: 10,
         log: false
       },
       {
         sequence: 2,
-        name: "Band Pull-Aparts",
-        reps: 15,
+        name: "Shoulder Dislocates",
+        reps: 10,
         log: false
       },
       {
@@ -130,7 +173,22 @@ export const defaultSets = [
       },
       {
         sequence: 4,
-        name: "Deadbug w/ Arm Extension",
+        name: "Dead Hang",
+        reps: 20,
+        measurement: "sec.",
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Around the World",
+        reps: 10,
+        measurement: "/side",
+        log: false
+      },
+      {
+        sequence: 6,
+        name: "Push-Up",
+        options: "Knees, Elevated, Standard, Weighted",
         reps: 6,
         log: false
       }
@@ -148,7 +206,9 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Barbell Bench Press",
+        name: "Bench Press",
+        options: "Barbell, Dumbbell, Smith Machine",
+        variations: "Tempo, Pause, Speed",
         reps: 5,
         log: true
       }
@@ -166,13 +226,15 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Dumbbell Incline Press",
+        name: "Incline Press",
+        options: "Barbell, Dumbbell, Smith Machine",
         reps: 10,
         log: true
       },
       {
         sequence: 2,
-        name: "SA Cable Chest Press (split stance)",
+        name: "Reverse fly",
+        options: "Cable, Dumbbell",
         reps: 10,
         log: true
       }
@@ -190,14 +252,14 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Stability Push-Up (hands on rings/BOSU)",
+        name: "Push-Up",
         reps: 10,
         log: true
       },
       {
         sequence: 2,
-        name: "Overhead Band Pull-Apart (external rotation)",
-        reps: 15,
+        name: "Z Press",
+        reps: 10,
         log: true
       }
     ],
@@ -214,7 +276,7 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Hip Flexor Stretch",
+        name: "90/90 Stretch",
         reps: 1,
         log: false
       },
@@ -235,6 +297,26 @@ export const defaultSets = [
         name: "Banded Good Mornings",
         reps: 10,
         log: false
+      },
+      {
+        sequence: 5,
+        name: "Deadman walk",
+        reps: 5,
+        measurement: "/side",
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Pigeon Stretch",
+        reps: 5,
+        measurement: "/side",
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Downward Dog/Upward Dog",
+        reps: 5,
+        log: false
       }
     ],
     source: "D"
@@ -245,6 +327,42 @@ export const defaultSets = [
     numOfSets: 5,
     minPerSet: 3,
     movement: "Deadlift",
+    section: "Primary",
+    setType: "Standard",
+    exercises: [
+      {
+        sequence: 1,
+        name: "Barbell Deadlift",
+        reps: 5,
+        log: true
+      }
+    ],
+    source: "D"
+  },
+  {
+    id: 10,
+    name: "Day 3 - Primary - Romanian Deadlift",
+    numOfSets: 5,
+    minPerSet: 3,
+    movement: "Romanian Deadlift",
+    section: "Primary",
+    setType: "Standard",
+    exercises: [
+      {
+        sequence: 1,
+        name: "Barbell Romanian Deadlift",
+        reps: 5,
+        log: true
+      }
+    ],
+    source: "D"
+  },
+  {
+    id: 10,
+    name: "Day 3 - Primary - Trap Bar Deadlift",
+    numOfSets: 5,
+    minPerSet: 3,
+    movement: "Trap Bar Deadlift",
     section: "Primary",
     setType: "Standard",
     exercises: [
@@ -268,7 +386,7 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Romanian Deadlift (DB or BB)",
+        name: "Kettlebell Swing",
         reps: 10,
         log: true
       },
@@ -276,8 +394,24 @@ export const defaultSets = [
         sequence: 2,
         name: "Step-Up w/ Knee Drive",
         reps: 8,
+        measurement: "/side",
         log: true
+      },
+      {
+        sequence: 3,
+        name: "Good Mornings",
+        options: " Barbell, Dumbbell, Banded,Standing/Seated",
+        reps: 8,
+        log: true
+      },
+      {
+        sequence: 3,
+        name: "Back Extension",
+        options: "Machine, Bodyweight, Weighted",
+        reps: 10,
+        log: false
       }
+
     ],
     source: "D"
   },
@@ -292,16 +426,26 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Cable Pull-Through",
-        reps: 12,
-        log: true
+        name: "Horizontal plank",
+        reps: 30,
+        measurement: "sec.",
+        log: false
       },
       {
         sequence: 2,
-        name: "Bird Dog Hold",
-        reps: 5,
-        log: true
-      }
+        name: "Side Plank",
+        reps: 30,
+        measurement: "Sec/Side",
+        log: false
+      },
+      {
+        sequence: 2,
+        name: "Pallof Press",
+        options: "Cable, Band",
+        reps: 10,
+        measurement: "/side",
+        log: false
+      },
     ],
     source: "D"
   },
@@ -316,20 +460,41 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Shoulder Dislocates w/ Band",
+        name: "Shoulder Dislocates",
+        options: "Band, Pipe",
         reps: 10,
         log: false
       },
       {
         sequence: 2,
         name: "Dead Hang",
-        reps: 1,
+        reps: 20,
+        measurement: "sec.",
         log: false
       },
       {
         sequence: 3,
         name: "Scapular Pull-Ups",
         reps: 8,
+        log: false
+      },
+      {
+        sequence: 4,
+        name: "Band Pull-Aparts",
+        reps: 15,
+        log: false
+      },
+      {
+        sequence: 5,
+        name: "Resistance Band Face Pulls",
+        reps: 12,
+        log: false
+      },
+      {
+        sequence: 6,
+        name: "Inverted Rows",
+        options: "Rings, TRX, Barbell",
+        reps: 12,
         log: false
       }
     ],
@@ -346,7 +511,27 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Pull-Up (assisted or weighted)",
+        name: "Pull-Up",
+        options: "Assisted, Bodyweight, Weighted, Tempo",
+        reps: 5,
+        log: true
+      }
+    ],
+    source: "D"
+  },
+  {
+    id: 14,
+    name: "Day 4 - Primary - Chin-Up",
+    numOfSets: 5,
+    minPerSet: 3,
+    movement: "Push/Pull",
+    section: "Primary",
+    setType: "Standard",
+    exercises: [
+      {
+        sequence: 1,
+        name: "Pull-Up",
+        options: "Assisted, Bodyweight, Weighted, Tempo",
         reps: 5,
         log: true
       }
@@ -355,7 +540,7 @@ export const defaultSets = [
   },
   {
     id: 15,
-    name: "Day 4 - Secondary - Pull-Up",
+    name: "Day 4 - Secondary - Pull-Up/Chin-Up",
     numOfSets: 3,
     minPerSet: 3,
     movement: "Push/Pull",
@@ -364,16 +549,39 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "1-Arm Dumbbell Row",
+        name: "1-Arm Bent Over Row",
+        options: "Kettlebell, Dumbbell",
         reps: 10,
         log: true
       },
       {
         sequence: 2,
         name: "Inverted Row",
+        options: "Rings, TRX, Barbell",
         reps: 8,
         log: true
-      }
+      },
+      {
+        sequence: 3,
+        name: "Lat Pulldown",
+        options: "Wide Grip, Close Grip, Neutral Grip",
+        reps: 10,
+        log: true
+      },
+      {
+        sequence: 4,
+        name: "Face Pulls",
+        options: "Cable, Band",
+        reps: 10,
+        log: true
+      },
+      {
+        sequence: 5,
+        name: "Banded Triceps Pushdown",
+        options: "Cable, Band",
+        reps: 10,
+        log: true
+      }      
     ],
     source: "D"
   },
@@ -388,8 +596,9 @@ export const defaultSets = [
     exercises: [
       {
         sequence: 1,
-        name: "Farmer Carry (single arm)",
-        reps: 1,
+        name: "Farmer Carry",
+        reps: 30,
+        measurement: "sec.",
         log: true
       },
       {
@@ -397,392 +606,29 @@ export const defaultSets = [
         name: "Banded Face Pulls",
         reps: 15,
         log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 17,
-    name: "Hypertrophy Day 1 - Warm-Up - Push",
-    numOfSets: 1,
-    minPerSet: 10,
-    movement: "Push/Pull",
-    section: "Warm-Up",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Arm Circles",
-        reps: 10,
-        log: false
-      },
-      {
-        sequence: 2,
-        name: "Band Pull-Aparts",
-        reps: 15,
-        log: false
       },
       {
         sequence: 3,
-        name: "Resistance Band Chest Press",
-        reps: 12,
-        log: false
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 18,
-    name: "Hypertrophy Day 1 - Primary - Push",
-    numOfSets: 4,
-    minPerSet: 2.5,
-    movement: "Push/Pull",
-    section: "Primary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Barbell Bench Press",
-        reps: 8,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 19,
-    name: "Hypertrophy Day 1 - Secondary - Push",
-    numOfSets: 3,
-    minPerSet: 2.5,
-    movement: "Push/Pull",
-    section: "Secondary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Seated DB Shoulder Press",
-        reps: 10,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Incline DB Press",
-        reps: 12,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 20,
-    name: "Hypertrophy Day 1 - Accessories - Push",
-    numOfSets: 3,
-    minPerSet: 2,
-    movement: "Push/Pull",
-    section: "Accessories",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Cable Lateral Raise",
-        reps: 15,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Rope Triceps Pushdown",
-        reps: 15,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 21,
-    name: "Hypertrophy Day 2 - Warm-Up - Lower A",
-    numOfSets: 1,
-    minPerSet: 10,
-    movement: "Squat",
-    section: "Warm-Up",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "World\u2019s Greatest Stretch",
-        reps: 2,
-        log: false
-      },
-      {
-        sequence: 2,
-        name: "Deep Squat Hold",
-        reps: 1,
-        log: false
-      },
-      {
-        sequence: 3,
-        name: "Glute Bridge",
-        reps: 10,
-        log: false
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 22,
-    name: "Hypertrophy Day 2 - Primary - Lower A",
-    numOfSets: 4,
-    minPerSet: 2.5,
-    movement: "Squat",
-    section: "Primary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Leg Press",
-        reps: 12,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 23,
-    name: "Hypertrophy Day 2 - Secondary - Lower A",
-    numOfSets: 3,
-    minPerSet: 2.5,
-    movement: "Squat",
-    section: "Secondary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Walking Lunges",
-        reps: 10,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Bulgarian Split Squat",
-        reps: 10,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 24,
-    name: "Hypertrophy Day 2 - Accessories - Lower A",
-    numOfSets: 3,
-    minPerSet: 2,
-    movement: "Core",
-    section: "Accessories",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Hanging Leg Raise",
-        reps: 15,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Side Plank Reach Through",
-        reps: 8,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 25,
-    name: "Hypertrophy Day 3 - Warm-Up - Pull",
-    numOfSets: 1,
-    minPerSet: 10,
-    movement: "Push/Pull",
-    section: "Warm-Up",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Dead Hang",
-        reps: 1,
-        log: false
-      },
-      {
-        sequence: 2,
-        name: "Band Rows",
-        reps: 12,
-        log: false
-      },
-      {
-        sequence: 3,
-        name: "Scapular Pull-Ups",
-        reps: 8,
-        log: false
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 26,
-    name: "Hypertrophy Day 3 - Primary - Pull",
-    numOfSets: 4,
-    minPerSet: 2.5,
-    movement: "Push/Pull",
-    section: "Primary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Pull-Up (weighted or bodyweight)",
-        reps: 6,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 27,
-    name: "Hypertrophy Day 3 - Secondary - Pull",
-    numOfSets: 3,
-    minPerSet: 2.5,
-    movement: "Push/Pull",
-    section: "Secondary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Barbell Row",
-        reps: 10,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Cable Lat Pulldown",
-        reps: 12,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 28,
-    name: "Hypertrophy Day 3 - Accessories - Pull",
-    numOfSets: 3,
-    minPerSet: 2,
-    movement: "Push/Pull",
-    section: "Accessories",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Incline DB Curl",
-        reps: 15,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Rear Delt Fly",
-        reps: 15,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 29,
-    name: "Hypertrophy Day 4 - Warm-Up - Lower B",
-    numOfSets: 1,
-    minPerSet: 10,
-    movement: "Deadlift",
-    section: "Warm-Up",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Hamstring Scoops",
+        name: "Skull Crushers",
+        options: "Barbell, Dumbbell",
         reps: 10,
         log: false
       },
       {
-        sequence: 2,
-        name: "Hip Flexor Stretch",
-        reps: 1,
-        log: false
-      },
-      {
-        sequence: 3,
-        name: "Good Mornings",
+        sequence: 4,
+        name: "Pullover",
+        options: "Dumbbell, Barbell",
         reps: 10,
         log: false
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 30,
-    name: "Hypertrophy Day 4 - Primary - Lower B",
-    numOfSets: 4,
-    minPerSet: 2.5,
-    movement: "Deadlift",
-    section: "Primary",
-    setType: "Standard",
-    exercises: [
+      },
       {
-        sequence: 1,
-        name: "RDL (BB or DB)",
+        sequence: 5,
+        name: "Banded Dead bug",
         reps: 10,
-        log: true
-      }
+        measurement: "/side",
+        log: false
+      } 
     ],
     source: "D"
   },
-  {
-    id: 31,
-    name: "Hypertrophy Day 4 - Secondary - Lower B",
-    numOfSets: 3,
-    minPerSet: 2.5,
-    movement: "Deadlift",
-    section: "Secondary",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Hip Thrust",
-        reps: 12,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Seated Hamstring Curl",
-        reps: 15,
-        log: true
-      }
-    ],
-    source: "D"
-  },
-  {
-    id: 32,
-    name: "Hypertrophy Day 4 - Accessories - Lower B",
-    numOfSets: 4,
-    minPerSet: 2,
-    movement: "Core",
-    section: "Accessories",
-    setType: "Standard",
-    exercises: [
-      {
-        sequence: 1,
-        name: "Calf Raise",
-        reps: 15,
-        log: true
-      },
-      {
-        sequence: 2,
-        name: "Cable Woodchopper",
-        reps: 12,
-        log: true
-      }
-    ],
-    source: "D"
-  }
 ];

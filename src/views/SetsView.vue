@@ -58,6 +58,7 @@ const handleSetDelete = async (id) => {
 async function refreshSets() {
   // sets.value = await getSets();
   sets.value = await getAll();
+  console.log("sets", sets.value);
   addDefaults();
   sets.value.sort((a, b) => a.name.localeCompare(b.name));
 }
