@@ -132,13 +132,6 @@ export const defaultSets = [
         "options": "Cable, Band",
         "reps": 8,
         "log": false
-      },
-      {
-        "sequence": 6,
-        "name": "Banded Leg Abduction",
-        "options": "Cable, Band",
-        "reps": 8,
-        "log": false
       }
     ],
     "source": "D"

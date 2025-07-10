@@ -13,7 +13,7 @@
           <router-link to="/sets" class="nav-link">W/O Segments</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/contact" class="nav-link">Contact</router-link>
+          <router-link to="/contact" class="nav-link">About</router-link>
         </li>
       </ul>
     </nav>
