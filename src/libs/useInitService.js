@@ -1,14 +1,16 @@
-import { db } from "./idb.js";
+import { GetDb } from "./idb.js";
 import { defaultSets } from "./sets.js";
 import { EXERCISE_LIST } from "./exercises.js";
 export function useInitService() {
   
     async function hasBeenInitialized() {
+        const db = await GetDb();
         console.log("Checking if data has been initialized...");
         return await db.get('settings', 'initialized') !== undefined;
     }
 
     async function initializeSets() {
+        const db = await GetDb();
         const initialized = await hasBeenInitialized();
         console.log("Initialization check result:", initialized);
         if (!initialized) {
