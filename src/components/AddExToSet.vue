@@ -51,21 +51,29 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import IconPlus from "~icons/mdi/plus";
-import { EXERCISE_LIST } from "@/libs/exercises";
+import { useIdbservice } from "@/libs/useIdbService";
 let reps = ref(8);
 let exerciseName = ref("");
 let log = ref(false);
 const emit = defineEmits(["save"]);
+const { getAll } = useIdbservice("exercises");
 
 const inputValue = ref(""); // User input
 const selectedValue = ref(""); // Selected exercise
-// const exercises = ref(["Back Squat", "Bench Press", "Deadlift", "Pull-Ups", "Overhead Press"]); // List of available exercises
-const exercises = ref(EXERCISE_LIST); // List of available exercises
+let exercises = ref([]); // List of available exercises
 const filteredExercises = ref([]); // Filtered list for dropdown
 const showDropdown = ref(false); // Toggle for dropdown visibility
 
+onMounted(async () => {
+  console.log("get all exercises");
+  exercises.value = await getExercises();
+});
+async function getExercises(){
+  let exs = await getAll();
+  return exs;
+}
 // Filter exercises based on input
 const filterExercises = () => {
   if (exerciseName.value.trim()) {

@@ -1,6 +1,5 @@
 export const EXERCISE_LIST = [
   {
-    id: 1,
     name: "Goblet Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -16,7 +15,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 2,
     name: "Front Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -32,7 +30,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 3,
     name: "Back Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -48,7 +45,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 4,
     name: "Split Squat",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -64,9 +60,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 5,
     name: "Pallof Press",
-    movement: "Squat",
+    movement: "Core",
     muscleGroup: "Core",
     equipment: "cable/band",
     skillLevel: "beginner",
@@ -80,9 +75,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 6,
-    name: "RKC Plank",
-    movement: "Squat",
+    name: "Plank",
+    movement: "Core",
     muscleGroup: "Core",
     equipment: "bodyweight",
     skillLevel: "intermediate",
@@ -96,9 +90,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 7,
     name: "Push-Up",
-    movement: "Bench Press",
+    movement: "Push/Pull",
     muscleGroup: "Upper Body Push",
     equipment: "bodyweight",
     skillLevel: "beginner",
@@ -112,10 +105,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 8,
     name: "Barbell Bench Press",
-    movement: "Bench Press",
-    muscleGroup: "Upper Body Push",
+    movement: "Push/Pull",
+    muscleGroup: "Upper Body",
     equipment: "barbell",
     skillLevel: "intermediate",
     type: "compound",
@@ -128,10 +120,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 9,
     name: "Dumbbell Incline Press",
-    movement: "Bench Press",
-    muscleGroup: "Upper Body Push",
+    movement: "Push/Pull",
+    muscleGroup: "Upper Body",
     equipment: "dumbbell",
     skillLevel: "intermediate",
     type: "compound",
@@ -144,25 +135,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 10,
-    name: "SA Cable Chest Press",
-    movement: "Bench Press",
-    muscleGroup: "Upper Body Push",
-    equipment: "cable",
-    skillLevel: "intermediate",
-    type: "compound",
-    planeOfMotion: "transverse",
-    unilateral: true,
-    tempo: "2-0-2",
-    primaryMuscles: ["pectorals"],
-    secondaryMuscles: ["triceps", "core"],
-    warmup: false,
-    stabilityChallenge: true
-  },
-  {
-    id: 11,
-    name: "Deadbug w/ Reach",
-    movement: "Bench Press",
+    name: "Deadbug",
+    movement: "Core",
     muscleGroup: "Core",
     equipment: "bodyweight",
     skillLevel: "beginner",
@@ -176,9 +150,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 12,
     name: "Trap Bar Deadlift",
-    movement: "Deadlift",
+    movement: "Hinge",
     muscleGroup: "Posterior Chain",
     equipment: "trap bar",
     skillLevel: "intermediate",
@@ -192,9 +165,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 13,
     name: "Romanian Deadlift",
-    movement: "Deadlift",
+    movement: "Hinge",
     muscleGroup: "Posterior Chain",
     equipment: "barbell/dumbbell",
     skillLevel: "intermediate",
@@ -208,9 +180,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 14,
     name: "Step-Up",
-    movement: "Deadlift",
+    movement: "Squat",
     muscleGroup: "Lower Body",
     equipment: "dumbbell",
     skillLevel: "intermediate",
@@ -224,25 +195,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 15,
-    name: "Cable Pull-Through",
-    movement: "Deadlift",
-    muscleGroup: "Posterior Chain",
-    equipment: "cable",
-    skillLevel: "beginner",
-    type: "compound",
-    planeOfMotion: "sagittal",
-    unilateral: false,
-    tempo: "2-1-2",
-    primaryMuscles: ["glutes"],
-    secondaryMuscles: ["hamstrings"],
-    warmup: false,
-    stabilityChallenge: true
-  },
-  {
-    id: 16,
     name: "Bird Dog",
-    movement: "Deadlift",
+    movement: "Core",
     muscleGroup: "Core",
     equipment: "bodyweight",
     skillLevel: "beginner",
@@ -256,10 +210,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 17,
     name: "Pull-Up",
-    movement: "Pull-Up",
-    muscleGroup: "Upper Body Pull",
+    movement: "Push/Pull",
+    muscleGroup: "Upper Body",
     equipment: "bodyweight/assisted",
     skillLevel: "intermediate",
     type: "compound",
@@ -272,10 +225,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 18,
-    name: "1-Arm DB Row",
-    movement: "Pull-Up",
-    muscleGroup: "Upper Body Pull",
+    name: "Singe Arm DB Row",
+    movement: "Push/Pull",
+    muscleGroup: "Upper Body",
     equipment: "dumbbell",
     skillLevel: "beginner",
     type: "compound",
@@ -288,10 +240,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 19,
     name: "Inverted Row",
-    movement: "Pull-Up",
-    muscleGroup: "Upper Body Pull",
+    movement: "Push/pull",
+    muscleGroup: "Upper Body",
     equipment: "bar/bodyweight",
     skillLevel: "beginner",
     type: "compound",
@@ -304,9 +255,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 20,
     name: "Farmer Carry",
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     muscleGroup: "Grip/Shoulders",
     equipment: "dumbbell/kettlebell",
     skillLevel: "beginner",
@@ -320,10 +270,9 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 21,
     name: "Banded Face Pulls",
-    movement: "Pull-Up",
-    muscleGroup: "Upper Body Pull",
+    movement: "Push/Pull",
+    muscleGroup: "Upper Body",
     equipment: "band/cable",
     skillLevel: "beginner",
     type: "isolation",
@@ -336,9 +285,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 22,
     name: "Seated DB Shoulder Press",
-    movement: "Overhead Press",
+    movement: "Push/Pull",
     muscleGroup: "Shoulders",
     equipment: "dumbbell",
     skillLevel: "beginner",
@@ -352,55 +300,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 23,
-    name: "Incline DB Press",
-    movement: "Bench Press",
-    muscleGroup: "Upper Chest",
-    equipment: "dumbbell",
-    skillLevel: "beginner",
-    type: "compound",
-    planeOfMotion: "transverse",
-    unilateral: false,
-    tempo: "2-0-1",
-    primaryMuscles: ["pectorals (upper)", "anterior deltoids"],
-    secondaryMuscles: ["triceps"],
-    warmup: false,
-    stabilityChallenge: true
-  },
-  {
-    id: 24,
-    name: "Cable Lateral Raise",
-    movement: "Lateral Raise",
-    muscleGroup: "Lateral Deltoids",
-    equipment: "cable",
-    skillLevel: "beginner",
-    type: "isolation",
-    planeOfMotion: "frontal",
-    unilateral: true,
-    tempo: "2-1-2",
-    primaryMuscles: ["lateral deltoids"],
-    secondaryMuscles: [],
-    warmup: false,
-    stabilityChallenge: false
-  },
-  {
-    id: 25,
-    name: "Rope Triceps Pushdown",
-    movement: "Triceps Extension",
-    muscleGroup: "Triceps",
-    equipment: "cable",
-    skillLevel: "beginner",
-    type: "isolation",
-    planeOfMotion: "sagittal",
-    unilateral: false,
-    tempo: "2-0-1",
-    primaryMuscles: ["triceps"],
-    secondaryMuscles: [],
-    warmup: false,
-    stabilityChallenge: false
-  },
-  {
-    id: 26,
     name: "Leg Press",
     movement: "Squat",
     muscleGroup: "Quads",
@@ -416,9 +315,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 27,
     name: "Walking Lunges",
-    movement: "Lunge",
+    movement: "Squat",
     muscleGroup: "Quads/Glutes",
     equipment: "bodyweight or dumbbell",
     skillLevel: "intermediate",
@@ -432,9 +330,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 28,
-    name: "Bulgarian Split Squat",
-    movement: "Split Squat",
+    name: "Split Squat",
+    movement: "Squat",
     muscleGroup: "Quads/Glutes",
     equipment: "bodyweight or dumbbell",
     skillLevel: "intermediate",
@@ -448,9 +345,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 29,
     name: "Hanging Leg Raise",
-    movement: "Leg Raise",
+    movement: "Core",
     muscleGroup: "Core",
     equipment: "bodyweight",
     skillLevel: "intermediate",
@@ -464,9 +360,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 30,
-    name: "Side Plank Reach Through",
-    movement: "Plank",
+    name: "Side Plank",
+    movement: "Core",
     muscleGroup: "Core/Obliques",
     equipment: "bodyweight",
     skillLevel: "intermediate",
@@ -480,9 +375,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 31,
     name: "Barbell Row",
-    movement: "Row",
+    movement: "Push/Pull",
     muscleGroup: "Back",
     equipment: "barbell",
     skillLevel: "intermediate",
@@ -496,9 +390,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 32,
-    name: "Cable Lat Pulldown",
-    movement: "Lat Pulldown",
+    name: "Lat Pulldown",
+    movement: "Push/Pull",
     muscleGroup: "Lats",
     equipment: "cable",
     skillLevel: "beginner",
@@ -512,25 +405,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 33,
-    name: "Incline DB Curl",
-    movement: "Curl",
-    muscleGroup: "Biceps",
-    equipment: "dumbbell",
-    skillLevel: "beginner",
-    type: "isolation",
-    planeOfMotion: "sagittal",
-    unilateral: true,
-    tempo: "2-1-2",
-    primaryMuscles: ["biceps"],
-    secondaryMuscles: [],
-    warmup: false,
-    stabilityChallenge: false
-  },
-  {
-    id: 34,
     name: "Rear Delt Fly",
-    movement: "Reverse Fly",
+    movement: "Push/Pull",
     muscleGroup: "Rear Delts",
     equipment: "machine or cable",
     skillLevel: "beginner",
@@ -544,25 +420,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 35,
-    name: "RDL",
-    movement: "Deadlift",
-    muscleGroup: "Hamstrings/Glutes",
-    equipment: "barbell or dumbbell",
-    skillLevel: "intermediate",
-    type: "compound",
-    planeOfMotion: "sagittal",
-    unilateral: false,
-    tempo: "3-1-1",
-    primaryMuscles: ["hamstrings", "glutes"],
-    secondaryMuscles: ["lower back"],
-    warmup: false,
-    stabilityChallenge: true
-  },
-  {
-    id: 36,
     name: "Hip Thrust",
-    movement: "Hip Thrust",
+    movement: "Hinge",
     muscleGroup: "Glutes",
     equipment: "barbell or machine",
     skillLevel: "intermediate",
@@ -576,9 +435,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 37,
     name: "Seated Hamstring Curl",
-    movement: "Leg Curl",
+    movement: "Squat",
     muscleGroup: "Hamstrings",
     equipment: "machine",
     skillLevel: "beginner",
@@ -592,9 +450,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 38,
     name: "Calf Raise",
-    movement: "Calf Raise",
+    movement: "Squat",
     muscleGroup: "Calves",
     equipment: "machine or bodyweight",
     skillLevel: "beginner",
@@ -608,9 +465,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 39,
     name: "Woodchopper",
-    movement: "Rotation",
+    movement: "Core",
     muscleGroup: "Obliques",
     equipment: "cable or dumbell",
     skillLevel: "intermediate",
@@ -624,9 +480,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 40,
     name: "Worlds Greatest Stretch",
-    movement: "Squat",
+    movement: "Full Body",
     muscleGroup: "Full Body",
     equipment: "bodyweight",
     skillLevel: "all",
@@ -640,8 +495,7 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 41,
-    name: "Deep Squat Hold w/ T-Spine Rotation",
+    name: "Deep Squat Hold",
     movement: "Squat",
     muscleGroup: "Lower Body",
     equipment: "bodyweight",
@@ -656,7 +510,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 42,
     name: "Ankle Rockers",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -672,9 +525,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 43,
     name: "Cat-Cow",
-    movement: "Squat/Deadlift",
+    movement: "Full Body",
     muscleGroup: "Spine",
     equipment: "bodyweight",
     skillLevel: "all",
@@ -688,9 +540,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 44,
     name: "Glute Bridge",
-    movement: "Squat/Deadlift",
+    movement: "Squat",
     muscleGroup: "Posterior Chain",
     equipment: "bodyweight",
     skillLevel: "beginner",
@@ -704,7 +555,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 45,
     name: "Bodyweight Squats",
     movement: "Squat",
     muscleGroup: "Lower Body",
@@ -720,7 +570,6 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 46,
     name: "Banded Lateral Walks",
     movement: "Squat",
     muscleGroup: "Glutes",
@@ -736,25 +585,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 47,
-    name: "Foam Roll Thoracic Spine",
-    movement: "Bench Press",
-    muscleGroup: "Upper Back",
-    equipment: "foam roller",
-    skillLevel: "all",
-    type: "mobility",
-    planeOfMotion: "sagittal",
-    unilateral: false,
-    tempo: "rolling",
-    primaryMuscles: ["thoracic spine"],
-    secondaryMuscles: [],
-    warmup: true,
-    stabilityChallenge: false
-  },
-  {
-    id: 48,
     name: "Band Pull-Aparts",
-    movement: "Bench Press/Pull-Up",
+    movement: "Push/Pull",
     muscleGroup: "Shoulders",
     equipment: "band",
     skillLevel: "all",
@@ -768,9 +600,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 49,
     name: "Scapular Push-Ups",
-    movement: "Bench Press",
+    movement: "Push/Pull",
     muscleGroup: "Scapular Stabilizers",
     equipment: "bodyweight",
     skillLevel: "all",
@@ -784,57 +615,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 50,
-    name: "Deadbug w/ Arm Extension",
-    movement: "Bench Press",
-    muscleGroup: "Core",
-    equipment: "bodyweight",
-    skillLevel: "all",
-    type: "activation",
-    planeOfMotion: "sagittal",
-    unilateral: false,
-    tempo: "controlled",
-    primaryMuscles: ["transverse abdominis"],
-    secondaryMuscles: [],
-    warmup: true,
-    stabilityChallenge: true
-  },
-  {
-    id: 51,
-    name: "Hip Flexor Stretch",
-    movement: "Deadlift",
-    muscleGroup: "Hip Flexors",
-    equipment: "bodyweight",
-    skillLevel: "all",
-    type: "mobility",
-    planeOfMotion: "sagittal",
-    unilateral: true,
-    tempo: "static",
-    primaryMuscles: ["hip flexors"],
-    secondaryMuscles: [],
-    warmup: true,
-    stabilityChallenge: false
-  },
-  {
-    id: 52,
-    name: "Bird Dog",
-    movement: "Deadlift",
-    muscleGroup: "Core",
-    equipment: "bodyweight",
-    skillLevel: "beginner",
-    type: "activation",
-    planeOfMotion: "sagittal",
-    unilateral: true,
-    tempo: "hold",
-    primaryMuscles: ["glutes", "erector spinae"],
-    secondaryMuscles: ["core"],
-    warmup: true,
-    stabilityChallenge: true
-  },
-  {
-    id: 53,
     name: "Banded Good Mornings",
-    movement: "Deadlift",
+    movement: "Hinge",
     muscleGroup: "Posterior Chain",
     equipment: "band",
     skillLevel: "beginner",
@@ -848,9 +630,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 54,
-    name: "Shoulder Dislocates w/ Band",
-    movement: "Pull-Up",
+    name: "Shoulder Dislocates",
+    movement: "Push/Pull",
     muscleGroup: "Shoulders",
     equipment: "band",
     skillLevel: "beginner",
@@ -864,9 +645,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: false
   },
   {
-    id: 55,
     name: "Dead Hang",
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     muscleGroup: "Shoulders/Grip",
     equipment: "bar",
     skillLevel: "all",
@@ -880,9 +660,8 @@ export const EXERCISE_LIST = [
     stabilityChallenge: true
   },
   {
-    id: 56,
     name: "Scapular Pull-Ups",
-    movement: "Pull-Up",
+    movement: "Push/Pull",
     muscleGroup: "Scapular Stabilizers",
     equipment: "bar",
     skillLevel: "intermediate",
@@ -894,21 +673,5 @@ export const EXERCISE_LIST = [
     secondaryMuscles: [],
     warmup: true,
     stabilityChallenge: true
-  },
-  {
-    id: 57,
-    name: "Face Pulls",
-    movement: "Pull-Up",
-    muscleGroup: "Shoulders",
-    equipment: "band or cable",
-    skillLevel: "all",
-    type: "activation",
-    planeOfMotion: "transverse",
-    unilateral: false,
-    tempo: "2-1-2",
-    primaryMuscles: ["rear delts", "traps"],
-    secondaryMuscles: [],
-    warmup: true,
-    stabilityChallenge: false
   }
 ];

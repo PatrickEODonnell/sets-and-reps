@@ -13,26 +13,6 @@
     />
   </div>
   <PageFooter />
-  <!-- <div id="sets-list">
-    <div class="set-row" v-for="set in sets" :key="set.id" @click="showSet(set.id)">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-  <div>
-    <button @click.stop="expand(set.id)" class="expand-button">
-      <IconPlus style="vertical-align: middle;" />
-    </button>
-    <span style="vertical-align: middle;">{{ set.id }}: {{ set.name }}</span>
-  </div>
-  <IconTrashCan style="vertical-align: middle;" />
-</div>
-      <div v-if="expandedId == set.id" class="set-details">
-        {{ set.setType }}: {{ set.minPerSet }}mins/set for {{ set.numOfSets }} sets
-      </div>
-      <div v-if="expandedId == set.id" class="set-details">
-        Exercises:
-        <span v-for="(ex, sequence) in set.exercises" :key="sequence"><br />{{ ex.name }}</span>
-      </div>
-    </div>
-  </div> -->
 </template>
 <script setup>
 import PageFooter from "@/components/PageFooter.vue";
@@ -43,10 +23,12 @@ import { useSetParamsStore } from "@/libs/siteParams";
 import { useRouter } from "vue-router";
 import SetsListItem from "@/components/SetsListItem.vue";
 import { useIdbservice } from "@/libs/useIdbService";
+import { useInitService } from "@/libs/useInitService";
 import { defaultSets } from "@/libs/sets";
 const { getAll, getById, deleteById: deleteSet } = useIdbservice("sets");
 const store = useSetParamsStore();
 let sets = ref([]);
+const { initializeSets } = useInitService();
 
 const router = useRouter();
 const handleSetDelete = async (id) => {
@@ -59,7 +41,7 @@ async function refreshSets() {
   // sets.value = await getSets();
   sets.value = await getAll();
   console.log("sets", sets.value);
-  addDefaults();
+  //addDefaults();
   sets.value.sort((a, b) => a.name.localeCompare(b.name));
 }
 function addDefaults() {
@@ -101,6 +83,7 @@ async function showSet(setId, source) {
 }
 
 onMounted(async () => {
+  await initializeSets()
   await refreshSets();
 });
 </script>

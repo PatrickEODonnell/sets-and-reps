@@ -1,6 +1,5 @@
 export const defaultSets = [
   {
-    "id": 1,
     "name": "Day 1 - Warm-Up - Squat",
     "numOfSets": 1,
     "minPerSet": 10,
@@ -38,7 +37,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 2,
     "name": "Day 1 - Primary - Squat",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -56,7 +54,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 3,
     "name": "Day 1 - Secondary - Squat",
     "numOfSets": 3,
     "minPerSet": 3,
@@ -89,7 +86,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 4,
     "name": "Day 1 - Accessories - Squat",
     "numOfSets": 3,
     "minPerSet": 2,
@@ -137,7 +133,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 5,
     "name": "Day 2 - Warm-Up - Bench Press",
     "numOfSets": 1,
     "minPerSet": 10,
@@ -188,7 +183,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 6,
     "name": "Day 2 - Primary - Bench Press",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -208,7 +202,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 7,
     "name": "Day 2 - Secondary - Bench Press",
     "numOfSets": 3,
     "minPerSet": 3,
@@ -234,7 +227,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 8,
     "name": "Day 2 - Accessories - Bench Press",
     "numOfSets": 2,
     "minPerSet": 2,
@@ -258,7 +250,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 9,
     "name": "Day 3 - Warm-Up - Deadlift",
     "numOfSets": 1,
     "minPerSet": 10,
@@ -314,7 +305,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 10,
     "name": "Day 3 - Primary - Deadlift",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -332,7 +322,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 11,
     "name": "Day 3 - Primary - Romanian Deadlift",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -350,7 +339,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 12,
     "name": "Day 3 - Primary - Trap Bar Deadlift",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -368,7 +356,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 13,
     "name": "Day 3 - Secondary - Deadlift",
     "numOfSets": 3,
     "minPerSet": 3,
@@ -407,7 +394,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 14,
     "name": "Day 3 - Accessories - Deadlift",
     "numOfSets": 3,
     "minPerSet": 2,
@@ -441,7 +427,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 15,
     "name": "Day 4 - Warm-Up - Pull-Up",
     "numOfSets": 1,
     "minPerSet": 10,
@@ -492,7 +477,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 16,
     "name": "Day 4 - Primary - Pull-Up",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -511,7 +495,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 17,
     "name": "Day 4 - Primary - Chin-Up",
     "numOfSets": 5,
     "minPerSet": 3,
@@ -530,7 +513,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 18,
     "name": "Day 4 - Secondary - Pull-Up/Chin-Up",
     "numOfSets": 3,
     "minPerSet": 3,
@@ -577,7 +559,6 @@ export const defaultSets = [
     "source": "D"
   },
   {
-    "id": 19,
     "name": "Day 4 - Accessories - Pull-Up",
     "numOfSets": 3,
     "minPerSet": 2,

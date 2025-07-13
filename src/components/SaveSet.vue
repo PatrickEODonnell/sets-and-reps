@@ -31,8 +31,9 @@
 import { useSetParamsStore } from "@/libs/siteParams";
 const store = useSetParamsStore();
 async function saveSet() {
-  await store.add();
+  await store.add();  
   store.editMode = "Edit"
+  console.log("Edit Mode: ", store.editMode);
   // store.showSaveSet = false;
 }
 function cancel(){
