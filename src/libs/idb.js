@@ -1,6 +1,6 @@
 import { openDB } from 'idb';
 const datasets = ["sets", "logs", "exercises"];
-const DB_VERSION = 1;
+const DB_VERSION = 6;
 const DB_NAME = "setdb";
 let dbInstance;
 
